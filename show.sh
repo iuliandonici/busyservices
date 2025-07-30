@@ -50,7 +50,7 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
 metadata_expire=1h
-" >> /etc//zypp/repos.d/vscodium.repo 
+" >> /etc/zypp/repos.d/vscodium.repo 
              else
                 echo "There is no version of VSCodium for x86."
             fi            
