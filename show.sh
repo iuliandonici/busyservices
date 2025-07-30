@@ -52,7 +52,15 @@ gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
 metadata_expire=1h
 " >> /etc/zypp/repos.d/vscodium.repo 
                 else
-                    echo "There is no version of VSCodium for x86."
+                    echo "name=gitlab.com_paulcarroty_vscodium_repo
+baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+metadata_expire=1h
+" >> /etc/zypp/repos.d/vscodium.repo 
+
                 fi            
             else
 # Setting a variable for getting the machine's architecture
@@ -71,7 +79,7 @@ metadata_expire=1h
                     echo "There is no VSCodium for this architecture."
                 fi
             fi
-    elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
+        if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
             sudo wget https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
             -O /usr/share/keyrings/vscodium-archive-keyring.asc
