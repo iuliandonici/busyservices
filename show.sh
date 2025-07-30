@@ -8,7 +8,7 @@ function f_add_repo_vscodium() {
         if [[ "$EUID" -ne 0 ]]; then # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-            sudo tee -a /etc/yum.repos.d/vscodium.repo << 'EOF'
+sudo tee -a /etc/yum.repos.d/vscodium.repo << 'EOF'
 [gitlab.com_paulcarroty_vscodium_repo]
 name=gitlab.com_paulcarroty_vscodium_repo
 baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
@@ -53,7 +53,6 @@ EOF
                 gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
                 metadata_expire=1h
 EOF
-
             else
                 echo "There is no version of VSCodium for x86."
             fi            
