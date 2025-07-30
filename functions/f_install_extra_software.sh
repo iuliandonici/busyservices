@@ -1,10 +1,12 @@
 #!/bin/bash
-var_install_extra_software_array=("brave-browser")
+var_install_extra_software_array=("brave-browser" "codium" "codium-insiders")
 function f_install_extra_software() {
     # source functions/f_get_distro_packager.sh
     source functions/f_update_software.sh
     source functions/f_add_repo_brave_browser.sh
+    source functions/f_add_repo_vscodium.sh
     f_add_repo_brave_browser
+    f_add_repo_vscodium
     f_update_software
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_extra_software_array[@]}"
