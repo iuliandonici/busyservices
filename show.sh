@@ -57,7 +57,7 @@ EOF
             else
                 echo "There is no version of VSCodium for x86."
             fi            
-        else
+    else
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
