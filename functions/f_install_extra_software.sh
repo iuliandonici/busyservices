@@ -6,6 +6,7 @@ function f_install_extra_software() {
     source functions/f_add_repo_brave_browser.sh
     source functions/f_add_repo_vscodium.sh
     f_add_repo_brave_browser
+    f_update_software
     f_add_repo_vscodium
     f_update_software
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
