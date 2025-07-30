@@ -39,7 +39,7 @@ EOF
                 echo "There is no VSCodium for this architecture."
            fi
         fi
-    if [[ "$(f_get_distro_packager)" == "zypper" ]]; then
+    elif [[ "$(f_get_distro_packager)" == "zypper" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
