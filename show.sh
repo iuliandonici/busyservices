@@ -25,7 +25,7 @@ EOF
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-tee -a /etc/yum.repos.d/vscodium.repo << 'EOF'
+tee -a /etc/yum.repos.d/vscodium.repo << "EOF"
 [gitlab.com_paulcarroty_vscodium_repo]
 name=gitlab.com_paulcarroty_vscodium_repo
 baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
