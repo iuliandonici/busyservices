@@ -104,5 +104,4 @@ metadata_expire=1h
             fi
         fi
     fi
-}
 f_add_repo_vscodium
