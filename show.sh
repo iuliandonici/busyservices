@@ -40,18 +40,19 @@ EOF
            fi
         fi
     if [[ "$(f_get_distro_packager)" == "zypper" ]]; then
-        if [[ "$EUID" -ne 0 ]]; then # Setting a variable for getting the machine's architecture
+        if [[ "$EUID" -ne 0 ]]; then 
+# Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                sudo tee -a /etc/zypp/repos.d/vscodium.repo << 'EOF'
-                [gitlab.com_paulcarroty_vscodium_repo]
-                name=gitlab.com_paulcarroty_vscodium_repo
-                baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
-                enabled=1
-                gpgcheck=1
-                repo_gpgcheck=1
-                gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-                metadata_expire=1h
+sudo tee -a /etc/zypp/repos.d/vscodium.repo << 'EOF'
+[gitlab.com_paulcarroty_vscodium_repo]
+name=gitlab.com_paulcarroty_vscodium_repo
+baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+metadata_expire=1h
 EOF
             else
                 echo "There is no version of VSCodium for x86."
@@ -60,7 +61,7 @@ EOF
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                tee -a /etc/zypp/repos.d/vscodium.repo << "EOF"
+tee -a /etc/zypp/repos.d/vscodium.repo << 'EOF'
 [gitlab.com_paulcarroty_vscodium_repo]
 name=gitlab.com_paulcarroty_vscodium_repo
 baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
