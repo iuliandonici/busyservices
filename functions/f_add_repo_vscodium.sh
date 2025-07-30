@@ -51,14 +51,14 @@ EOF
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 tee -a /etc/zypp/repos.d/vscodium.repo << 'EOF'
-                [gitlab.com_paulcarroty_vscodium_repo]
-                name=gitlab.com_paulcarroty_vscodium_repo
-                baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
-                enabled=1
-                gpgcheck=1
-                repo_gpgcheck=1
-                gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-                metadata_expire=1h
+                    [gitlab.com_paulcarroty_vscodium_repo]
+                    name=gitlab.com_paulcarroty_vscodium_repo
+                    baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
+                    enabled=1
+                    gpgcheck=1
+                    repo_gpgcheck=1
+                    gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+                    metadata_expire=1h
 EOF           
             else
                 echo "There is no VSCodium for this architecture."
