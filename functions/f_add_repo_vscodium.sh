@@ -41,7 +41,7 @@ function f_add_repo_vscodium() {
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 echo 'deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.asc ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main' \
-                | sudo tee /etc/apt/sources.list.d/vscodium.list
+                | tee /etc/apt/sources.list.d/vscodium.list
            else
                 echo "There is no VSCodium for this architecture."
             fi
