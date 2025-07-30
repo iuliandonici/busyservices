@@ -13,6 +13,8 @@ case $(hostname) in
     busyt | mycontainer)
         echo "This is $(hostname)"
         # f_install_extra_software
+        source functions/f_add_repo_vscodium.sh
+        f_add_repo_vscodium
     ;;
     busydev)
         ./docker/install_server_docker.sh
