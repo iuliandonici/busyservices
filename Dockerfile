@@ -1,4 +1,4 @@
-FROM opensuse-leap:latest
+FROM opensuse/leap:latest
 COPY docker/ /home/root/docker
 COPY git/configure_git.sh /home/root/git/configure_git.sh
 COPY functions/ /home/root/functions/
