@@ -56,7 +56,6 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
 metadata_expire=1h" >> /etc/zypp/repos.d/vscodium.repo 
-
                 fi            
             else
 # Setting a variable for getting the machine's architecture
@@ -73,6 +72,7 @@ metadata_expire=1h" >> /etc/zypp/repos.d/vscodium.repo
                 else
                     echo "There is no VSCodium for this architecture."
                 fi
+fi
 }
 #             fi
 #         if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
