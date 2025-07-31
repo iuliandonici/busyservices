@@ -2,7 +2,7 @@
 var_update_commands_array_debian=("update" "upgrade -y" "autoremove -y --purge")
 var_update_commands_array_alpine=("update" "upgrade")
 var_update_commands_array_alma=("update -y" "upgrade -y")
-var_update_commands_array_opensuse=("refresh" "update" "clean")
+var_update_commands_array_opensuse=("refresh" "update -y" "clean")
 echo "- Updating, upgrading and cleaning software:"
 function f_update_software() {
     source functions/f_get_distro_packager.sh
