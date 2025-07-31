@@ -88,5 +88,5 @@ metadata_expire=1h" >> /etc/yum.repos.d/vscodium.repo
 #             fi
 #         fi
 #     fi
-}
+
 f_add_repo_vscodium
