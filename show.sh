@@ -4,19 +4,14 @@ source functions/f_get_distro_id.sh
 source functions/f_install_base_software.sh
 source functions/f_install_extra_software.sh
 function f_add_repo_vscodium() {
-    echo "- Currently adding the VS Codium IDE repo using $(f_get_distro_packager):"
+    echo "- Currently adding the VS Codium IDE repo using $(f_get_distro_packager)."
     if [[ "$(f_get_distro_packager)" == "dnf" ]]; then
         if [[ "$EUID" -ne 0 ]]; then # Setting a variable for getting the machine's architecture
+            echo "- Adding the GPG key:"
+            sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-            sudo echo "[gitlab.com_paulcarroty_vscodium_repo]
-name=gitlab.com_paulcarroty_vscodium_repo
-baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-metadata_expire=1h" >> /etc/yum.repos.d/vscodium.repo
+                printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | sudo tee -a /etc/yum.repos.d/vscodium.repo
             else
                 echo "There is no version of VSCodium for x86."
             fi            
@@ -24,7 +19,7 @@ metadata_expire=1h" >> /etc/yum.repos.d/vscodium.repo
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.asc ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main" >> /etc/apt/sources.list.d/vscodium.list
+                printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | tee -a /etc/yum.repos.d/vscodium.repo
            else
                 echo "There is no VSCodium for this architecture."
            fi
