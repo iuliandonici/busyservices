@@ -73,6 +73,7 @@ metadata_expire=1h" >> /etc/zypp/repos.d/vscodium.repo
                 else
                     echo "There is no VSCodium for this architecture."
                 fi
+}
 #             fi
 #         if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
 #         if [[ "$EUID" -ne 0 ]]; then 
@@ -99,5 +100,4 @@ metadata_expire=1h" >> /etc/zypp/repos.d/vscodium.repo
 #             fi
 #         fi
 #     fi
-}
 f_add_repo_vscodium
