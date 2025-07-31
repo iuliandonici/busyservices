@@ -26,6 +26,8 @@ function f_add_repo_vscodium() {
         fi
     elif [[ "$(f_get_distro_packager)" == "zypper" ]]; then
         if [[ "$EUID" -ne 0 ]]; then # Setting a variable for getting the machine's architecture
+            echo "- Adding the GPG key:"
+            sudo $(f_get_distro_packager) --gpg-auto-import-keys https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | sudo tee -a /etc/zypp/repos.d/vscodium.repo
@@ -33,9 +35,12 @@ function f_add_repo_vscodium() {
                 echo "There is no version of VSCodium for x86."
             fi            
         else
+            echo "- Adding the GPG key:"
+            $(f_get_distro_packager) --gpg-auto-import-keys https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
+            
                 printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | tee -a /etc/zypp/repos.d/vscodium.repo
 
             else
