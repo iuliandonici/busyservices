@@ -13,9 +13,9 @@ case $(hostname) in
     busyt | mycontainer)
         echo "This is $(hostname)"
         # f_install_extra_software
-        f_install_extra_software
+    f_install_extra_software
     ;;
     busydev)
-        ./docker/install_server_docker.sh
+        # ./docker/install_server_docker.sh
     ;;
 esac
