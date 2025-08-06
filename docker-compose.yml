@@ -6,8 +6,8 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - media:/youtube
-      - cache:/cache
+      - /media/youtube-media/:/youtube
+      - /media/youtube-cache/:/cache
     environment:
       - ES_URL=http://archivist-es:9200     # needs protocol e.g. http and port
       - REDIS_CON=redis://archivist-redis:6379
@@ -34,7 +34,7 @@ services:
     expose:
       - "6379"
     volumes:
-      - redis:/data
+      - /media/youtube-redis/:/data
     depends_on:
       - archivist-es
   archivist-es:
@@ -57,7 +57,7 @@ services:
       - "9200"
 
 volumes:
-  media:
-  cache:
-  redis:
-  es:
+  /media/youtube-media/:
+  /media/youtube-cache/:
+  /media/youtube-redis/:
+  /media/youtube-es/:
