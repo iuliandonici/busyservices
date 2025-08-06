@@ -3,7 +3,7 @@ function f_add_repo_jellyfin() {
     echo "- Currently adding the Jellyfin repo using $(f_get_distro_packager)."
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
-# Setting a variable for getting the machine's architecture
+            # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 sudo mkdir /etc/apt/keyrings
