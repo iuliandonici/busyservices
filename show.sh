@@ -1,6 +1,4 @@
 #!/bin/bash
-source functions/f_get_distro_packager.sh
-source functions/f_get_distro_id.sh
 source functions/f_config_docker.sh
 # source functions/f_install_base_software.sh
 # source functions/f_install_extra_software.sh
