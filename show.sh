@@ -10,7 +10,7 @@ function f_add_repo_jellyfin() {
                 sudo mkdir /etc/apt/keyrings
                 DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
                 CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
-                curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg
+                curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key | sudo gpg --batches --yes --dearmor -o /etc/apt/keyrings/jellyfin.gpg
                 sudo printf "Types: deb
                 URIs: https://repo.jellyfin.org/${DISTRO}
                 Suites: ${CODENAME}
