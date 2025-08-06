@@ -39,7 +39,7 @@ function f_add_repo_jellyfin() {
         fi
     fi
 }
-f_add_repo_jellyfin
+
 
 # sudo mkdir /etc/apt/keyrings
 # DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
