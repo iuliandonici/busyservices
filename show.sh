@@ -1,4 +1,5 @@
 #!/bin/bash
+source functions/f_get_distro_packager.sh
 function f_add_repo_jellyfin() {
     echo "- Currently adding the Jellyfin repo using $(f_get_distro_packager)."
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
