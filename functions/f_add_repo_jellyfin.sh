@@ -25,7 +25,7 @@ EOF
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                sudo mkdir /etc/apt/keyrings
+                mkdir /etc/apt/keyrings
                 DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
                 CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
                 curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/jellyfin.gpg
