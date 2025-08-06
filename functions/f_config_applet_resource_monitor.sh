@@ -13,4 +13,3 @@ function f_config_applet_resource_monitor() {
     cd ../
     mv Resource_Monitor@Ory0n/ ~/.local/share/gnome-shell/extensions/
 }
-f_config_applet_resource_monitor
