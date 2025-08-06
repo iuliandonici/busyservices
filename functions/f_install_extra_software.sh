@@ -3,6 +3,7 @@ var_install_extra_software_array=("docker-ce" "docker-ce-cli" "containerd.io" "d
 function f_install_extra_software() {
     source functions/f_update_software.sh
     source functions/f_add_repo_docker.sh
+    source functions/f_config_docker.sh
     f_update_software
     f_add_repo_docker
     f_update_software
@@ -42,4 +43,6 @@ function f_install_extra_software() {
             fi
         done
     fi
+    f_update_software
+    f_config_docker
 }

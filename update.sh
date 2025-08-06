@@ -19,8 +19,6 @@ case $(hostname) in
     busydev)
         echo "This is $(hostname)"
         f_install_extra_software
-        f_update_software
-        f_config_docker
         # ./docker/install_server_docker.sh
     ;;
 esac
