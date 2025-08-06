@@ -4,7 +4,7 @@
 # source functions/f_install_base_software.sh
 # source functions/f_install_extra_software.sh
 function f_add_repo_vscodium() {
-    echo "- Currently adding the VS Codium IDE repo using $(f_get_distro_packager)."
+    echo "- Currently adding the VSCodium IDE repo using $(f_get_distro_packager)."
     if [[ "$(f_get_distro_packager)" == "dnf" ]]; then
         if [[ "$EUID" -ne 0 ]]; then # Setting a variable for getting the machine's architecture
             echo "- Adding the GPG key:"

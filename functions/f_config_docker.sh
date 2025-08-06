@@ -13,7 +13,7 @@ function f_config_docker() {
                     sudo usermod -aG docker $USER
                     sudo systemctl stop docker.socket
                     sudo systemctl stop docker.service
-                    sudo cp -r functions/f_config_docker.json /etc/docker/daemon.json2
+                    sudo cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     sudo systemctl start docker.socket
                     sudo systemctl start docker.service
                     sudo su - $USER
@@ -34,7 +34,7 @@ function f_config_docker() {
                     usermod -aG docker $USER
                     systemctl stop docker.socket
                     systemctl stop docker.service
-                    cp -r functions/f_config_docker.json /etc/docker/daemon.json2
+                    cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     systemctl start docker.socket
                     systemctl start docker.service
                     su - $USER
