@@ -1,48 +1,7 @@
 #!/bin/bash
-# source functions/f_update_software.sh
-# f_update_software
-# sudo mkdir -p /etc/apt/keyrings
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/docker.gpg
-# echo \
-#   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-#   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-# sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-# sudo groupadd docker
-# sudo usermod -aG docker $USER
-# echo "Docker is now installed!"
-# sudo systemctl stop docker.socket
-# sudo systemctl stop docker.service
-# sudo cp -r docker/install_server_docker.json /etc/docker/daemon.json
-# sudo systemctl start docker.socket
-# sudo systemctl start docker.service
-
-# sudo su - $USER
-
-
-
-
-function f_config_docker() {
-    if [[ -f /usr/bin/docker ]]; then
-        echo "- Docker is installed. Now, we'll restart it."
-        sudo groupadd docker
-        sudo usermod -aG docker $USER
-        sudo systemctl stop docker.socket
-        sudo systemctl stop docker.service
-        sudo cp -r docker/install_server_docker.json /etc/docker/daemon.json2
-        sudo systemctl start docker.socket
-        sudo systemctl start docker.service
-        echo "- Status Docker:"
-        sudo systemctl status docker.service
-        sudo su - $USER
-    else 
-        echo "- Can't configure Docker because it's not installed."
-    fi
-}
-
-
-
 source functions/f_get_distro_packager.sh
 source functions/f_get_distro_id.sh
+source functions/f_config_docker.sh
 # source functions/f_install_base_software.sh
 # source functions/f_install_extra_software.sh
 function f_add_repo_docker() {
