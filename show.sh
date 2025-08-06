@@ -16,7 +16,7 @@ function f_add_repo_jellyfin() {
                 Suites: ${CODENAME}
                 Components: main
                 Architectures: $( dpkg --print-architecture )
-                Signed-By: /etc/apt/keyrings/jellyfin.gpg" >> /etc/apt/sources.list.d/jellyfin.sources
+                Signed-By: /etc/apt/keyrings/jellyfin.gpg" > /etc/apt/sources.list.d/jellyfin.sources
             else
                 echo "- There is no version of Jellyfin for x86."
             fi            
