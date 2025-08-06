@@ -28,7 +28,7 @@ function f_config_docker() {
         sudo usermod -aG docker $USER
         sudo systemctl stop docker.socket
         sudo systemctl stop docker.service
-        sudo cp -r docker/install_server_docker.json /etc/docker/daemon.json
+        sudo cp -r docker/install_server_docker.json /etc/docker/daemon.json2
         sudo systemctl start docker.socket
         sudo systemctl start docker.service
         echo "- Status Docker:"
