@@ -22,7 +22,7 @@
 
 
 function f_config_docker() {
-    if [-f /usr/bin/docker]; then
+    if [[ -f /usr/bin/docker ]]; then
         echo "- Docker is installed. Now, we'll restart it."
         sudo groupadd docker
         sudo usermod -aG docker $USER
