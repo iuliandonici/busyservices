@@ -1,16 +1,14 @@
 #!/bin/bash
+shopt -s extglob
 function f_config_applet_resource_monitor() {
-    mkdir Resource_Monitor@Ory0n
-    cd Resource_Monitor@Ory0n/
-    curl -s https://api.github.com/repos/0ry0n/Resource_Monitor/releases/latest \
-    | grep "browser_download_url.*zip" \
-    | cut -d : -f 2,3 \
-    | tr -d \" \
-    | wget -qi -
-
-    unzip *.zip
-    rm -rf *.zip
-    cd ../
-    mv Resource_Monitor@Ory0n/ ~/.local/share/gnome-shell/extensions/
+    if [[ -d ~/.local/share/cinnamon ]]; then
+        git clone git@github.com:linuxmint/cinnamon-spices-applets.git
+        cd cinnamon-spices-applets/
+        rm -rf $(ls -A | grep -v "multicore-sys")
+        mv multicore-sys*/files/multicore-sys* ~/.local/share/cinnamon/applets/
+        rm -rf ../cinnamon-spices-applets/
+    else
+        echo "There is no Cinnamon desktop for this function."
+    fi
 }
 f_config_applet_resource_monitor

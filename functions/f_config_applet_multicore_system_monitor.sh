@@ -1,11 +1,11 @@
 #!/bin/bash
 shopt -s extglob
-function f_config_applet_temperature_indicator() {
+function f_config_applet_multicore_system_monitor() {
     if [[ -d ~/.local/share/cinnamon ]]; then
         git clone git@github.com:linuxmint/cinnamon-spices-applets.git
         cd cinnamon-spices-applets/
-        rm -rf $(ls -A | grep -v "temperature@fevimu")
-        mv temperature@fevimu/files/temperature@fevimu ~/.local/share/cinnamon/applets/
+        rm -rf $(ls -A | grep -v "multicore-sys")
+        mv multicore-sys*/files/multicore-sys* ~/.local/share/cinnamon/applets/
         cd ../
         rm -rf cinnamon-spices-applets/
     else
