@@ -1,11 +1,14 @@
 #!/bin/bash
-var_install_server_dev_software_array=("docker-ce" "docker-ce-cli" "containerd.io" "docker-compose-plugin")
+var_install_server_dev_software_array=("docker-ce" "docker-ce-cli" "containerd.io" "docker-compose-plugin" "jellyfin")
 function f_install_server_dev_software() {
     source functions/f_update_software.sh
     source functions/f_add_repo_docker.sh
     source functions/f_config_docker.sh
+    source functions/f_add_repo_jellyfin.sh
     f_update_software
     f_add_repo_docker
+    f_update_software
+    f_add_repo_jellyfin
     f_update_software
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_server_dev_software_array[@]}"
