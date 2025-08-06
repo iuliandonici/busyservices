@@ -2,7 +2,6 @@
 source functions/f_get_distro_id.sh
 source functions/f_install_base_software.sh
 source functions/f_install_extra_software.sh
-source functions/f_config_docker.sh
 case $(f_get_distro_id) in
     ubuntu | debian | linuxmint | alpine | almalinux | fedora | opensuse-leap)
         echo "Initializing updates and installation of packages for $(f_get_distro_id)."
