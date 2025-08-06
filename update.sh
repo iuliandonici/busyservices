@@ -11,6 +11,7 @@ esac
 case $(hostname) in
     busyt | mycontainer)
         echo "This is $(hostname)"
+        source functions/f_install_desktop_dev_software.sh
         f_install_desktop_dev_software
     ;;
     busydev)
