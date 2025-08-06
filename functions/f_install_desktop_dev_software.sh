@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_desktop_dev_software_array=("brave-browser" "codium" "codium-insiders")
+var_install_desktop_dev_software_array=("brave-browser" "codium" "codium-insiders" "timeshift")
 function f_install_desktop_dev_software() {
     source functions/f_update_software.sh
     source functions/f_add_repo_brave_browser.sh
