@@ -6,8 +6,8 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - /media/youtube-media/:/youtube
-      - /media/youtube-cache/:/cache
+      - media:/youtube
+      - cache:/cache
     environment:
       - ES_URL=http://archivist-es:9200     # needs protocol e.g. http and port
       - REDIS_CON=redis://archivist-redis:6379
@@ -34,7 +34,7 @@ services:
     expose:
       - "6379"
     volumes:
-      - /media/youtube-redis/:/data
+      - redis:/data
     depends_on:
       - archivist-es
   archivist-es:
@@ -52,12 +52,12 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /media/youtube-es/:/usr/share/elasticsearch/data    # check for permission error when using bind mount, see readme
+      - es:/usr/share/elasticsearch/data    # check for permission error when using bind mount, see readme
     expose:
       - "9200"
 
 volumes:
-  /media/youtube-media/:
-  /media/youtube-cache/:
-  /media/youtube-redis/:
-  /media/youtube-es/:
+  media:
+  cache:
+  redis:
+  es:
