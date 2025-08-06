@@ -21,17 +21,30 @@
 
 
 
+function f_config_docker() {
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    if [-f /usr/bin/docker]; then
+        echo "- Docker is installed. Now, we'll restart it."
+        sudo systemctl stop docker.socket
+        sudo systemctl stop docker.service
+        sudo cp -r docker/install_server_docker.json /etc/docker/daemon.json
+        sudo systemctl start docker.socket
+        sudo systemctl start docker.service
+        sudo su - $USER
+    else 
+        echo "- Can't configure Docker because it's not installed."
+    fi
+}
 
 
 
-
-#!/bin/bash
 source functions/f_get_distro_packager.sh
 source functions/f_get_distro_id.sh
 # source functions/f_install_base_software.sh
 # source functions/f_install_extra_software.sh
 function f_add_repo_docker() {
-    echo "- Currently adding the VS Codium IDE repo using $(f_get_distro_packager)."
+    echo "- Currently adding the Docker repo using $(f_get_distro_packager)."
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
 # Setting a variable for getting the machine's architecture
@@ -46,7 +59,7 @@ function f_add_repo_docker() {
                 $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
                 sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
             else
-                echo "There is no version of Docker for x86."
+                echo "- There is no version of Docker for x86."
             fi            
         else
             wget https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
@@ -57,7 +70,7 @@ function f_add_repo_docker() {
                 echo 'deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.asc ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main' \
                 | tee /etc/apt/sources.list.d/vscodium.list
            else
-                echo "There is no VSCodium for this architecture."
+                echo "There is no Docker version for this architecture."
             fi
         fi
     fi
