@@ -31,6 +31,8 @@ function f_config_docker() {
         sudo cp -r docker/install_server_docker.json /etc/docker/daemon.json
         sudo systemctl start docker.socket
         sudo systemctl start docker.service
+        echo "- Status Docker:"
+        sudo systemctl status docker.service
         sudo su - $USER
     else 
         echo "- Can't configure Docker because it's not installed."
