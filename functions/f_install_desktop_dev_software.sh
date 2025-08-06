@@ -6,6 +6,7 @@ function f_install_desktop_dev_software() {
     source functions/f_add_repo_vscodium.sh
     source functions/f_config_applet_temperature_indicator.sh
     source functions/f_config_applet_multicore_system_monitor.sh
+    source functions/f_config_applet_spices_update.sh
     f_update_software
     f_add_repo_brave_browser
     f_update_software
@@ -50,4 +51,5 @@ function f_install_desktop_dev_software() {
     f_update_software
     f_config_applet_temperature_indicator
     f_config_applet_multicore_system_monitor
+    f_config_applet_spices_update
 }
