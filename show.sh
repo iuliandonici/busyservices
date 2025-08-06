@@ -11,12 +11,14 @@ function f_add_repo_jellyfin() {
                 DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
                 CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
                 curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/jellyfin.gpg
-                sudo printf "Types: deb
-                URIs: https://repo.jellyfin.org/${DISTRO}
-                Suites: ${CODENAME}
-                Components: main
-                Architectures: $( dpkg --print-architecture )
-                Signed-By: /etc/apt/keyrings/jellyfin.gpg" > /etc/apt/sources.list.d/jellyfin.sources
+                cat <<EOF | sudo tee /etc/apt/sources.list.d/jellyfin.sources
+Types: deb
+URIs: https://repo.jellyfin.org/${DISTRO}
+Suites: ${CODENAME}
+Components: main
+Architectures: $( dpkg --print-architecture )
+Signed-By: /etc/apt/keyrings/jellyfin.gpg
+EOF
             else
                 echo "- There is no version of Jellyfin for x86."
             fi            
