@@ -5,7 +5,6 @@ case $(f_get_distro_id) in
     ubuntu | debian | linuxmint | alpine | almalinux | fedora | opensuse-leap)
         echo "Initializing updates and installation of packages for $(f_get_distro_id)."
         f_install_base_software
-        ./git/configure_git.sh
     ;;
 esac
 case $(hostname) in

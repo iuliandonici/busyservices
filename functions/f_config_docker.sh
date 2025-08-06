@@ -16,7 +16,6 @@ function f_config_docker() {
                     sudo cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     sudo systemctl start docker.socket
                     sudo systemctl start docker.service
-                    sudo su - $USER
                 else 
                     echo "- Can't configure Docker because it's not installed:"
                     ls -alh /usr/bin/ | grep "docker"
@@ -37,7 +36,6 @@ function f_config_docker() {
                     cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     systemctl start docker.socket
                     systemctl start docker.service
-                    su - $USER
                 else 
                     echo "- Can't configure Docker because it's not installed:"
                     ls -alh /usr/bin/ | grep "docker"

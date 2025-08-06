@@ -2,6 +2,7 @@
 var_install_base_software_array=("lsb-release" "hostname" "wget" "curl" "keychain" "net-tools" "unzip" "git" "nano" "ca-certificates" "curl" "gnupg" "software-properties-common" "acl")
 function f_install_base_software() {
     source functions/f_update_software.sh
+    source functions/f_config_git.sh
     f_update_software
     echo "- List of base software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_base_software_array[@]}"
@@ -39,4 +40,5 @@ function f_install_base_software() {
             fi
         done
     fi
+    f_config_git
 }
