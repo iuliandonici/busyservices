@@ -1,0 +1,37 @@
+services:
+  busydeemix:
+    image: registry.gitlab.com/bockiii/deemix-docker
+    container_name: busydeemix-container
+    hostname: busydeemix
+    volumes:
+      - /media/ssdextern/audio:/downloads
+      - /media/ssdextern/busydeemix-config:/config
+      #network_mode: 'host'
+    ports:
+      - 6595:6595
+  #    users:
+  #      - "$(id -u):$(id -g)"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK_SET=022
+      - DEEMIX_SINGLE_USER=true
+      - "DOCKER_USER=$USER"
+    # networks:
+    #   busymacvlan:
+    #     ipv4_address: 192.168.50.12
+          #dns:
+          #  - 192.168.50.20
+      #mac_address: 02:42:C0:A8:32:04
+    restart: 'unless-stopped'
+  # networks:
+  #   busymacvlan:
+  #     name: busymacvlan
+  #     driver: macvlan
+  #     driver_opts:
+  #       parent: wlp1s0
+  #     ipam:
+  #       config:
+  #         - subnet: "192.168.50.0/24"
+  #           #ip_range: "192.168.0.64/26"
+  #           gateway: "192.168.50.1"
