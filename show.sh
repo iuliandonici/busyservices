@@ -1,63 +1,44 @@
 #!/bin/bash
-source functions/f_get_distro_packager.sh
-function f_add_repo_jellyfin() {
-    echo "- Currently adding the Jellyfin repo using $(f_get_distro_packager)."
-    if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
-        if [[ "$EUID" -ne 0 ]]; then 
-# Setting a variable for getting the machine's architecture
-            architecture=$(uname -m)
-            if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                sudo mkdir /etc/apt/keyrings
-                DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
-                CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
-                curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/jellyfin.gpg
-                cat <<EOF | sudo tee /etc/apt/sources.list.d/jellyfin.sources
-Types: deb
-URIs: https://repo.jellyfin.org/${DISTRO}
-Suites: ${CODENAME}
-Components: main
-Architectures: $( dpkg --print-architecture )
-Signed-By: /etc/apt/keyrings/jellyfin.gpg
-EOF
+var_install_transmission_requirements=("transmission-cli" "transmission-common" "transmission-daemon")
+function f_install_transmission_requirements() {
+    source functions/f_update_software.sh
+    f_update_software
+    echo "- List of base software that will be installed using $(f_get_distro_packager):"
+    for i in "${!var_install_transmission_requirements[@]}"
+    do
+        echo " $i ${var_install_transmission_requirements[$i]}"
+    done
+    if [[ $(f_get_distro_packager) == "apk" ]]; then
+        for i in "${!var_install_transmission_requirements[@]}"
+        do
+            echo "- Currently installing: $i ${var_install_transmission_requirements[$i]}"
+            if [[ "$EUID" -ne 0 ]]; then 
+                sudo $(f_get_distro_packager) add ${var_install_transmission_requirements[$i]}  
             else
-                echo "- There is no version of Jellyfin for x86."
-            fi            
-        else
-# Setting a variable for getting the machine's architecture
-            architecture=$(uname -m)
-            if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                sudo mkdir /etc/apt/keyrings
-                DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
-                CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
-                curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/jellyfin.gpg
-                cat <<EOF | tee /etc/apt/sources.list.d/jellyfin.sources
-Types: deb
-URIs: https://repo.jellyfin.org/${DISTRO}
-Suites: ${CODENAME}
-Components: main
-Architectures: $( dpkg --print-architecture )
-Signed-By: /etc/apt/keyrings/jellyfin.gpg
-EOF
-            else
-                echo "There is no Jellyfin version for this architecture."
+                $(f_get_distro_packager) add ${var_install_transmission_requirements[$i]}  
             fi
-        fi
+        done     
+    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+        for i in "${!var_install_transmission_requirements[@]}"
+        do
+            echo "- Currently installing: $i ${var_install_transmission_requirements[$i]}"
+            if [[ "$EUID" -ne 0 ]]; then 
+                sudo $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+            else
+                $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+            fi
+        done        
+    else
+        for i in "${!var_install_transmission_requirements[@]}"
+        do
+            echo "- Currently installing: $i ${var_install_transmission_requirements[$i]}"
+            if [[ "$EUID" -ne 0 ]]; then 
+                sudo $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+            else
+                $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+            fi
+        done
     fi
+    f_update_software
 }
-f_add_repo_jellyfin
-
-# sudo mkdir /etc/apt/keyrings
-# DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
-# CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
-# curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg
-# cat <<EOF | sudo tee /etc/apt/sources.list.d/jellyfin.sources
-# Types: deb
-# URIs: https://repo.jellyfin.org/${DISTRO}
-# Suites: ${CODENAME}
-# Components: main
-# Architectures: $( dpkg --print-architecture )
-# Signed-By: /etc/apt/keyrings/jellyfin.gpg
-# # EOF
-# sudo apt update
-# sudo apt install jellyfin -y
-# sudo setfacl -R -m u:busyneo:rx /media/ssdextern/
+f_install_transmission_requirements
