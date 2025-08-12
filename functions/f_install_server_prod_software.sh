@@ -49,6 +49,10 @@ function f_install_server_prod_software() {
         done
     fi
     f_update_software
+    f_config_docker
+    f_update_software
     f_install_nginx_requirements
+    f_update_software
     f_install_transmission_requirements
+    f_update_software
 }
