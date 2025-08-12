@@ -48,13 +48,15 @@ function f_config_transmission() {
         if [[ "$EUID" -ne 0 ]]; then 
             sudo systemctl stop transmission-daemon.service
             sudo cp -r functions/f_config_transmission.json settings.json
-            sudo mv settings.json /var/lib/transmission-daemon/.config/transmission-daemon/
+            sudo mv settings.json /var/lib/transmission-daemon/info/
             sudo usermod -a -G debian-transmission $USER
+            sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
         else
             systemctl stop transmission-daemon.service
             cp -r functions/f_config_transmission.json settings.json 
-            mv settings.json /var/lib/transmission-daemon/.config/transmission-daemon/
+            mv settings.json /var/lib/transmission-daemon/info/
             usermod -a -G debian-transmission $USER
+            chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
         fi
     else
         echo "- Transmission isn't installed."
