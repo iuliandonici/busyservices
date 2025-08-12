@@ -63,4 +63,4 @@ function f_config_transmission() {
     fi
 }
 f_install_transmission_requirements
-# f_config_transmission
+f_config_transmission
