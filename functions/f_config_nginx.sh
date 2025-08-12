@@ -8,14 +8,19 @@ function f_config_nginx() {
             sudo rm -rf /var/www/html/
             sudo rm -rf /etc/nginx/sites-enabled/default
             sudo rm -rf /etc/nginx/sites-available/default
-            sudo cp -r functions/f_config_nginx.html index.html
-            sudo mv index.html /var/www/busyprod/
-            sudo cp -r functions/f_config_nginx busyprod
-            sudo mv busyprod /etc/nginx/sites-available/
-            sudo ln -s /etc/nginx/sites-available/busyprod /etc/nginx/sites-enabled/busyprod
+            case $(hostname) in
+                busydev)
+                    echo "This is $(hostname)."
+                    sudo cp -r functions/f_config_nginx_prod.html index.html
+                    sudo mv index.html /var/www/busyprod/
+                    sudo cp -r functions/f_config_nginx_prod busyprod
+                    sudo mv busyprod /etc/nginx/sites-available/
+                    sudo ln -s /etc/nginx/sites-available/busyprod /etc/nginx/sites-enabled/busyprod
+                ;;
+            esac
             sudo service nginx restart
         else
-            sudo mkdir /var/www/busyprod/
+            mkdir /var/www/busyprod/
             rm -rf /var/www/html/
             rm -rf /etc/nginx/sites-enabled/default
             rm -rf /etc/nginx/sites-available/default
