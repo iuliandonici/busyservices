@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_transmission_requirements=("transmission")
+var_install_transmission_requirements=("transmission" "transmission-cli "transmission-common" "transmission-daemon")
 function f_install_transmission_requirements() {
     source functions/f_update_software.sh
     f_update_software
