@@ -1,6 +1,15 @@
 #!/bin/bash
-var_install_server_prod_software_array=("")
+var_install_server_prod_software_array=("docker-ce" "docker-ce-cli" "containerd.io" "docker-compose-plugin" "jellyfin")
 function f_install_server_prod_software() {
+    source functions/f_update_software.sh
+    source functions/f_add_repo_docker.sh
+    source functions/f_config_docker.sh
+    source functions/f_add_repo_jellyfin.sh
+    f_update_software
+    f_add_repo_docker
+    f_update_software
+    f_add_repo_jellyfin
+    f_update_software
     source functions/f_update_software.sh
     source functions/f_install_nginx_requirements.sh
     source functions/f_install_transmission_requirements.sh
