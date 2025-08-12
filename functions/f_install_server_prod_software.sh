@@ -2,6 +2,7 @@
 var_install_server_prod_software_array=("")
 function f_install_server_prod_software() {
     source functions/f_update_software.sh
+    source functions/f_install_nginx_requirements.sh
     source functions/f_install_transmission_requirements.sh
     f_update_software
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
@@ -41,5 +42,6 @@ function f_install_server_prod_software() {
         done
     fi
     f_update_software
+    f_install_nginx_requirements
     f_install_transmission_requirements
 }
