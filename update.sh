@@ -1,8 +1,7 @@
 #!/bin/bash
 source functions/f_get_distro_id.sh
 source functions/f_install_base_software.sh
-source functions/f_install_transmission_requirements.sh
-source functions/f_config_transmission.sh
+source functions/f_install_server_prod_software.sh
 case $(f_get_distro_id) in
     ubuntu | debian | linuxmint | alpine | almalinux | fedora | opensuse-leap)
         echo "Initializing updates and installation of packages for $(f_get_distro_id)."
@@ -23,6 +22,6 @@ case $(hostname) in
     ;;
     busycenter)
         echo "This is $(hostname)."
-        f_install_transmission_requirements
+        f_install_server_prod_software
     ;;
 esac
