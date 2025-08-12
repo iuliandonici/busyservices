@@ -11,6 +11,14 @@ function f_config_nginx() {
             case $(hostname) in
                 busydev)
                     echo "This is $(hostname)."
+                    sudo cp -r functions/f_config_nginx_dev.html index.html
+                    sudo mv index.html /var/www/busdev/
+                    sudo cp -r functions/f_config_nginx_dev busydev
+                    sudo mv busydev /etc/nginx/sites-available/
+                    sudo ln -s /etc/nginx/sites-available/busydev /etc/nginx/sites-enabled/busydev
+                ;;
+                busycenter)
+                    echo "This is $(hostname)."
                     sudo cp -r functions/f_config_nginx_prod.html index.html
                     sudo mv index.html /var/www/busyprod/
                     sudo cp -r functions/f_config_nginx_prod busyprod
