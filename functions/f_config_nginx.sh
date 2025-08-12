@@ -10,8 +10,8 @@ function f_config_nginx() {
             case $(hostname) in
                 busydev)
                     echo "This is $(hostname)."
-                    sudo rm -rf /etc/sites-enabled/busydev
-                    sudo rm -rf /etc/sites-available/busydev
+                    sudo rm -rf /etc/nginx/sites-enabled/busydev
+                    sudo rm -rf /etc/nginx/sites-available/busydev
                     sudo rm -rf /var/www/busydev/
                     sudo mkdir /var/www/busydev/
                     sudo cp -r functions/f_config_nginx_dev.html index.html
@@ -22,8 +22,8 @@ function f_config_nginx() {
                 ;;
                 busycenter)
                     echo "This is $(hostname)."
-                    sudo rm -rf /etc/sites-enabled/busyprod
-                    sudo rm -rf /etc/sites-available/busyprod
+                    sudo rm -rf /etc/nginx/sites-enabled/busyprod
+                    sudo rm -rf /etc/nginx/sites-available/busyprod
                     sudo rm -rf /var/www/busyprod/
                     sudo mkdir /var/www/busyprod/
                     sudo cp -r functions/f_config_nginx_prod.html index.html
@@ -41,8 +41,8 @@ function f_config_nginx() {
             case $(hostname) in
                 busydev)
                     echo "This is $(hostname)."
-                    rm -rf /etc/sites-enabled/busydev
-                    rm -rf /etc/sites-available/busydev
+                    rm -rf /etc/nginx/sites-enabled/busydev
+                    rm -rf /etc/nginx/sites-available/busydev
                     rm -rf /var/www/busydev/
                     mkdir /var/www/busydev/
                     cp -r functions/f_config_nginx_dev.html index.html
@@ -53,8 +53,8 @@ function f_config_nginx() {
                 ;;
                 busycenter)
                     echo "This is $(hostname)."
-                    rm -rf /etc/sites-enabled/busyprod
-                    rm -rf /etc/sites-available/busyprod
+                    rm -rf /etc/nginx/sites-enabled/busyprod
+                    rm -rf /etc/nginx/sites-available/busyprod
                     rm -rf /var/www/busyprod/
                     mkdir /var/www/busyprod/
                     cp -r functions/f_config_nginx_prod.html index.html
