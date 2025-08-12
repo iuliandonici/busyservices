@@ -24,6 +24,5 @@ case $(hostname) in
     busycenter)
         echo "This is $(hostname)."
         f_install_transmission_requirements
-        f_config_transmission
     ;;
 esac
