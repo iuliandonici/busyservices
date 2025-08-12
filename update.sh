@@ -23,6 +23,7 @@ case $(hostname) in
     ;;
     busycenter)
         echo "This is $(hostname)."
+        source functions/f_install_server_prod_software.sh
         f_install_server_prod_software
     ;;
 esac
