@@ -5,14 +5,12 @@ function f_install_server_prod_software() {
     source functions/f_add_repo_docker.sh
     source functions/f_config_docker.sh
     source functions/f_add_repo_jellyfin.sh
+    source functions/f_install_nginx_requirements.sh
+    source functions/f_install_transmission_requirements.sh
     f_update_software
     f_add_repo_docker
     f_update_software
     f_add_repo_jellyfin
-    f_update_software
-    source functions/f_update_software.sh
-    source functions/f_install_nginx_requirements.sh
-    source functions/f_install_transmission_requirements.sh
     f_update_software
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_server_prod_software_array[@]}"

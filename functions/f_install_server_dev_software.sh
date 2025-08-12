@@ -12,10 +12,6 @@ function f_install_server_dev_software() {
     f_update_software
     f_add_repo_jellyfin
     f_update_software
-    f_install_nginx_requirements
-    f_update_software
-    f_install_transmission_requirements
-    f_update_software
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_server_dev_software_array[@]}"
     do
@@ -54,5 +50,9 @@ function f_install_server_dev_software() {
     fi
     f_update_software
     f_config_docker
-
+    f_update_software
+    f_install_nginx_requirements
+    f_update_software
+    f_install_transmission_requirements
+    f_update_software
 }
