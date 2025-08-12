@@ -4,13 +4,16 @@ function f_config_nginx() {
     if [[ -f /usr/sbin/nginx ]]; then
         echo "- Nginx is installed, now we'll config it."
         if [[ "$EUID" -ne 0 ]]; then 
-            sudo mkdir /var/www/busyprod/
             sudo rm -rf /var/www/html/
             sudo rm -rf /etc/nginx/sites-enabled/default
             sudo rm -rf /etc/nginx/sites-available/default
             case $(hostname) in
                 busydev)
                     echo "This is $(hostname)."
+                    sudo rm -rf /etc/sites-enabled/busydev
+                    sudo rm -rf /etc/sites-available/busydev
+                    sudo rm -rf /var/www/busydev/
+                    sudo mkdir /var/www/busydev/
                     sudo cp -r functions/f_config_nginx_dev.html index.html
                     sudo mv index.html /var/www/busdev/
                     sudo cp -r functions/f_config_nginx_dev busydev
@@ -19,6 +22,10 @@ function f_config_nginx() {
                 ;;
                 busycenter)
                     echo "This is $(hostname)."
+                    sudo rm -rf /etc/sites-enabled/busyprod
+                    sudo rm -rf /etc/sites-available/busyprod
+                    sudo rm -rf /var/www/busyprod/
+                    sudo mkdir /var/www/busyprod/
                     sudo cp -r functions/f_config_nginx_prod.html index.html
                     sudo mv index.html /var/www/busyprod/
                     sudo cp -r functions/f_config_nginx_prod busyprod
@@ -28,15 +35,35 @@ function f_config_nginx() {
             esac
             sudo service nginx restart
         else
-            mkdir /var/www/busyprod/
             rm -rf /var/www/html/
             rm -rf /etc/nginx/sites-enabled/default
             rm -rf /etc/nginx/sites-available/default
-            cp -r functions/f_config_nginx.html index.html
-            mv index.html /var/www/busyprod/
-            cp -r functions/f_config_nginx busyprod
-            mv busyprod /etc/nginx/sites-available/
-            ln -s /etc/nginx/sites-available/busyprod /etc/nginx/sites-enabled/busyprod
+            case $(hostname) in
+                busydev)
+                    echo "This is $(hostname)."
+                    rm -rf /etc/sites-enabled/busydev
+                    rm -rf /etc/sites-available/busydev
+                    rm -rf /var/www/busydev/
+                    mkdir /var/www/busydev/
+                    cp -r functions/f_config_nginx_dev.html index.html
+                    mv index.html /var/www/busdev/
+                    cp -r functions/f_config_nginx_dev busydev
+                    mv busydev /etc/nginx/sites-available/
+                    ln -s /etc/nginx/sites-available/busydev /etc/nginx/sites-enabled/busydev
+                ;;
+                busycenter)
+                    echo "This is $(hostname)."
+                    rm -rf /etc/sites-enabled/busyprod
+                    rm -rf /etc/sites-available/busyprod
+                    rm -rf /var/www/busyprod/
+                    mkdir /var/www/busyprod/
+                    cp -r functions/f_config_nginx_prod.html index.html
+                    mv index.html /var/www/busyprod/
+                    cp -r functions/f_config_nginx_prod busyprod
+                    mv busyprod /etc/nginx/sites-available/
+                    ln -s /etc/nginx/sites-available/busyprod /etc/nginx/sites-enabled/busyprod
+                ;;
+            esac
             service nginx restart
         fi
     else
