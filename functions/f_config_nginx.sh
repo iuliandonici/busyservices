@@ -15,7 +15,7 @@ function f_config_nginx() {
                     sudo rm -rf /var/www/busydev/
                     sudo mkdir /var/www/busydev/
                     sudo cp -r functions/f_config_nginx_dev.html index.html
-                    sudo mv index.html /var/www/busdev/
+                    sudo mv index.html /var/www/busydev/
                     sudo cp -r functions/f_config_nginx_dev busydev
                     sudo mv busydev /etc/nginx/sites-available/
                     sudo ln -s /etc/nginx/sites-available/busydev /etc/nginx/sites-enabled/busydev
@@ -46,7 +46,7 @@ function f_config_nginx() {
                     rm -rf /var/www/busydev/
                     mkdir /var/www/busydev/
                     cp -r functions/f_config_nginx_dev.html index.html
-                    mv index.html /var/www/busdev/
+                    mv index.html /var/www/busydev/
                     cp -r functions/f_config_nginx_dev busydev
                     mv busydev /etc/nginx/sites-available/
                     ln -s /etc/nginx/sites-available/busydev /etc/nginx/sites-enabled/busydev
