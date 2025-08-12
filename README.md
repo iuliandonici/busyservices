@@ -10,8 +10,5 @@
         - [ ] dev
 - [ ] Transmission BitTorrent client;
     - [ ] Tested on:
-        - [ ] Dockerfile:
-            - [ ] open-suse/leap:latest
-            - [ ] fedora:latest
         - [x] prod 
         - [x] dev

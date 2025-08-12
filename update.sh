@@ -18,7 +18,7 @@ case $(hostname) in
         echo "This is $(hostname)."
         source functions/f_install_server_dev_software.sh
         f_install_server_dev_software
-        # ./docker/install_server_docker.sh
+        f_install_nginx_requirements
     ;;
     busycenter)
         echo "This is $(hostname)."
