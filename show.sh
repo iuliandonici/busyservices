@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_transmission_requirements=("transmission-cli" "transmission-common" "transmission-daemon")
+var_install_transmission_requirements=("transmission")
 function f_install_transmission_requirements() {
     source functions/f_update_software.sh
     f_update_software
@@ -41,4 +41,26 @@ function f_install_transmission_requirements() {
     fi
     f_update_software
 }
+function f_config_transmission() {
+    # Verify if Transmission has been installed
+    if [[ -f /usr/bin/transmission-daemon ]]; then
+        echo "- Transmission is installed, now we'll config it."
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo systemctl stop transmission-daemon.service
+            sudo cp -r functions/f_config_transmission.json settings.json
+            sudo mv settings.json /var/lib/transmission-daemon/.config/transmission-daemon/
+            sudo usermod -a -G debian-transmission $USER
+            sudo systemctl start transmission-daemon.service
+        else
+            systemctl stop transmission-daemon.service
+            cp -r functions/f_config_transmission.json settings.json 
+            mv settings.json /var/lib/transmission-daemon/.config/transmission-daemon/
+            usermod -a -G debian-transmission $USER
+            systemctl start transmission-daemon.service  
+        fi
+    else
+        echo "- Transmission isn't installed."
+    fi
+}
 f_install_transmission_requirements
+# f_config_transmission
