@@ -7,7 +7,7 @@ server {
       root /var/www/busyprod;
       index index.html;
 
-      location / { 
-            return 301 http://$host$request_uri;
+      location / {
+              try_files $uri $uri/ =404;
       }
 }
