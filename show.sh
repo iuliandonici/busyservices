@@ -52,6 +52,7 @@ function f_config_transmission() {
             sudo mv settings.json /var/lib/transmission-daemon/info/
             sudo usermod -a -G debian-transmission $USER
             sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
+            sudo systemctl start transmission-daemon.service
         else
             systemctl stop transmission-daemon.service
             sed -i -e 's/Type=notify/Type=simple/g' /etc/systemd/system/transmission-daemon.service
@@ -59,6 +60,7 @@ function f_config_transmission() {
             mv settings.json /var/lib/transmission-daemon/info/
             usermod -a -G debian-transmission $USER
             chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
+            systemctl start transmission-daemon.service
         fi
     else
         echo "- Transmission isn't installed."
