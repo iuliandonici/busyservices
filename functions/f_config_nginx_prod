@@ -11,6 +11,6 @@ server {
               try_files $uri $uri/ =404;
       }
       location /transmission/web {
-            alias http://192.168.50.10:9091/transmission/web
+            return 301 http://192.168.50.10$request_uri;
       }
 }
