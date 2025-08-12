@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_transmission_requirements=("transmission" "transmission-cli" "transmission-common" "transmission-daemon")
+var_install_transmission_requirements=("transmission-cli" "transmission-common" "transmission-daemon")
 function f_install_transmission_requirements() {
     source functions/f_update_software.sh
     f_update_software
@@ -50,7 +50,7 @@ function f_config_transmission() {
             sudo cp -r functions/f_config_transmission.json settings.json
             sudo mv settings.json /var/lib/transmission-daemon/info/
             sudo usermod -a -G debian-transmission $USER
-            sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
+            sudo $USER:$USER /var/lib/transmission-daemon/info/settings.json
         else
             systemctl stop transmission-daemon.service
             cp -r functions/f_config_transmission.json settings.json 
