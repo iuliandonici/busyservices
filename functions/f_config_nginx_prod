@@ -11,6 +11,6 @@ server {
             try_files $uri $uri/ =404;
       }
       location /transmission/web {
-            proxy_pass http://localhost:9091;
+            proxy_pass 192.168.50.10:9091/transmission/web;
       }
 }
