@@ -1,13 +1,10 @@
 # busyservices
 ### Scripts that install various services.
 #### Goals:
-- [ ] Nginx service    
-    - [ ] Tested on:
-        - [ ] Dockerfile:
-            - [ ] open-suse/leap:latest
-            - [ ] fedora:latest
-        - [ ] prod 
-        - [ ] dev
+- [x] Nginx service    
+    - [x] Tested on:
+        - [x] prod 
+        - [x] dev
 - [ ] Transmission BitTorrent client;
     - [ ] Tested on:
         - [x] prod 
