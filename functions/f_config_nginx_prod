@@ -11,7 +11,10 @@ server {
             try_files $uri $uri/ =404;
       }
       location /transmission/web/ {
-            set $upstream http://127.0.0.1:9091/transmission/web/;
-            proxy_pass $upstream;
+            proxy_pass http://192.168.50.10:9091/transmission/web/;
+            proxy_buffering off;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-Port $server_port;
       }
 }
