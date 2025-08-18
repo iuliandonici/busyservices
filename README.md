@@ -5,7 +5,7 @@
     - [x] Tested on:
         - [x] prod 
         - [x] dev
-- [ ] Transmission BitTorrent client;
-    - [ ] Tested on:
+- [x] Transmission BitTorrent client;
+    - [x] Tested on:
         - [x] prod 
         - [x] dev
