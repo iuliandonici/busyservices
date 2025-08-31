@@ -1,11 +1,12 @@
 #!/bin/bash
-var_install_server_kvm_software_array=("qemu-kvm" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "network-manager")
+var_install_server_kvm_software_array=("qemu-kvm" "libvirt-daemon-system" "libvirt-clients" "bridge-utils")
 function f_install_server_kvm_software() {
     source functions/f_update_software.sh
     source functions/f_config_kvm_sshd.sh
     source functions/f_config_kvm_libvirtd.sh
     source functions/f_config_kvm_group.sh
     source functions/f_config_kvm_bridged_networking.sh
+    source functions/f_config_kvm_virtual_network.sh
     f_update_software
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_server_kvm_software_array[@]}"
