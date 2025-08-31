@@ -2,8 +2,8 @@
 function f_config_kvm_virtual_network() {
     echo "- Creating a virtual bridged network;"
     pwd
-    sudo cp -r functions/f_config_kvm_virtual_network.xml .
-    sudo virsh net-define f_config_kvm_virtual_network.xml
+    # sudo cp -r functions/f_config_kvm_virtual_network.xml .
+    sudo virsh net-define functions/f_config_kvm_virtual_network.xml
     sudo virsh net-start bridged-network
     sudo virsh net-autostart bridged-network
 }
