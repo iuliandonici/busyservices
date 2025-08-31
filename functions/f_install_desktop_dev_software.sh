@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_desktop_dev_software_array=("vlc" "timeshift" "brave-browser" "codium" "codium-insiders" "gnome-shell-extension-manager" "gnome-shell-extensions" "gnome-browser-connector" "gir1.2-gtop-2.0" "gir1.2-nm-1.0" "gir1.2-clutter-1.0" "gnome-system-monitor")
+var_install_desktop_dev_software_array=("vlc" "timeshift" "brave-browser" "codium" "virt-manager" "libvirt-clients" "gnome-shell-extension-manager" "gnome-shell-extensions" "gnome-browser-connector" "gir1.2-gtop-2.0" "gir1.2-nm-1.0" "gir1.2-clutter-1.0" "gnome-system-monitor")
 function f_install_desktop_dev_software() {
     source functions/f_update_software.sh
     source functions/f_add_repo_brave_browser.sh
