@@ -6,6 +6,7 @@ function f_config_kvm_bridged_networking() {
     sudo ip address add dev br0 192.168.50.0/24
     sudo cp -r functions/f_config_kvm_netfilter_bridge /etc/sysctl.d/99-kvm-netfilter-bridge.conf
     sudo modprobe br_netfilter
-    sudo echo "br_netfilter" >> /etc/modules-load.d/br_netfilter.conf
+    sudo echo "br_netfilter" >> br_netfilter.conf
+    sudo mv br_netfilter.conf /etc/modules-load.d/br_netfilter.conf
     sudo sysctl -p /etc/sysctl.d/99-kvm-netfilter-bridge.conf
 }
