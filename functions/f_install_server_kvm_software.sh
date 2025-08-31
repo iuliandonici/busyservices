@@ -44,6 +44,6 @@ function f_install_server_kvm_software() {
     fi
     f_update_software
     f_config_kvm_sshd
-    f_config_kvm_libirtd
+    f_config_kvm_libvirtd
     f_config_kvm_group
 }
