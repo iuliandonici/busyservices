@@ -47,9 +47,7 @@ function f_install_server_kvm_software() {
     f_update_software
     f_config_kvm_sshd
     f_config_kvm_libvirtd
-    f_config_kvm_group
-    echo "We are here:"
-    pwd
     f_config_kvm_bridged_networking
     f_config_kvm_virtual_network
+    f_config_kvm_group
 }
