@@ -10,9 +10,8 @@ iface lo inet loopback
 iface ens33 inet dhcp
 # The bridge0 bridge settings
 auto bridge0
-iface bridge0 inet static
-    bridge_ports ens33
-        address 192.168.50.3
-        broadcast 192.168.50.255
-        netmask 255.255.255.0
-        gateway 192.168.50.1
+iface bridge0 inet dhcp
+    bridge_ports    ens33
+    bridge_stp      off
+    bridge_maxwait  0
+    bridge_fd       0
