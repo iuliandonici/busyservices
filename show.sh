@@ -1,5 +1,3 @@
 #!/bin/bash
-source functions/f_install_transmission_requirements.sh
-source functions/f_config_transmission.sh
-f_install_transmission_requirements
-f_config_transmission
+source functions/f_config_kvm_bridged_networking.sh
+f_config_kvm_bridged_networking
