@@ -3,7 +3,8 @@
 #### Goals:
 - [ ] KVM on busypc
     - [ ] Testing:
-        - [ ] with **f_update_software**
+        - [x] with **f_update_software**
+        - [ ] with **f_config_kvm_sshd**
 - [x] Nginx service    
     - [x] Tested on:
         - [x] prod 
