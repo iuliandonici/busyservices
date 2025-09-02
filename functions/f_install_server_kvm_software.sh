@@ -45,10 +45,10 @@ function f_install_server_kvm_software() {
         done
     fi
     f_update_software
-    f_config_kvm_sshd
-    f_config_kvm_bridged_networking
-    f_config_kvm_virtual_network
-    f_config_kvm_group
-    f_config_kvm_libvirtd
-    sudo reboot now
+    # f_config_kvm_sshd
+    # f_config_kvm_bridged_networking
+    # f_config_kvm_virtual_network
+    # f_config_kvm_group
+    # f_config_kvm_libvirtd
+    # sudo reboot now
 }
