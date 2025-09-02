@@ -4,10 +4,9 @@ function f_config_kvm_bridged_networking() {
     sudo rm -rf /etc/network/interfaces
     sudo cp -r functions/f_config_kvm_network_interfaces.yaml /etc/network/interfaces
     sudo cp -r functions/f_config_kvm_netfilter_bridge /etc/sysctl.d/99-kvm-netfilter-bridge.conf
-    sudo /etc/init.d/networking restart
-    # sudo ip link add bridge0 type bridge
-    # sudo ip link set ens33 master bridge0
-    # sudo ip address add dev bridge0 192.168.50.3/24
+    sudo ip link add bridge0 type bridge
+    sudo ip link set ens33 master bridge0
+    sudo ip address add dev bridge0 192.168.50.0/24
     sudo modprobe br_netfilter
     sudo echo "br_netfilter" >> br_netfilter.conf
     sudo mv br_netfilter.conf /etc/modules-load.d/br_netfilter.conf
