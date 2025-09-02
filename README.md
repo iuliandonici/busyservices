@@ -4,7 +4,8 @@
 - [ ] KVM on busypc
     - [ ] Testing:
         - [x] with **f_update_software**
-        - [ ] with **f_config_kvm_sshd**
+        - [x] with **f_config_kvm_sshd**
+        - [ ] with **f_config_kvm_group**
 - [x] Nginx service    
     - [x] Tested on:
         - [x] prod 
