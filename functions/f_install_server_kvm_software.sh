@@ -46,10 +46,9 @@ function f_install_server_kvm_software() {
     fi
     f_update_software
     f_config_kvm_sshd
-    echo "You are here:" 
-    pwd
-    # f_config_kvm_bridged_networking
+    f_config_kvm_bridged_networking
     # f_config_kvm_virtual_network
+    f_config_kvm_crontab
     f_config_kvm_group
     f_config_kvm_libvirtd
     # sudo reboot now
