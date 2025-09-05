@@ -7,7 +7,7 @@ iface lo inet loopback
 
 # Specify that the physical interface that should be connected to the bridge
 # should be configured manually, to avoid conflicts with NetworkManager
-sudo ens33
+auto ens33
 iface ens33 inet static
     address 192.168.50.11
     netmask 255.255.255.0
