@@ -6,6 +6,7 @@ function f_install_server_kvm_software() {
     source functions/f_config_kvm_libvirtd.sh
     source functions/f_config_kvm_group.sh
     source functions/f_config_kvm_crontab.sh
+    source functions/f_config_kvm_images.sh
     source functions/f_config_kvm_bridged_networking.sh
     source functions/f_config_kvm_virtual_network.sh
     f_update_software
@@ -48,6 +49,7 @@ function f_install_server_kvm_software() {
     f_update_software
     f_config_kvm_sshd
     f_config_kvm_crontab
+    f_config_kvm_images
     f_config_kvm_bridged_networking
     f_config_kvm_virtual_network
     f_config_kvm_group
