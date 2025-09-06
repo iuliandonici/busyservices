@@ -4,5 +4,5 @@ function f_config_kvm_crontab () {
     echo "@reboot systemctl restart networking.service" >> cronjob_restart_network
     crontab -l > cronjob_restart_network
     sudo crontab cronjob_restart_network
-    # rm cronjob_restart_network
+    rm cronjob_restart_network
 }
