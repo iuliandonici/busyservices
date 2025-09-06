@@ -8,13 +8,7 @@ iface lo inet loopback
 # Specify that the physical interface that should be connected to the bridge
 # should be configured manually, to avoid conflicts with NetworkManager
 auto ens33
-iface ens33 inet static
-    address 192.168.50.11
-    netmask 255.255.255.0
-    network 192.168.50.0
-    broadcast 192.168.50.255
-    gateway 192.168.50.1
-
+iface ens33 inet dhcp
 # The bridge0 bridge settings
 auto bridge0
 iface bridge0 inet dhcp
