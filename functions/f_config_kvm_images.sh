@@ -7,7 +7,7 @@ function f_config_kvm_images() {
     var_images_folder="dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/"
     find $var_images_folder ! -name $(ls -h $var_images_folder | sort -nr | head -1) -type f -exec rm -f {} +
     # mkdir alpinelinux
-    sudo mv $var_images_folder/*.iso alpinelinux/
-    sudo cp -rf alpinelinux/ /var/lib/libvirt/images/
+    sudo mv $var_images_folder/*.iso .
+    sudo cp -rf *.iso /var/lib/libvirt/images/
     rm -rf dl-cdn.alpinelinux.org/ alpinelinux/
 }
