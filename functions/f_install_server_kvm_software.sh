@@ -54,4 +54,5 @@ function f_install_server_kvm_software() {
     f_config_kvm_virtual_network
     f_config_kvm_group
     f_config_kvm_libvirtd
+    sudo systemctl restart networking.service
 }
