@@ -8,6 +8,6 @@ function f_config_kvm_images() {
     find $var_images_folder ! -name $(ls -h $var_images_folder | sort -nr | head -1) -type f -exec rm -f {} +
     mkdir alpinelinux
     sudo mv $var_images_folder/*.iso alpinelinux/
-    sudo mv alpinelinux/ /var/lib/libvirt/images/
-    rm -rf dl-cdn.alpinelinux.org/
+    sudo cp -rf alpinelinux/ /var/lib/libvirt/images/
+    rm -rf dl-cdn.alpinelinux.org/ alpinelinux/
 }
