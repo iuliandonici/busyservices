@@ -6,7 +6,7 @@ function f_config_kvm_images() {
     # List the files in reverse order, remove all, except the 1st one
     var_images_folder="dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/"
     find $var_images_folder ! -name $(ls -h $var_images_folder | sort -nr | head -1) -type f -exec rm -f {} +
-    mkdir alpinelinux
+    # mkdir alpinelinux
     sudo mv $var_images_folder/*.iso alpinelinux/
     sudo cp -rf alpinelinux/ /var/lib/libvirt/images/
     rm -rf dl-cdn.alpinelinux.org/ alpinelinux/
