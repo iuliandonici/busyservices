@@ -9,5 +9,5 @@ function f_config_kvm_images() {
     # mkdir alpinelinux
     sudo mv $var_images_folder/*.iso .
     sudo cp -rf *.iso /var/lib/libvirt/images/
-    rm -rf dl-cdn.alpinelinux.org/ alpinelinux/
+    rm -rf dl-cdn.alpinelinux.org/
 }
