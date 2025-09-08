@@ -44,6 +44,8 @@ function f_install_server_kvm_software() {
             else
                 $(f_get_distro_packager) install -y ${var_install_server_kvm_software_array[$i]}  
             fi
+            echo "- Rebooting the network";
+            sudo systemctl restart networking.service 
         done
     fi
     f_update_software
