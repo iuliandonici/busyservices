@@ -31,5 +31,5 @@ function f_config_kvm_images_alpine() {
     echo " - Copying the images fronm current folder to the official images repo;"
     sudo cp -r *.iso /var/lib/libvirt/images/
     echo " - Removing unwanted folders and leftover images;"
-    rm -rf dl-cdn.alpinelinux.org/
+    rm -rf *.iso dl-cdn.alpinelinux.org/
 }
