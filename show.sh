@@ -13,6 +13,6 @@ function f_config_kvm_images_ubuntu() {
     # else
     #     echo "- Latest Ubuntu server ($var_latest_ubuntu_version) ISO already exists in $var_f_config_kvm_images_dir/;"
     # fi
-    # rm -rf ubuntuversions latestubuntuversion lastubuntuversion
+    rm -rf ubuntuversions latestubuntuversion lastubuntuversion
 }
 f_config_kvm_images_ubuntu
