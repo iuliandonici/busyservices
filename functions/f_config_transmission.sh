@@ -9,7 +9,7 @@ function f_config_transmission() {
             sudo cp -r functions/f_config_transmission.json settings.json
             sudo mv settings.json /var/lib/transmission-daemon/info/
             sudo usermod -a -G debian-transmission $USER
-            sudo chmod 770 ~/
+            sudo chmod 777 ~/
             sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
             sudo systemctl start transmission-daemon.service
             sudo systemctl daemon-reload
@@ -19,7 +19,7 @@ function f_config_transmission() {
             cp -r functions/f_config_transmission.json settings.json 
             mv settings.json /var/lib/transmission-daemon/info/
             usermod -a -G debian-transmission $USER
-            chmod 770 ~/
+            chmod 777 ~/
             chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
             systemctl start transmission-daemon.service
             systemctl daemon-reload
