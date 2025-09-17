@@ -3,7 +3,7 @@ function f_config_kvm_images_ubuntu() {
     var_f_config_kvm_images_dir="/var/lib/libvirt/images"
     echo "- Downloading latest Ubuntu server ISO;"
     wget -q -X "*.10" http://cdimage.ubuntu.com/releases/ -O - | sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | grep '^[[:space:][:space:]][1-9]' | grep '.04.*' | sed 's/\///g' > ubuntuversions 
-    awk '! ($0 % 2)' ubuntuversions | sort -nr | head -1 > latestubuntuversion
+    awk '($0 % 2)' ubuntuversions | sort -nr | head -1 > latestubuntuversion
     # awk '{print $1 $2}' latestubuntuversion > lastubuntuversion
     # var_latest_ubuntu_version=$(cat lastubuntuversion)
     echo $var_latest_ubuntu_version
