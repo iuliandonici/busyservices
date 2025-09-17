@@ -18,7 +18,7 @@ function f_config_kvm_images_alpine() {
         echo $var_f_config_kvm_images_repo_alpine/${var_f_config_kvm_images_arch_alpine[$i]}/
         if ! [ -f $var_f_config_kvm_images_dir/$(cat alpineversions) ]; then
             wget -r -N $var_f_config_kvm_images_repo_alpine/${var_f_config_kvm_images_arch_alpine[$i]}/$(cat alpineversions)
-            sudo mv $var_f_config_kvm_images_repo_alpine_dir/${var_f_config_kvm_images_arch_alpine[$i]}/*.iso $var_f_config_kvm_images_dir
+            sudo rsync -aP --remove-source-files $var_f_config_kvm_images_repo_alpine_dir/${var_f_config_kvm_images_arch_alpine[$i]}/*.iso $var_f_config_kvm_images_dir
         else
             echo "- Latest Alpine standard ($(cat alpineversions)) ISO already exists in $var_f_config_kvm_images_dir/";
         fi
