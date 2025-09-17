@@ -1,6 +1,6 @@
 #!/bin/bash
 function f_config_kvm_bridged_networking() {
-    echo " - Creating a bridged network interface so we can get the same subnet IPs as the KVM host;"
+    echo "- Creating a bridged network interface so we can get the same subnet IPs as the KVM host;"
     sudo rm -rf /etc/network/interfaces
     sudo cp -r functions/f_config_kvm_network_interfaces.yaml /etc/network/interfaces
     sudo cp -r functions/f_config_kvm_netfilter_bridge /etc/sysctl.d/99-kvm-netfilter-bridge.conf
