@@ -8,7 +8,7 @@ function f_config_kvm_images_ubuntu() {
     var_latest_ubuntu_version=$(cat laststableubuntuversion)
     if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ]; then
     wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
-    sudo mv ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
+    sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
     else
         echo "- Latest Ubuntu server ($var_latest_ubuntu_version) ISO already exists in $var_f_config_kvm_images_dir/;"
     fi
