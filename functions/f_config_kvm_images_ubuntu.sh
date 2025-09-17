@@ -7,7 +7,7 @@ function f_config_kvm_images_ubuntu() {
     awk '{print $1 $2}' latestubuntuversion > lastubuntuversion
     var_latest_ubuntu_version=$(cat lastubuntuversion)
     if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ]; then
-    wget https://releases.ubuntu.com/$var_latest_ubuntu_version/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
+    wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
     sudo mv ubuntu*-live-server.iso $var_f_config_kvm_images_dir
     else
         echo "- Latest Ubuntu server ($var_latest_ubuntu_version) ISO already exists in $var_f_config_kvm_images_dir/;"
