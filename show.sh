@@ -14,3 +14,4 @@ function f_config_kvm_images_ubuntu() {
     fi
     rm -rf ubuntuversions latestubuntuversion lastubuntuversion
 }
+f_config_kvm_images_ubuntu
