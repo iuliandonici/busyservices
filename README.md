@@ -8,6 +8,8 @@
             - [x] with **f_config_kvm_sshd**
             - [x] with **f_config_kvm_group**
             - [x] with **f_config_kvm_libvirtd**
+        - [ ] simulating:
+            - [ ] KVM on a VM;
     - [ ] busydev:
 - [x] Nginx service    
     - [x] Tested on:
