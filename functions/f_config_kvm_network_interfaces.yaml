@@ -1,14 +1,14 @@
 # interfaces(5) file used by ifup(8) and ifdown(8)
 # Include files from /etc/network/interfaces.d:
-source /etc/network/interfaces.d/*
+# source /etc/network/interfaces.d/*
 # The loopback network interface
 auto lo
 iface lo inet loopback
 
 # Specify that the physical interface that should be connected to the bridge
 # should be configured manually, to avoid conflicts with NetworkManager
-auto ens33
-iface ens33 inet manual
+auto eth0
+iface eth0 inet manual
 
 # The bridge0 bridge settings
 auto bridge0
@@ -19,7 +19,7 @@ iface bridge0 inet static
    broadcast 192.168.50.255
    gateway 192.168.50.1
    dns-nameservers 192.168.50.1
-   bridge_ports    ens33
+   bridge_ports    eth0
 #    bridge_stp      off
 #    bridge_maxwait  0
 #    bridge_fd       0
