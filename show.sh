@@ -1,16 +1,44 @@
 #!/bin/bash
-function f_config_kvm_images_ubuntu() {
-    var_f_config_kvm_images_dir="/var/lib/libvirt/images"
-    echo "- Downloading latest Ubuntu server ISO:"
-    wget -q -X "*.10" http://cdimage.ubuntu.com/releases/ -O - | sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | grep -E '^[[:space:][:space:]][1-9].*.04.*' | sed -e 's/\///g' -e 's/ //g' > ubuntu_last 
-    grep -oE '^[12468]*.[0-10][02468]*.*' ubuntu_last | sort -nr | head -1 > laststableubuntuversion
-    var_latest_ubuntu_version=$(cat laststableubuntuversion)
-    if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ]; then
-        wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
-        sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
+var_install_base_software_array=("bash" "apt-utils" "lsb-release" "hostname" "wget" "rsync" "curl" "keychain" "net-tools" "unzip" "git" "nano" "ca-certificates" "curl" "gnupg" "software-properties-common" "acl")
+function f_install_base_software() {
+    source functions/f_update_software.sh
+    source functions/f_config_git.sh
+    f_update_software
+    echo "- List of base software that will be installed using $(f_get_distro_packager):"
+    for i in "${!var_install_base_software_array[@]}"
+    do
+        echo " $i ${var_install_base_software_array[$i]}"
+    done
+    if [[ $(f_get_distro_packager) == "apk" ]]; then
+        for i in "${!var_install_base_software_array[@]}"
+        do
+            echo "- Currently installing: $i ${var_install_base_software_array[$i]}"
+            if [[ "$EUID" -ne 0 ]]; then 
+                $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
+            else
+                $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
+            fi
+        done     
+    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+        for i in "${!var_install_base_software_array[@]}"
+        do
+            echo "- Currently installing: $i ${var_install_base_software_array[$i]}"
+            if [[ "$EUID" -ne 0 ]]; then 
+                sudo $(f_get_distro_packager) install -y ${var_install_base_software_array[$i]}  
+            else
+                $(f_get_distro_packager) install -y ${var_install_base_software_array[$i]}  
+            fi
+        done        
     else
-        echo "- Latest Ubuntu server ($var_latest_ubuntu_version) ISO already exists in $var_f_config_kvm_images_dir/;"
+        for i in "${!var_install_base_software_array[@]}"
+        do
+            echo "- Currently installing: $i ${var_install_base_software_array[$i]}"
+            if [[ "$EUID" -ne 0 ]]; then 
+                sudo $(f_get_distro_packager) install -y ${var_install_base_software_array[$i]}  
+            else
+                $(f_get_distro_packager) install -y ${var_install_base_software_array[$i]}  
+            fi
+        done
     fi
-    rm -rf ubuntuversions ubuntu_last laststableubuntuversion
+    f_config_git
 }
-f_config_kvm_images_ubuntu
