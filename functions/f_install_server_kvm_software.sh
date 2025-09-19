@@ -1,5 +1,6 @@
 #!/bin/bash
-var_install_server_kvm_software_array=("qemu-kvm" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
+var_install_server_kvm_software_array=("qemu|qemu-kvm" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
+# qemu qemu-system-x86_64 qemu-img
 function f_install_server_kvm_software() {
     source functions/f_update_software.sh
     source functions/f_config_kvm_sshd.sh
