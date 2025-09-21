@@ -19,4 +19,5 @@ function f_config_kvm_bridged_networking() {
         echo "br_netfilter" >> br_netfilter.conf
         mv br_netfilter.conf /etc/modules-load.d/br_netfilter.conf
         sysctl -p /etc/sysctl.d/99-kvm-netfilter-bridge.conf
+    fi
 }
