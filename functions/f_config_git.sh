@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_config_git() {
     if [[ -f /usr/bin/git ]]; then
-        echo "- Git is installed. Now we'll configure it."
+        echo "- and git is installed; now we'll configure it;"
         git config --global user.email "iuliandonici@gmail.com"
         git config --global user.name "Iulian Donici"
         # 6. Config that every pull is being rebased
@@ -12,7 +12,7 @@ function f_config_git() {
         # (https://spin.atomicobject.com/2020/05/05/git-configurations-default/)
         git config --global fetch.prune true
     else 
-        echo "- Can't configure git because it's not installed:"
+        echo "- but can't configure git because it's not installed:"
         ls -alh /usr/bin/ | grep "git"
     fi
 }
