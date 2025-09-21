@@ -3,6 +3,8 @@ function f_config_kvm_virtual_network() {
     echo "- Creating a virtual bridged network;"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
+            sudo rc-service virtnetworkd restart
+            sudo rc-service libvirtd restart
             sudo rc-service virtqemud restart
             # sudo cp -r functions/f_config_kvm_virtual_network.xml .
             sudo virsh net-define functions/f_config_kvm_virtual_network.xml
@@ -10,6 +12,7 @@ function f_config_kvm_virtual_network() {
             sudo virsh net-autostart bridged-network
         else
             # cp -r functions/f_config_kvm_virtual_network.xml .
+            rc-service virtnetworkd restart
             rc-service libvirtd restart
             rc-service virtqemud restart
             virsh net-define functions/f_config_kvm_virtual_network.xml
