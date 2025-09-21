@@ -27,5 +27,21 @@ function f_config_kvm_virtual_network() {
             # cp -r functions/f_config_kvm_virtual_network.xml .
             virsh net-define functions/f_config_kvm_virtual_network.xml
             virsh net-start bridged-network
-            virsh net-autostart bridged-network    fi
+            virsh net-autostart bridged-network
+        fi
+    else
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo systemctl restart virtqemud
+            # sudo cp -r functions/f_config_kvm_virtual_network.xml .
+            sudo virsh net-define functions/f_config_kvm_virtual_network.xml
+            sudo virsh net-start bridged-network
+            sudo virsh net-autostart bridged-network
+        else
+            systemctl restart virtqemud
+            # cp -r functions/f_config_kvm_virtual_network.xml .
+            virsh net-define functions/f_config_kvm_virtual_network.xml
+            virsh net-start bridged-network
+            virsh net-autostart bridged-network
+        fi
+    fi
 }
