@@ -20,7 +20,7 @@ iface $var_f_config_kvm_network_interfaces inet manual \n" >> config_kvm_network
         echo "# The bridge0 bridge settings
 auto bridge0
 iface bridge0 inet static
-   address 192.168.50.16
+   address 192.168.50.17
    netmask 255.255.255.0
    network 192.168.50.0
    broadcast 192.168.50.255
@@ -39,7 +39,7 @@ iface $var_f_config_kvm_network_interfaces inet manual \n" >> config_kvm_network
 echo "# The bridge0 bridge settings
 auto bridge0
 iface bridge0 inet static
-   address 192.168.50.16
+   address 192.168.50.17
    netmask 255.255.255.0
    network 192.168.50.0
    broadcast 192.168.50.255
