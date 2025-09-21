@@ -14,7 +14,7 @@ function f_install_base_software() {
         do
             echo "- Currently installing: $i ${var_install_base_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
+               sudo $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
             else
                 $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
             fi
