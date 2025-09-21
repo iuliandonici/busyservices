@@ -34,12 +34,15 @@ function f_config_kvm_virtual_network() {
  ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
             mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
             apk add dbus polkit virt-manager font-terminus
+            rc-update add dbus
+            rc-service dbus start
             rc-update add libvirtd
-            rc-service libvirtd restart
+            rc-service libvirtd start
             rc-update add virtnetworkd
-            rc-service virtnetworkd restart
+            rc-service virtnetworkd start
             rc-update add virtqemud
-            rc-service virtqemud restart            virsh net-define functions/f_config_kvm_virtual_network.xml
+            rc-service virtqemud start            
+            virsh net-define functions/f_config_kvm_virtual_network.xml
             virsh net-start bridged-network
             virsh net-autostart bridged-network
         fi
