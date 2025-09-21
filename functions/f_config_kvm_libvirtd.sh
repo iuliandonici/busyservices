@@ -1,26 +1,41 @@
 #!/bin/bash
 function f_config_kvm_libvirtd() {
     echo " - Configuring KVM for remote ssh;"
-    if [[ "$EUID" -ne 0 ]]; then 
-        if [[ $(f_get_distro_packager) == "apk" ]]; then
-        for i in "${!var_install_server_kvm_software_array[@]}"
-        do
-            echo "- Currently installing: $i ${var_install_server_kvm_software_array[$i]}"
-            if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) add ${var_install_server_kvm_software_array[$i]}  
-            else
-                $(f_get_distro_packager) add ${var_install_server_kvm_software_array[$i]}  
-            fi
-        done
+    if [[ $(f_get_distro_packager) == "apk" ]]; then
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo rc-service libvirtd stop
+            sudo rm -rf /etc/libvirt/libvirt.conf
+            sudo cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
+            sudo rc-service libvirtd start
+        else
+            rc-service libvirtd stop
+            rm -rf /etc/libvirt/libvirt.conf
+            cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
+            rc-service libvirtd start
         fi
-        sudo rc-service libvirtd stop
-        sudo rm -rf /etc/libvirt/libvirt.conf
-        sudo cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
-        sudo rc-service libvirtd start
+    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo systemctl stop libvirtd
+            sudo rm -rf /etc/libvirt/libvirt.conf
+            sudo cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
+            sudo systemctl start libvirtd
+        else
+            systemctl stop libvirtd
+            rm -rf /etc/libvirt/libvirt.conf
+            cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
+            systemctl start libvirtd
+        fi
     else
-        rc-service libvirtd stop
-        rm -rf /etc/libvirt/libvirt.conf
-        cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
-        rc-service libvirtd start
-    fi    
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo systemctl stop libvirtd
+            sudo rm -rf /etc/libvirt/libvirt.conf
+            sudo cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
+            sudo systemctl start libvirtd
+        else
+            systemctl stop libvirtd
+            rm -rf /etc/libvirt/libvirt.conf
+            cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
+            systemctl start libvirtd
+        fi
+    fi
 }

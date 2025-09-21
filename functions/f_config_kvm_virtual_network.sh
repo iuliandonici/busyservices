@@ -2,6 +2,7 @@
 function f_config_kvm_virtual_network() {
     echo "- Creating a virtual bridged network;"
     if [[ "$EUID" -ne 0 ]]; then
+        sudo rc-service virtqemud.socket restart
         # sudo cp -r functions/f_config_kvm_virtual_network.xml .
         sudo virsh net-define functions/f_config_kvm_virtual_network.xml
         sudo virsh net-start bridged-network
