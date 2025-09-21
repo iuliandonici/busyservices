@@ -4,6 +4,16 @@ function f_config_kvm_virtual_network() {
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
             # sudo cp -r functions/f_config_kvm_virtual_network.xml .
+            sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
+            echo "[Remote libvirt SSH access]
+ Identity=unix-group:libvirt
+ Action=org.libvirt.unix.manage
+ ResultAny=yes
+ ResultInactive=yes
+ ResultActive=yes" > /etc/polkit-1/localauthority/50-local.d/50-libvirt-ssh-remote-access-policy.pkla
+            sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
+            sudo apk add dbus polkit virt-manager font-terminus
+            sudo rc-update add dbus
             sudo rc-update add libvirtd
             sudo rc-service libvirtd restart
             sudo rc-update add virtnedworkd
@@ -14,7 +24,16 @@ function f_config_kvm_virtual_network() {
             sudo virsh net-start bridged-network
             sudo virsh net-autostart bridged-network
         else
-            # cp -r functions/f_config_kvm_virtual_network.xml .
+            # cp -r functions/f_config_kvm_virtual_network.xml 
+            mkdir -p /etc/polkit-1/localauthority/50-local.d/
+            echo "[Remote libvirt SSH access]
+ Identity=unix-group:libvirt
+ Action=org.libvirt.unix.manage
+ ResultAny=yes
+ ResultInactive=yes
+ ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
+            mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
+            apk add dbus polkit virt-manager font-terminus
             rc-update add libvirtd
             rc-service libvirtd restart
             rc-update add virtnedworkd
