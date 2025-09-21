@@ -3,12 +3,12 @@
 source /etc/network/interfaces.d/*
 # The loopback network interface
 auto lo
-iface lo inet loopback
+iface lo inet loopback 
 
 # Specify that the physical interface that should be connected to the bridge
 # should be configured manually, to avoid conflicts with NetworkManager
-auto eth0
-iface ens33 inet manual
+auto enp0s31f6
+iface enp0s31f6 inet manual 
 
 # The bridge0 bridge settings
 auto bridge0
@@ -19,7 +19,7 @@ iface bridge0 inet static
    broadcast 192.168.50.255
    gateway 192.168.50.1
    dns-nameservers 192.168.50.1
-   bridge_ports    $var_config_kvm_network_interfaces
+   bridge_ports enp0s31f6
 #    bridge_stp      off
 #    bridge_maxwait  0
 #    bridge_fd       0
