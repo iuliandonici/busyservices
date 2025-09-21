@@ -4,7 +4,7 @@ function f_install_base_software() {
     source functions/f_update_software.sh
     source functions/f_config_git.sh
     f_update_software
-    echo "- List of base software that will be installed using $(f_get_distro_packager):"
+    echo "List of base software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_base_software_array[@]}"
     do
         echo " $i ${var_install_base_software_array[$i]}"
