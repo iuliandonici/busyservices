@@ -3,7 +3,7 @@ function f_config_kvm_network_interfaces() {
     echo "- Creating the network interfaces yaml file;"
     sudo rm -rf /etc/network/interfaces
 # Assign a variable to the network interface we find (en* or eth)
-    var_f_config_kvm_network_interfaces=$(ip a | grep -E "en|eth[[0-9]]" | sed -e 's/://g' | grep -Ev "lo|wl|br|virb" | awk '{print $2}')
+    var_f_config_kvm_network_interfaces=$(ip a | grep -E "en|eth[[0-9]]" | sed -e 's/://g' | grep -Ev "altname|lo|wl|br|virb" | awk '{print $2}')
     echo -e "# interfaces(5) file used by ifup(8) and ifdown(8)
 # Include files from /etc/network/interfaces.d:
 source /etc/network/interfaces.d/*
@@ -17,7 +17,7 @@ iface lo inet loopback \n
         echo "- The network interface variable isn't empty so we're going tu use a default yaml config;"
         echo -e "auto $var_f_config_kvm_network_interfaces
 iface $var_f_config_kvm_network_interfaces inet manual \n" >> config_kvm_network_interfaces.yaml
-echo "# The bridge0 bridge settings
+        echo "# The bridge0 bridge settings
 auto bridge0
 iface bridge0 inet static
    address 192.168.50.16
