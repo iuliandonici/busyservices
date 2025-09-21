@@ -12,7 +12,7 @@ function f_install_base_software() {
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         for i in "${!var_install_base_software_array[@]}"
         do
-            echo "- Currently installing: $i ${var_install_base_software_array[$i]}"
+            echo "- and currently installing: $i ${var_install_base_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                sudo $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
             else
@@ -22,7 +22,7 @@ function f_install_base_software() {
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
         for i in "${!var_install_base_software_array[@]}"
         do
-            echo "- Currently installing: $i ${var_install_base_software_array[$i]}"
+            echo "- and currently installing: $i ${var_install_base_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                 sudo $(f_get_distro_packager) install -y ${var_install_base_software_array[$i]}  
             else
@@ -32,7 +32,7 @@ function f_install_base_software() {
     else
         for i in "${!var_install_base_software_array[@]}"
         do
-            echo "- Currently installing: $i ${var_install_base_software_array[$i]}"
+            echo "- and currently installing: $i ${var_install_base_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                 sudo $(f_get_distro_packager) install -y ${var_install_base_software_array[$i]}  
             else
