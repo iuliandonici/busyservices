@@ -16,7 +16,7 @@ function f_config_kvm_virtual_network() {
             sudo rc-update add dbus
             sudo rc-update add libvirtd
             sudo rc-service libvirtd restart
-            sudo rc-update add virtnedworkd
+            sudo rc-update add virtnetworkd
             sudo rc-service virtnetworkd restart
             sudo rc-update add virtqemud
             sudo rc-service virtqemud restart
@@ -36,7 +36,7 @@ function f_config_kvm_virtual_network() {
             apk add dbus polkit virt-manager font-terminus
             rc-update add libvirtd
             rc-service libvirtd restart
-            rc-update add virtnedworkd
+            rc-update add virtnetworkd
             rc-service virtnetworkd restart
             rc-update add virtqemud
             rc-service virtqemud restart            virsh net-define functions/f_config_kvm_virtual_network.xml
