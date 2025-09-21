@@ -9,7 +9,7 @@ function f_update_software() {
     if [[ "$(f_get_distro_packager)" == "apk" ]]; then
         for i in "${!var_update_commands_array_alpine[@]}"
         do
-            echo "- Currently running: $i ${var_update_commands_array_alpine[$i]}"
+            echo "- and currently running: $i ${var_update_commands_array_alpine[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                 sudo $(f_get_distro_packager) ${var_update_commands_array_alpine[$i]}  
             else
@@ -19,7 +19,7 @@ function f_update_software() {
     elif [[ "$(f_get_distro_packager)" == "dnf" ]]; then
         for i in "${!var_update_commands_array_alma[@]}"
         do
-                echo "- Currently running: $i ${var_update_commands_array_alma[$i]}"
+                echo "- and currently running: $i ${var_update_commands_array_alma[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
                     sudo $(f_get_distro_packager) ${var_update_commands_array_alma[$i]}
                 else
@@ -29,7 +29,7 @@ function f_update_software() {
     elif [[ "$(f_get_distro_packager)" == "zypper" ]]; then
         for i in "${!var_update_commands_array_opensuse[@]}"
         do
-                echo "- Currently running: $i ${var_update_commands_array_opensuse[$i]}"
+                echo "- and currently running: $i ${var_update_commands_array_opensuse[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
                     sudo $(f_get_distro_packager) ${var_update_commands_array_opensuse[$i]}
                 else
@@ -39,7 +39,7 @@ function f_update_software() {
     else
         for i in "${!var_update_commands_array_debian[@]}"
         do
-            echo "- Currently running: $i ${var_update_commands_array_debian[$i]}"
+            echo "- and urrently running: $i ${var_update_commands_array_debian[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                 sudo $(f_get_distro_packager) ${var_update_commands_array_debian[$i]}
             else
