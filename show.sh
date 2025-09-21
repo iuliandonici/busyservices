@@ -3,7 +3,7 @@ function f_config_kvm_network_interfaces() {
     echo "- Creating the network interfaces yaml file;"
     sudo rm -rf /etc/network/interfaces
 # Assign a variable to the network interface we find (en* or eth)
-    var_f_config_kvm_network_interfaces=$(ip a | grep -E "en|eth[[0-9]]" | sed -e 's/://g' | grep -Ev "lo|wl|br|virb|altname" | awk '{print $2}')
+    var_f_config_kvm_network_interfaces=$(ip a | grep -E "en|eth[[0-9]]" | sed -e 's/://g' | grep -Ev "lo|wl|br|virb|altname " | awk '{print $2}')
     echo -e "# interfaces(5) file used by ifup(8) and ifdown(8)
 # Include files from /etc/network/interfaces.d:
 source /etc/network/interfaces.d/*
