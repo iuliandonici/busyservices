@@ -20,7 +20,7 @@ function f_config_kvm_images_alpine() {
             wget -r -N $var_f_config_kvm_images_repo_alpine/${var_f_config_kvm_images_arch_alpine[$i]}/$(cat alpineversions)
             sudo rsync -aP --remove-source-files $var_f_config_kvm_images_repo_alpine_dir/${var_f_config_kvm_images_arch_alpine[$i]}/*.iso $var_f_config_kvm_images_dir
         else
-            echo "- Latest Alpine standard ($(cat alpineversions)) ISO already exists in $var_f_config_kvm_images_dir/";
+            echo "- but latest Alpine standard ($(cat alpineversions)) ISO already exists in $var_f_config_kvm_images_dir/";
         fi
     done
     rm -rf alpineversions dl-cdn.*/
