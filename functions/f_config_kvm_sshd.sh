@@ -9,4 +9,5 @@ function f_config_kvm_sshd() {
         rm -rf /etc/ssh/sshd_config
         cp -r functions/f_config_kvm_sshd /etc/ssh/sshd_config
         systemctl restart ssh
+    fi
 }
