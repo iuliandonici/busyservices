@@ -39,7 +39,7 @@ function f_update_software() {
     else
         for i in "${!var_update_commands_array_debian[@]}"
         do
-            echo "- and urrently running: $i ${var_update_commands_array_debian[$i]}"
+            echo "- and currently running: $i ${var_update_commands_array_debian[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                 sudo $(f_get_distro_packager) ${var_update_commands_array_debian[$i]}
             else
