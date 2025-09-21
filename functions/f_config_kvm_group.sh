@@ -6,16 +6,20 @@ function f_config_kvm_group() {
             sudo addgroup $USER kvm
             sudo addgroup $USER libvirt
             sudo addgroup $USER qemu
+            sudo addgroup $USER wheel
             sudo addgroup busyneo kvm
             sudo addgroup busyneo libvirt
             sudo addgroup busyneo qemu
+            sudo addgroup busyneo wheel
         else
             addgroup $USER kvm
             addgroup $USER libvirt
             addgroup $USER qemu
+            addgroup $USER wheel
             addgroup busyneo kvm
             addgroup busyneo libvirt
             addgroup busyneo qemu
+            addgroup busyneo wheel
         fi    
     # usermod -aG kvm,libvirt $USER
     # newgrp libvirt
