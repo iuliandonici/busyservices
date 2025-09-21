@@ -1,7 +1,10 @@
 #!/bin/bash
 function f_config_kvm_network_interfaces() {
     echo "- Creating the network interfaces yaml file;"
-    sudo rm -rf /etc/network/interfaces
+    if [[ "$EUID" -ne 0 ]]; then
+        sudo rm -rf /etc/network/interfaces
+    else 
+        rm -rf /etc/network/interfaces
 # Assign a variable to the network interface we find (en* or eth)
     var_f_config_kvm_network_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g')
     echo -e "# interfaces(5) file used by ifup(8) and ifdown(8)
