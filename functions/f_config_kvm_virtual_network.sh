@@ -8,6 +8,7 @@ function f_config_kvm_virtual_network() {
         sudo virsh net-autostart bridged-network
     else
         # cp -r functions/f_config_kvm_virtual_network.xml .
+        rc-service virtqemud.socket restart
         virsh net-define functions/f_config_kvm_virtual_network.xml
         virsh net-start bridged-network
         virsh net-autostart bridged-network
