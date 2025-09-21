@@ -54,6 +54,10 @@ iface bridge0 inet static
 #    bridge_maxwait  0
 #    bridge_fd       0" >> config_kvm_network_interfaces.yaml
     fi
-    sudo cp -r config_kvm_network_interfaces.yaml /etc/network/interfaces
+    if [[ "$EUID" -ne 0 ]]; then 
+        sudo cp -r config_kvm_network_interfaces.yaml /etc/network/interfaces
+    else
+        cp -r config_kvm_network_interfaces.yaml /etc/network/interfaces
+    fi
     rm -rf config_kvm_network_interfaces.yaml
 }
