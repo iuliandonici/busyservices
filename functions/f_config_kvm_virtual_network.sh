@@ -37,11 +37,11 @@ function f_config_kvm_virtual_network() {
             rc-update add dbus
             rc-service dbus start
             rc-update add libvirtd
-            rc-service libvirtd start
+            rc-service libvirtd restart
             rc-update add virtnetworkd
-            rc-service virtnetworkd start
+            rc-service virtnetworkd restart
             rc-update add virtqemud
-            rc-service virtqemud start            
+            rc-service virtqemud restart            
             virsh net-define functions/f_config_kvm_virtual_network.xml
             virsh net-start bridged-network
             virsh net-autostart bridged-network
