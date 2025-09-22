@@ -12,14 +12,12 @@ function f_config_kvm_virtual_network() {
  ResultInactive=yes
  ResultActive=yes" > /etc/polkit-1/localauthority/50-local.d/50-libvirt-ssh-remote-access-policy.pkla
             sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
-            sudo apk add dbus polkit virt-manager font-terminus
-            sudo rc-update add dbus
             sudo rc-update add libvirtd
-            sudo rc-service libvirtd restart
-            sudo rc-update add virtnetworkd
-            sudo rc-service virtnetworkd restart
+            sudo rc-service libvirtd
+            # sudo rc-update add virtnetworkd
+            # sudo rc-service virtnetworkd restart
             sudo rc-update add virtqemud
-            sudo rc-service virtqemud restart
+            # sudo rc-service virtqemud restart
             sudo virsh net-define functions/f_config_kvm_virtual_network.xml
             sudo virsh net-start bridged-network
             sudo virsh net-autostart bridged-network
@@ -33,15 +31,14 @@ function f_config_kvm_virtual_network() {
  ResultInactive=yes
  ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
             mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
-            apk add dbus polkit virt-manager font-terminus
-            rc-update add dbus
+            # rc-update add dbus
             rc-service dbus start
-            rc-update add libvirtd
-            rc-service libvirtd restart
-            rc-update add virtnetworkd
-            rc-service virtnetworkd restart
+            # rc-update add libvirtd
+            rc-service libvirtd start
+            # rc-update add virtnetworkd
+            # rc-service virtnetworkd restart
             rc-update add virtqemud
-            rc-service virtqemud restart            
+            rc-service virtqemud start            
             virsh net-define functions/f_config_kvm_virtual_network.xml
             virsh net-start bridged-network
             virsh net-autostart bridged-network
