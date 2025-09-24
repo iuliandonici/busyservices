@@ -27,19 +27,19 @@ function f_config_kvm_virtual_network() {
             sudo virsh net-autostart bridged-network
         else
             # cp -r functions/f_config_kvm_virtual_network.xml 
-            sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
+            mkdir -p /etc/polkit-1/localauthority/50-local.d/
             echo "[Remote libvirt SSH access]
  Identity=unix-group:libvirt
  Action=org.libvirt.unix.manage
  ResultAny=yes
  ResultInactive=yes
  ResultActive=yes" > /etc/polkit-1/localauthority/50-local.d/50-libvirt-ssh-remote-access-policy.pkla
-            sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
-            sudo rc-update add libvirtd
-            sudo rc-service libvirtd start
-            sudo modprobe tun
-            sudo echo "tun" >> /etc/modules-load.d/tun.conf
-            sudo cat /etc/modules | grep tun || echo tun >> /etc/modules
+            mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
+            rc-update add libvirtd
+            rc-service libvirtd start
+            modprobe tun
+            echo "tun" >> /etc/modules-load.d/tun.conf
+            cat /etc/modules | grep tun || echo tun >> /etc/modules
             # rc-service libvirtd
             # rc-update add virtnetworkd
             # rc-service virtnetworkd restart
