@@ -13,32 +13,38 @@ function f_config_kvm_virtual_network() {
  ResultActive=yes" > /etc/polkit-1/localauthority/50-local.d/50-libvirt-ssh-remote-access-policy.pkla
             sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
             sudo rc-update add libvirtd
-            sudo rc-service libvirtd
+            sudo rc-service libvirtd start
+            sudo modprobe tun
+            sudo echo "tun" >> /etc/modules-load.d/tun.conf
+            sudo cat /etc/modules | grep tun || echo tun >> /etc/modules
+            # sudo rc-service libvirtd
             # sudo rc-update add virtnetworkd
             # sudo rc-service virtnetworkd restart
-            sudo rc-update add virtqemud
+            # sudo rc-update add virtqemud
             # sudo rc-service virtqemud restart
             sudo virsh net-define functions/f_config_kvm_virtual_network.xml
             sudo virsh net-start bridged-network
             sudo virsh net-autostart bridged-network
         else
             # cp -r functions/f_config_kvm_virtual_network.xml 
-            mkdir -p /etc/polkit-1/localauthority/50-local.d/
+            sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
             echo "[Remote libvirt SSH access]
  Identity=unix-group:libvirt
  Action=org.libvirt.unix.manage
  ResultAny=yes
  ResultInactive=yes
- ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
-            mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
-            # rc-update add dbus
-            rc-service dbus start
-            # rc-update add libvirtd
-            rc-service libvirtd start
+ ResultActive=yes" > /etc/polkit-1/localauthority/50-local.d/50-libvirt-ssh-remote-access-policy.pkla
+            sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
+            sudo rc-update add libvirtd
+            sudo rc-service libvirtd start
+            sudo modprobe tun
+            sudo echo "tun" >> /etc/modules-load.d/tun.conf
+            sudo cat /etc/modules | grep tun || echo tun >> /etc/modules
+            # rc-service libvirtd
             # rc-update add virtnetworkd
             # rc-service virtnetworkd restart
-            rc-update add virtqemud
-            rc-service virtqemud start            
+            # rc-update add virtqemud
+            # rc-service virtqemud restart
             virsh net-define functions/f_config_kvm_virtual_network.xml
             virsh net-start bridged-network
             virsh net-autostart bridged-network
