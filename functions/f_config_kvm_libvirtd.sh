@@ -9,8 +9,8 @@ function f_config_kvm_libvirtd() {
             sudo rc-service libvirtd start
         else
             rc-service libvirtd stop
-            rm -rf /etc/libvirt/libvirt.conf
-            cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
+            # rm -rf /etc/libvirt/libvirt.conf
+            # cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
             rc-service libvirtd start
         fi
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
