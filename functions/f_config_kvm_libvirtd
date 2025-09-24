@@ -15,7 +15,7 @@
 # These can be used in cases when no URI is supplied by the application
 # (@uri_default also prevents probing of the hypervisor driver).
 #
-#uri_default = "qemu:///system"
+uri_default = "qemu:///system"
 listen_tls = 0
 listen_tcp = 1
 tcp_port = "16509"
