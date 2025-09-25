@@ -15,7 +15,8 @@ function f_config_kvm_virtual_network() {
             sudo rc-update add libvirtd
             sudo rc-service libvirtd start
             sudo modprobe tun
-            sudo echo "tun" >> /etc/modules-load.d/tun.conf
+            sudo echo "tun" >> tun.conf
+            sudo mv tun.conf /etc/modules-load.d/
             sudo cat /etc/modules | grep tun || echo tun >> /etc/modules
             # sudo rc-service libvirtd
             # sudo rc-update add virtnetworkd
