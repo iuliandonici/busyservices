@@ -18,6 +18,7 @@ function f_config_kvm_virtual_network() {
             sudo echo "tun" >> tun.conf
             sudo mv tun.conf /etc/modules-load.d/
             sudo cat /etc/modules | grep tun || echo tun >> /etc/modules
+            sudo rc-service polkit restart
             # sudo rc-service libvirtd
             # sudo rc-update add virtnetworkd
             # sudo rc-service virtnetworkd restart
@@ -36,6 +37,7 @@ function f_config_kvm_virtual_network() {
  ResultInactive=yes
  ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
             mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
+            rc-service polkit restart
             rc-update add libvirtd
             rc-service libvirtd start
             modprobe tun
