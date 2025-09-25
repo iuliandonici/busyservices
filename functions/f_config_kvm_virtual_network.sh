@@ -5,7 +5,7 @@ function f_config_kvm_virtual_network() {
         if [[ "$EUID" -ne 0 ]]; then 
             # sudo cp -r functions/f_config_kvm_virtual_network.xml .
             sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
-            echo "[Remote libvirt SSH access]
+            sudo echo "[Remote libvirt SSH access]
  Identity=unix-group:libvirt
  Action=org.libvirt.unix.manage
  ResultAny=yes
