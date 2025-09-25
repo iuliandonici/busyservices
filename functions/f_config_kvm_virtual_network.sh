@@ -10,7 +10,7 @@ function f_config_kvm_virtual_network() {
  Action=org.libvirt.unix.manage
  ResultAny=yes
  ResultInactive=yes
- ResultActive=yes" > /etc/polkit-1/localauthority/50-local.d/50-libvirt-ssh-remote-access-policy.pkla
+ ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
             sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
             sudo rc-update add libvirtd
             sudo rc-service libvirtd start
@@ -33,7 +33,7 @@ function f_config_kvm_virtual_network() {
  Action=org.libvirt.unix.manage
  ResultAny=yes
  ResultInactive=yes
- ResultActive=yes" > /etc/polkit-1/localauthority/50-local.d/50-libvirt-ssh-remote-access-policy.pkla
+ ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
             mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
             rc-update add libvirtd
             rc-service libvirtd start
