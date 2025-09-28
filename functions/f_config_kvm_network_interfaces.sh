@@ -20,7 +20,7 @@ iface lo inet loopback \n
 # should be configured manually, to avoid conflicts with NetworkManager" >> config_kvm_network_interfaces.yaml
 # If the network interface variable isn't empty, then apply the default config
     if [ ! -z "${var_f_config_kvm_network_interfaces}" ]; then
-        echo "- The network interface variable isn't empty so we're going tu use a default yaml config;"
+        echo "- currently the network interface variable isn't empty so we're going tu use a default yaml config;"
         echo -e "auto $var_f_config_kvm_network_interfaces
 iface $var_f_config_kvm_network_interfaces inet manual \n" >> config_kvm_network_interfaces.yaml
         echo "# The bridge0 bridge settings
@@ -39,7 +39,7 @@ iface bridge0 inet static
    bridge_fd       0" >> config_kvm_network_interfaces.yaml
 # If the network interface variable is empty then create a default eth0 interface
     else 
-        echo "- The network interface variable is empty so we're creating eth0 as a default one;"
+        echo "- currently the network interface variable is empty so we're creating eth0 as a default one;"
         var_f_config_kvm_network_interfaces="eth0"
         echo -e "auto $var_f_config_kvm_network_interfaces
 iface $var_f_config_kvm_network_interfaces inet manual \n" >> config_kvm_network_interfaces.yaml
