@@ -21,7 +21,21 @@ function f_config_kvm_group() {
             addgroup busyneo qemu
             addgroup busyneo wheel
         fi    
-    # usermod -aG kvm,libvirt $USER
-    # newgrp libvirt
+    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo usermod -aG kvm,libvirt,qemu,qheel $USER
+            sudo newgrp libvirt
+        else
+            usermod -aG kvm,libvirt,qemu,qheel $USER
+            newgrp libvirt
+        fi
+    else
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo usermod -aG kvm,libvirt,qemu,qheel $USER
+            sudo newgrp libvirt
+        else
+            usermod -aG kvm,libvirt,qemu,qheel $USER
+            newgrp libvirt
+        fi  
     fi
 }
