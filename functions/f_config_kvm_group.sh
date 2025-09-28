@@ -23,7 +23,7 @@ function f_config_kvm_group() {
         fi    
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
-            sudo usermod -aG kvm,libvirt,qemu,qheel $USER
+            sudo usermod -aG kvm,libvirt,qemu,wheel $USER
             sudo newgrp libvirt
         else
             usermod -aG kvm,libvirt,qemu,qheel $USER
