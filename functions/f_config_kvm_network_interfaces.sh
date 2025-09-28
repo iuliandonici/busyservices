@@ -31,6 +31,7 @@ iface bridge0 inet static
    gateway 192.168.50.1
    dns-nameservers 192.168.50.1
    bridge_ports $var_f_config_kvm_network_interfaces
+   bridge_hw 11:22:33:44:55:66
 #    bridge_stp      off
 #    bridge_maxwait  0
 #    bridge_fd       0" >> config_kvm_network_interfaces.yaml
@@ -50,6 +51,7 @@ iface bridge0 inet static
    gateway 192.168.50.1
    dns-nameservers 192.168.50.1
    bridge_ports $var_f_config_kvm_network_interfaces
+   bridge_hw 11:22:33:44:55:66
 #    bridge_stp      off
 #    bridge_maxwait  0
 #    bridge_fd       0" >> config_kvm_network_interfaces.yaml
