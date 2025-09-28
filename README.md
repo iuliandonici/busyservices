@@ -21,7 +21,8 @@
             - [x] prod
             - [x] dev
             - [ ] under *Alpine Linux*;
-    - [x] Transmission BitTorrent client service;
-        - [x] testing on:
+    - [ ] Transmission BitTorrent client service;
+        - [ ] testing on:
             - [x] prod 
             - [x] dev
+            - [ ] under *Alpine Linux*;
