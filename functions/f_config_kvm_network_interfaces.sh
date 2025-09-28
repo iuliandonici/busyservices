@@ -32,7 +32,7 @@ iface bridge0 inet static
    dns-nameservers 192.168.50.1
    bridge_ports $var_f_config_kvm_network_interfaces
    bridge_hw 12:34:56:78:9a:bc
-#    bridge_stp      off
+   bridge_stp      off
 #    bridge_maxwait  0
 #    bridge_fd       0" >> config_kvm_network_interfaces.yaml
 # If the network interface variable is empty then create a default eth0 interface
@@ -52,7 +52,7 @@ iface bridge0 inet static
    dns-nameservers 192.168.50.1
    bridge_ports $var_f_config_kvm_network_interfaces
    bridge_hw 12:34:56:78:9a:bc
-#    bridge_stp      off
+   bridge_stp      off
 #    bridge_maxwait  0
 #    bridge_fd       0" >> config_kvm_network_interfaces.yaml
     fi
