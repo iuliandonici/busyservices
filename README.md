@@ -15,12 +15,13 @@
             - [x] KVM on a VM;
                 - [x] with *busyalpinekvm*;
                 - [x] with *busyubuntuvm*;
-    - [ ] busydev:
-- [x] Nginx service    
-    - [x] Tested on:
-        - [x] prod 
-        - [x] dev
-- [x] Transmission BitTorrent client;
-    - [x] Tested on:
-        - [x] prod 
-        - [x] dev
+- [ ] busydev:
+    - [x] Nginx service    
+        - [x] Tested on:
+            - [x] prod
+            - [x] dev
+            - [ ] under *Alpine Linux*;
+    - [x] Transmission BitTorrent client;
+        - [x] Tested on:
+            - [x] prod 
+            - [x] dev
