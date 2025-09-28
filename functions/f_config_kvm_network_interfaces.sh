@@ -25,13 +25,13 @@ iface lo inet loopback \n
 iface $var_f_config_kvm_network_interfaces inet manual \n" >> config_kvm_network_interfaces.yaml
         echo "# The bridge0 bridge settings
 auto bridge0
-iface bridge0 inet static
-   address 192.168.50.12
-   netmask 255.255.255.0
-   network 192.168.50.0
-   broadcast 192.168.50.255
-   gateway 192.168.50.1
-   dns-nameservers 192.168.50.1
+iface bridge0 inet dhcp
+#    address 192.168.50.12
+#    netmask 255.255.255.0
+#    network 192.168.50.0
+#    broadcast 192.168.50.255
+#    gateway 192.168.50.1
+#    dns-nameservers 192.168.50.1
    hwaddress $var_f_config_kvm_network_interfaces_macaddr
    bridge_ports $var_f_config_kvm_network_interfaces
    bridge_stp      off
@@ -45,13 +45,13 @@ iface bridge0 inet static
 iface $var_f_config_kvm_network_interfaces inet manual \n" >> config_kvm_network_interfaces.yaml
 echo "# The bridge0 bridge settings
 auto bridge0
-iface bridge0 inet static
-   address 192.168.50.12
-   netmask 255.255.255.0
-   network 192.168.50.0
-   broadcast 192.168.50.255
-   gateway 192.168.50.1
-   dns-nameservers 192.168.50.1
+iface bridge0 inet dhcp
+#    address 192.168.50.12
+#    netmask 255.255.255.0
+#    network 192.168.50.0
+#    broadcast 192.168.50.255
+#    gateway 192.168.50.1
+#    dns-nameservers 192.168.50.1
    hwaddress $var_f_config_kvm_network_interfaces_macaddr
    bridge_ports $var_f_config_kvm_network_interfaces
    bridge_stp      off
