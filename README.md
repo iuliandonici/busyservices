@@ -7,12 +7,11 @@
             - [x] with **f_update_software**
             - [x] with **f_config_kvm_sshd**
             - [x] with **f_config_kvm_group**
-                - [ ] define package managers not just for **apk (Alpine)** but also for:
+                - [x] define package managers not just for **apk (Alpine)** but also for:
                     - [x] **dnf** and **zypper** package managers;
                     - [x] and *else* at the end of the function, meaning it's meant for **apt (Debian/Ubuntu)**;
-
             - [x] with **f_config_kvm_libvirtd**
-        - [ ] simulating:
+        - [x] simulating:
             - [x] KVM on a VM;
                 - [x] with *busyalpinekvm*;
                 - [x] with *busyubuntuvm*;
