@@ -1,6 +1,7 @@
 #!/bin/bash
 function f_config_kvm_network_interfaces() {
     echo "- Creating the network interfaces yaml file;"
+    echo "- currently generating a random MAC address for the bridge interface;"
     var_f_config_kvm_network_interfaces_macaddr=$(echo $FQDN|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/')
     if [[ "$EUID" -ne 0 ]]; then
         sudo rm -rf /etc/network/interfaces
