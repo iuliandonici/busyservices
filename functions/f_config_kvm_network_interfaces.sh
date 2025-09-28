@@ -1,6 +1,7 @@
 #!/bin/bash
 function f_config_kvm_network_interfaces() {
     echo "- Creating the network interfaces yaml file;"
+    var_f_config_kvm_network_interfaces_macaddr=$(echo $FQDN|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/')
     if [[ "$EUID" -ne 0 ]]; then
         sudo rm -rf /etc/network/interfaces
     else 
@@ -30,6 +31,7 @@ iface bridge0 inet static
    broadcast 192.168.50.255
    gateway 192.168.50.1
    dns-nameservers 192.168.50.1
+   hwaddress $var_f_config_kvm_network_interfaces_macaddr
    bridge_ports $var_f_config_kvm_network_interfaces
    bridge_stp      off
    bridge_maxwait  0
@@ -49,6 +51,7 @@ iface bridge0 inet static
    broadcast 192.168.50.255
    gateway 192.168.50.1
    dns-nameservers 192.168.50.1
+   hwaddress $var_f_config_kvm_network_interfaces_macaddr
    bridge_ports $var_f_config_kvm_network_interfaces
    bridge_stp      off
    bridge_maxwait  0

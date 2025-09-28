@@ -25,7 +25,7 @@ function f_config_kvm_virtual_network() {
             sudo echo "allow bridge0" > bridge.conf
             sudo mv bridge.conf /etc/qemu/
             sudo echo "# Enable bridge forwarding.
-net.ipv4.conf.br0_bc_forwarding=1
+net.ipv4.conf.bridge0_bc_forwarding=1
 # Ignore iptables on bridge interfaces.
 net.bridge.bridge-nf-call-iptables=0" > bridging.conf
             sudo mv bridging.conf /etc/sysctl.d/
