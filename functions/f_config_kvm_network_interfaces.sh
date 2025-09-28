@@ -30,6 +30,7 @@ iface bridge0 inet static
    broadcast 192.168.50.255
    gateway 192.168.50.1
    dns-nameservers 192.168.50.1
+   hwaddress ether 00:11:22:33:44:55
    bridge_ports $var_f_config_kvm_network_interfaces
    bridge_stp      off
    bridge_maxwait  0
@@ -49,6 +50,7 @@ iface bridge0 inet static
    broadcast 192.168.50.255
    gateway 192.168.50.1
    dns-nameservers 192.168.50.1
+   hwaddress ether 00:11:22:33:44:55
    bridge_ports $var_f_config_kvm_network_interfaces
    bridge_stp      off
    bridge_maxwait  0
