@@ -13,7 +13,9 @@
 
             - [x] with **f_config_kvm_libvirtd**
         - [ ] simulating:
-            - [ ] KVM on a VM;
+            - [x] KVM on a VM;
+                - [x] with *busyalpinekvm*;
+                - [ ] with *busyubuntuvm*;
     - [ ] busydev:
 - [x] Nginx service    
     - [x] Tested on:
