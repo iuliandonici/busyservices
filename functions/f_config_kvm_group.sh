@@ -31,10 +31,10 @@ function f_config_kvm_group() {
         fi
     else
         if [[ "$EUID" -ne 0 ]]; then 
-            sudo usermod -aG kvm,libvirt,qemu,qheel $USER
+            sudo usermod -aG kvm,libvirt,wheel,qemu $USER
             sudo newgrp libvirt
         else
-            usermod -aG kvm,libvirt,qemu,qheel $USER
+            usermod -aG kvm,libvirt,wheel,qemu $USER
             newgrp libvirt
         fi  
     fi
