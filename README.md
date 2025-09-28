@@ -15,7 +15,7 @@
         - [ ] simulating:
             - [x] KVM on a VM;
                 - [x] with *busyalpinekvm*;
-                - [ ] with *busyubuntuvm*;
+                - [x] with *busyubuntuvm*;
     - [ ] busydev:
 - [x] Nginx service    
     - [x] Tested on:
