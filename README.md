@@ -3,7 +3,7 @@
 #### Goals:
 - [x] KVM on: 
     - [x]busypc:
-        - [x] testing:
+        - [x] tested:
             - [x] with **f_update_software**
             - [x] with **f_config_kvm_sshd**
             - [x] with **f_config_kvm_group**
@@ -16,13 +16,13 @@
                 - [x] with *busyalpinekvm*;
                 - [x] with *busyubuntuvm*;
 - [ ] busydev:
-    - [x] Nginx service    
-        - [x] Tested on:
-            - [x] prod
-            - [x] dev
+    - [ ] Nginx service:
+        - [x] tested on:
+            - [x] prod;
+            - [x] dev;
             - [ ] under *Alpine Linux*;
-    - [ ] Transmission BitTorrent client service;
-        - [ ] testing on:
-            - [x] prod 
-            - [x] dev
+    - [ ] Transmission BitTorrent client service:
+        - [ ] tested on:
+            - [x] prod;
+            - [x] dev;
             - [ ] under *Alpine Linux*;
