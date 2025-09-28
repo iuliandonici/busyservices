@@ -5,21 +5,21 @@ function f_config_kvm_group() {
         if [[ "$EUID" -ne 0 ]]; then 
             sudo addgroup $USER kvm
             sudo addgroup $USER libvirt
-            sudo addgroup $USER qemu
             sudo addgroup $USER wheel
+            sudo addgroup $USER qemu
             sudo addgroup busyneo kvm
             sudo addgroup busyneo libvirt
-            sudo addgroup busyneo qemu
             sudo addgroup busyneo wheel
+            sudo addgroup busyneo qemu
         else
             addgroup $USER kvm
             addgroup $USER libvirt
-            addgroup $USER qemu
             addgroup $USER wheel
+            addgroup $USER qemu
             addgroup busyneo kvm
             addgroup busyneo libvirt
-            addgroup busyneo qemu
             addgroup busyneo wheel
+            addgroup busyneo qemu
         fi    
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
