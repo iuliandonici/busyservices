@@ -96,16 +96,16 @@ net.bridge.bridge-nf-call-iptables=0" > bridging.conf
         if [[ "$EUID" -ne 0 ]]; then 
             # sudo cp -r functions/f_config_kvm_virtual_network.xml .
             sudo systemctl restart libvirtd
-            sudo systemctl restart virtnetworkd
-            sudo systemctl restart virtqemud
+            # sudo systemctl restart virtnetworkd
+            # sudo systemctl restart virtqemud
             sudo virsh net-define functions/f_config_kvm_virtual_network.xml
             sudo virsh net-start bridged-network
             sudo virsh net-autostart bridged-network
         else
             # cp -r functions/f_config_kvm_virtual_network.xml .
             systemctl restart libvirtd
-            systemctl restart virtnetworkd
-            systemctl restart virtqemud
+            # systemctl restart virtnetworkd
+            # systemctl restart virtqemud
             virsh net-define functions/f_config_kvm_virtual_network.xml
             virsh net-start bridged-network
             virsh net-autostart bridged-network
