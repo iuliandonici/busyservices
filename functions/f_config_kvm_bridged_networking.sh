@@ -8,7 +8,7 @@ function f_config_kvm_bridged_networking() {
         sudo ip link add name bridge0 address $macaddr up type bridge
         # sudo ip link add bridge0 type bridge
         # Set the newly generated MAC address to the bridge0 interface
-        # sudo ip link set dev bridge0 address $macaddr
+        sudo ip link set dev bridge0 address $macaddr
         # sudo ip link set ens33 master bridge0
         sudo ip address add dev bridge0 192.168.50.0/24
         sudo modprobe br_netfilter

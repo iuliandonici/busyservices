@@ -14,11 +14,21 @@ function f_config_kvm_virtual_network() {
             sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
             sudo rc-update add libvirtd
             sudo rc-service libvirtd start
+            sudo rc-service polkit restart
+            sudo echo "tap" >> tap.conf
+            sudo mv tap.conf /etc/modules-load.d/
+            sudo cat /etc/modules | grep tan || echo tan >> /etc/modules
             sudo modprobe tun
             sudo echo "tun" >> tun.conf
             sudo mv tun.conf /etc/modules-load.d/
             sudo cat /etc/modules | grep tun || echo tun >> /etc/modules
-            sudo rc-service polkit restart
+            sudo echo "allow bridge0" > bridge.conf
+            sudo mv bridge.conf /etc/qemu/
+            sudo echo "# Enable bridge forwarding.
+net.ipv4.conf.br0_bc_forwarding=1
+# Ignore iptables on bridge interfaces.
+net.bridge.bridge-nf-call-iptables=0" > bridging.conf
+            sudo mv bridging.conf /etc/sysctl.d/
             # sudo rc-service libvirtd
             # sudo rc-update add virtnetworkd
             # sudo rc-service virtnetworkd restart
@@ -40,10 +50,21 @@ function f_config_kvm_virtual_network() {
             rc-service polkit restart
             rc-update add libvirtd
             rc-service libvirtd start
+            rc-service polkit restart
             modprobe tun
             echo "tun" >> tun.conf
             mv tun.conf /etc/modules-load.d/
             cat /etc/modules | grep tun || echo tun >> /etc/modules
+            echo "tap" >> tap.conf
+            mv tap.conf /etc/modules-load.d/
+            cat /etc/modules | grep tan || echo tan >> /etc/modules
+            echo "allow bridge0" > bridge.conf
+            mv bridge.conf /etc/qemu/
+            echo "# Enable bridge forwarding.
+net.ipv4.conf.bridge0_bc_forwarding=1
+# Ignore iptables on bridge interfaces.
+net.bridge.bridge-nf-call-iptables=0" > bridging.conf
+            mv bridging.conf /etc/sysctl.d/
             # rc-service libvirtd
             # rc-update add virtnetworkd
             # rc-service virtnetworkd restart
