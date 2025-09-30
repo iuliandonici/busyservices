@@ -10,7 +10,7 @@ function f_config_kvm_network_interfaces() {
         rm -rf /etc/network/interfaces
     fi
     echo "- and assigning a variable to the network interface we find (en* or eth);"
-    var_f_config_kvm_network_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g')
+    var_f_config_kvm_network_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]wl.*:" | awk '{print $2}' | sed -e 's/://g')
     echo -e "# interfaces(5) file used by ifup(8) and ifdown(8)
 # Include files from /etc/network/interfaces.d:
 # source /etc/network/interfaces.d/*
