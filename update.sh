@@ -10,7 +10,7 @@ case $(f_get_distro_id) in
     ;;
 esac
 case $(hostname) in
-    busyt | mycontainer)
+    mycontainer)
         echo "This is $(hostname)."
         source functions/f_install_desktop_dev_software.sh
         f_install_desktop_dev_software
@@ -20,7 +20,7 @@ case $(hostname) in
         source functions/f_install_server_dev_software.sh
         f_install_server_dev_software
     ;;
-    busyalpinevm | busyl | busypc)
+    busyt | busyl | busypc)
         echo "This is $(hostname)."
         source functions/f_install_server_kvm_software.sh
         f_install_server_kvm_software
