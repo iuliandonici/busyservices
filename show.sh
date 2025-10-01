@@ -5,7 +5,7 @@ function f_install_kde() {
     sudo rc-update add sddm
     git clone git@github.com:iuliandonici/busychrome-audio.git
     cd busychrome-audio/
-    sudo ./setup-audio
+    sudo ./setup-audio --force-avs-install
     sudo reboot
 }
 f_install_kde
