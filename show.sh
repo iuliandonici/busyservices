@@ -1,37 +1,9 @@
 #!/bin/bash
-function f_install_kde() {
-    setup-xorg-base
-    sudo apk add  plasma elogind polkit-elogind kde-applications font-terminus font-inconsolata font-dejavu font-noto font-noto-cjk font-awesome font-noto-extra font-liberation python3
-    sudo rc-update add sddm
-    git clone git@github.com:iuliandonici/busychrome-audio.git
-    cd busychrome-audio/
-    sudo ./setup-audio --force-avs-install
-    sudo reboot
-}
-
-function f_config_kde() {
-    if [[ $(f_get_distro_packager) == "apk" ]]; then
-        if [[ "$EUID" -ne 0 ]]; then
-            sudo setup-xorg-base
-            sudo rc-update add sddm
-        else
-            setup-xorg-base
-            rc-update add sddm
-            clone git@github.com:iuliandonici/busychrome-audio.git
-            cd busychrome-audio/
-            ./setup-audio --force-avs-install
-        fi
-    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
-        echo "- No tests done for dns/zypper;"
-    else
-        echo "- No tests done for this distro;"
-    fi
-}
-
-#!/bin/bash
 var_install_kde_software_array=("plasma elogind" "polkit-elogind" "kde-applications" "font-terminus" "font-inconsolata" "font-dejavu" "font-noto" "font-noto-cjk" "font-awesome" "font-noto-extra" "font-liberation" "python3")
 function f_install_kde_requirements() {
     source functions/f_update_software.sh
+    source functions/f_config_kde.sh
+    source functions/f_install_busychrome_audio.sh
     f_update_software
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_kde_software_array[@]}"
@@ -70,7 +42,7 @@ function f_install_kde_requirements() {
         done
     fi
     f_update_software
- }
- function f_config_kde() {
-
+    f_config_kde
+    f_update_software
+    f_install_busychrome_audio
  }
