@@ -72,4 +72,3 @@ function f_config_kde_networking() {
     fi
 }
 f_config_kde_networking
-f_config_kde_networking
