@@ -7,6 +7,7 @@ function f_config_kde() {
         if [[ "$EUID" -ne 0 ]]; then
             sudo setup-xorg-base
             sudo rc-update add sddm
+            sudo f_install_busychrome_audio
         else
             setup-xorg-base
             rc-update add sddm
