@@ -52,7 +52,7 @@ function f_config_kde_networking() {
         auth-polkit=false" >> any-user.conf
             mv any-user.conf /etc/NetworkManager/conf.d/
             rc-service iwd start
-            # rc-service networkmanager restart
+            rc-service networkmanager restart
             rc-update add networkmanager default
             rc-update del networking boot
             rc-update del wpa_supplicant boot
