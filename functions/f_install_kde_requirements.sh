@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_kde_software_array=("plasma elogind" "polkit-elogind" "kde-applications" "font-terminus" "font-inconsolata" "font-dejavu" "font-noto" "font-noto-cjk" "font-awesome" "font-noto-extra" "font-liberation" "python3")
+var_install_kde_software_array=("plasma elogind" "polkit-elogind" "font-terminus" "font-inconsolata" "font-dejavu" "font-noto" "font-noto-cjk" "font-awesome" "font-noto-extra" "font-liberation" "python3" "networkmanager" "networkmanager-tui" "networkmanager-cli" "plasma-nm" "network-manager-applet" "networkmanager-wifi")
 function f_install_kde_requirements() {
     source functions/f_update_software.sh
     source functions/f_config_kde.sh
