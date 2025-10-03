@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_install_bluetooth() {
     source functions/f_update_software.sh
-    var_install_bluetooth_software_array=("bluez bluedevil bluetuith")
+    var_install_bluetooth_software_array=("bluez" "bluedevil" "bluetuith" "blueman")
     var_install_bluetooth_name="$(hostname)-bt"
     echo "- Installing bluetooth;"
     echo "- List of base software that will be installed using $(f_get_distro_packager):"
