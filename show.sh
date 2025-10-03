@@ -70,6 +70,5 @@ function f_config_kde_networking() {
             echo "- Nothing configured for Debian just yet as well;"
         fi
     fi
-fi
 }
 f_config_kde_networking
