@@ -4,7 +4,7 @@ f_install_kde_requirements
 function f_config_kde_networking() {
     echo "- and currently configuring KDE networking;"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
-        if [[ -d /etc/NetworkManager/NetworkManager.conf ]]; then
+        if [[ -f /etc/NetworkManager/NetworkManager.conf ]]; then
             echo "- but the NetworkManager.conf file already exists, so we're not going to configure the networking;"
         else
             if [[ "$EUID" -ne 0 ]]; then 
