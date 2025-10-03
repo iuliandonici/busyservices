@@ -56,19 +56,20 @@ function f_config_kde_networking() {
                 rc-update del networking boot
                 rc-update del wpa_supplicant boot
             fi
-        elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
-            if [[ "$EUID" -ne 0 ]]; then
-                echo "- Nothing configured yet for dnf/zypper;"
-            else
-                echo "- Nothing configured yet as well for dnf/zypper;"
-            fi
+        fi
+    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+        if [[ "$EUID" -ne 0 ]]; then
+            echo "- Nothing configured yet for dnf/zypper;"
         else
-            if [[ "$EUID" -ne 0 ]]; then
-                echo "- Nothing configured for Debian just yet;"
-            else
-                echo "- Nothing configured for Debian just yet as well;"
-            fi
+            echo "- Nothing configured yet as well for dnf/zypper;"
+        fi
+    else
+        if [[ "$EUID" -ne 0 ]]; then
+            echo "- Nothing configured for Debian just yet;"
+        else
+            echo "- Nothing configured for Debian just yet as well;"
         fi
     fi
+fi
 }
 f_config_kde_networking
