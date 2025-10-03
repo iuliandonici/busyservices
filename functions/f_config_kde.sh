@@ -7,11 +7,11 @@ function f_config_kde() {
         if [[ "$EUID" -ne 0 ]]; then
             sudo setup-xorg-base
             sudo rc-update add sddm
-            sudo f_install_busychrome_audio
+            # sudo f_install_busychrome_audio
         else
             setup-xorg-base
             rc-update add sddm
-            f_install_busychrome_audio
+            # f_install_busychrome_audio
         fi
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
         echo "- No tests done for dns/zypper;"
