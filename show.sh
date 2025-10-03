@@ -55,3 +55,4 @@ function f_install_bluetooth() {
         done
     fi
 }
+f_install_bluetooth
