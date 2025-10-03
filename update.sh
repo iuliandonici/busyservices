@@ -14,8 +14,10 @@ case $(hostname) in
         echo "This is $(hostname)."
         source functions/f_install_kde_requirements.sh
         source functions/f_install_busychrome_audio.sh
+        source functions/f_install_bluetooth.sh
         f_install_kde_requirements
         f_install_busychrome_audio
+        f_install_bluetooth
         ;;
     mycontainer)
         echo "This is $(hostname)."
