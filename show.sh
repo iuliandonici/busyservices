@@ -17,7 +17,7 @@ function f_config_kde_networking() {
 
         [device]
         wifi.scan-rand-mac-address=yes
-        wifi.backend=wpa_supplicant
+        # wifi.backend=wpa_supplicant
         wifi.backend=iwd
         wifi.iwd.autoconnect=yes" >> NetworkManager.conf
             sudo mv NetworkManager.conf /etc/NetworkManager/
@@ -44,7 +44,7 @@ function f_config_kde_networking() {
 
         [device]
         wifi.scan-rand-mac-address=yes
-        wifi.backend=wpa_supplicant
+        # wifi.backend=wpa_supplicant
         wifi.backend=iwd
         wifi.iwd.autoconnect=yes" >> NetworkManager.conf
             mv NetworkManager.conf /etc/NetworkManager/
@@ -52,7 +52,7 @@ function f_config_kde_networking() {
             echo "[main]
         auth-polkit=false" >> any-user.conf
             mv any-user.conf /etc/NetworkManager/conf.d/
-            # rc-service iwd start
+            rc-service iwd start
             # rc-service networkmanager restart
             rc-update add networkmanager default
             rc-update del networking boot
