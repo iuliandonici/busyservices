@@ -54,49 +54,4 @@ function f_install_bluetooth() {
             fi
         done
     fi
-
-
-
-
-
-
-
-
-
-
-
-
-    if [[ $(f_get_distro_packager) == "apk" ]]; then
-        if [[ "$EUID" -ne 0 ]]; then 
-            sudo setup-devd udev
-            sudo modprobe btusb
-            sudo adduser $USER lp
-            sudo rc-service bluetooth start
-            sudo rc-update add bluetooth default
-            var_install_bluetooth_name="$(hostname)-bt"
-            sudo sed -e "s/#Experimental = false/Experimental = true/g" -e "s/#AutoEnable=true/AutoEnable=false/g" -e "s/#Name = BlueZ/Name = $var_install_bluetooth_name/g" -i /etc/bluetooth/main.conf
-        else 
-            setup-devd udev
-            apk add bluez bluedevil bluetuith
-            modprobe btusb
-            adduser $USER lp
-            rc-service bluetooth start
-            rc-update add bluetooth default
-            var_install_bluetooth_name="$(hostname)-bt"
-            sed -e "s/#Experimental = false/Experimental = true/g" -e "s/#AutoEnable=true/AutoEnable=false/g" -e "s/#Name = BlueZ/Name = $var_install_bluetooth_name/g" -i /etc/bluetooth/main.conf
-        fi
-    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
-        if [[ "$EUID" -ne 0 ]]; then
-            echo "- Nothing configured yet for dnf/zypper;"
-        else
-            echo "- Nothing configured yet as well for dnf/zypper;"
-        fi
-    else
-        if [[ "$EUID" -ne 0 ]]; then
-            echo "- Nothing configured for Debian just yet;"
-        else
-            echo "- Nothing configured for Debian just yet as well;"
-        fi
-    fi
 }
-f_install_bluetooth
