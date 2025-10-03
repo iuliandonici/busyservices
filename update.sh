@@ -13,7 +13,9 @@ case $(hostname) in
     busychromebook)
         echo "This is $(hostname)."
         source functions/f_install_kde_requirements.sh
+        source functions/f_install_busychrome_audio.sh
         f_install_kde_requirements
+        f_install_busychrome_audio
         ;;
     mycontainer)
         echo "This is $(hostname)."
