@@ -3,9 +3,10 @@ var_install_kde_software_array=("plasma elogind" "polkit-elogind" "kde-applicati
 function f_install_kde_requirements() {
     source functions/f_update_software.sh
     source functions/f_config_kde.sh
-    source functions/f_install_busychrome_audio.sh
+    source functions/f_config_kde_networking.sh
     echo "- Installing KDE desktop environment;"
     f_update_software
+    f_config_kde
     echo "- List of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_kde_software_array[@]}"
     do
@@ -42,9 +43,5 @@ function f_install_kde_requirements() {
             fi
         done
     fi
-    f_update_software
-    f_config_kde
-    f_update_software
-    # f_install_busychrome_audio
-    f_update_software
+    f_config_kde_networking
  }
