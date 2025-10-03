@@ -15,7 +15,8 @@ function f_config_kde_networking() {
 
         [device]
         wifi.scan-rand-mac-address=yes
-        wifi.backend=wpa_supplicant" >> NetworkManager.conf
+        wifi.backend=wpa_supplicant
+        wifi.iwd.autoconnect=yes" >> NetworkManager.conf
             sudo mv NetworkManager.conf /etc/NetworkManager/
             sudo mkdir -p /etc/NetworkManager/conf.d/
             echo "[main]
@@ -38,7 +39,8 @@ function f_config_kde_networking() {
 
         [device]
         wifi.scan-rand-mac-address=yes
-        wifi.backend=wpa_supplicant" >> NetworkManager.conf
+        wifi.backend=wpa_supplicant
+        wifi.iwd.autoconnect=yes" >> NetworkManager.conf
             mv NetworkManager.conf /etc/NetworkManager/
             mkdir -p /etc/NetworkManager/conf.d/
             echo "[main]
