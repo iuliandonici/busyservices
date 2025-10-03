@@ -9,6 +9,7 @@ function f_install_bluetooth() {
     do
         echo " $i ${var_install_bluetooth_software_array[$i]}"
     done
+    f_update_software
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         for i in "${!var_install_bluetooth_software_array[@]}"
         do
