@@ -36,6 +36,6 @@ function f_config_kvm_group() {
         else
             usermod -aG kvm,libvirt $USER
             newgrp libvirt
-        fi  
+        fi
     fi
 }
