@@ -11,8 +11,10 @@ case $(f_get_distro_id) in
 esac
 case $(hostname) in
     busychromebook)
+        echo "This is $(hostname)."
         source functions/f_install_kde_requirements.sh
         f_install_kde_requirements
+        ;;
     mycontainer)
         echo "This is $(hostname)."
         source functions/f_install_desktop_dev_software.sh
