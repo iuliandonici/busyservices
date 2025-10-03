@@ -1,5 +1,8 @@
 #!/bin/bash
-source functions/f_install_kde_requirements.sh
-source functions/f_config_kde_networking.sh
-f_install_kde_requirements
-f_config_kde_networking
+function f_install_busychrome_audio() {
+        echo "- and currently installing audio;"
+        git clone git@github.com:iuliandonici/busychrome-audio.git
+        sudo ./busychrome-audio/setup-audio
+        rm -rf busychrome-audio
+}
+f_install_busychrome_audio
