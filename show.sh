@@ -5,6 +5,6 @@ function f_install_bluetooth() {
     sudo modprobe btusb
     sudo adduser $USER lp
     sudo rc-service bluetooth start
-    rc-update add bluetooth default
+    sudo rc-update add bluetooth default
 }
 f_install_bluetooth
