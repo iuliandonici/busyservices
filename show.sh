@@ -6,8 +6,6 @@ function f_config_kde_networking() {
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
             sudo adduser $USER plugdev
-            sudo rc-service networking stop
-            sudo rc-service wpa_supplicant stop
             echo "[main] 
         dhcp=internal
         plugins=ifupdown,keyfile
@@ -17,24 +15,20 @@ function f_config_kde_networking() {
 
         [device]
         wifi.scan-rand-mac-address=yes
-        # wifi.backend=wpa_supplicant
-        wifi.backend=iwd
-        wifi.iwd.autoconnect=yes" >> NetworkManager.conf
+        wifi.backend=wpa_supplicant" >> NetworkManager.conf
             sudo mv NetworkManager.conf /etc/NetworkManager/
             sudo mkdir -p /etc/NetworkManager/conf.d/
             echo "[main]
         auth-polkit=false" >> any-user.conf
             sudo mv any-user.conf /etc/NetworkManager/conf.d/
-            sudo rc-service networkmanager restart
             sudo rc-service networking stop
             sudo rc-service wpa_supplicant stop
+            sudo rc-service networkmanager restart
             sudo rc-update add networkmanager default
             sudo rc-update del networking boot
             sudo rc-update del wpa_supplicant boot
         else
             adduser $USER plugdev
-            rc-service networking stop
-            rc-service wpa_supplicant stop
             echo "[main] 
         dhcp=internal
         plugins=ifupdown,keyfile
@@ -44,15 +38,14 @@ function f_config_kde_networking() {
 
         [device]
         wifi.scan-rand-mac-address=yes
-        # wifi.backend=wpa_supplicant
-        wifi.backend=iwd
-        wifi.iwd.autoconnect=yes" >> NetworkManager.conf
+        wifi.backend=wpa_supplicant" >> NetworkManager.conf
             mv NetworkManager.conf /etc/NetworkManager/
             mkdir -p /etc/NetworkManager/conf.d/
             echo "[main]
         auth-polkit=false" >> any-user.conf
             mv any-user.conf /etc/NetworkManager/conf.d/
-            rc-service iwd start
+            rc-service networking stop
+            rc-service wpa_supplicant stop
             rc-service networkmanager restart
             rc-update add networkmanager default
             rc-update del networking boot
