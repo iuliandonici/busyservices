@@ -1,10 +1,10 @@
 #!/bin/bash
-function f_install_busychrome_audio() {
-        echo "- and currently installing audio;"
-        git clone git@github.com:iuliandonici/busychrome-audio.git
-        cd busychrome-audio
-        ./setup-audio
-        cd ../
-        rm -rf busychrome-audio
+function f_install_bluetooth() {
+    sudo setup-devd udev
+    sudo apk add bluez bluedevil bluetuith
+    sudo modprobe btusb
+    sudo adduser $USER lp
+    sudo rc-service bluetooth start
+    rc-update add bluetooth default
 }
-f_install_busychrome_audio
+f_install_bluetooth
