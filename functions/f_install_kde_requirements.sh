@@ -45,6 +45,6 @@ function f_install_kde_requirements() {
     f_update_software
     f_config_kde
     f_update_software
-    f_install_busychrome_audio
+    # f_install_busychrome_audio
     f_update_software
  }
