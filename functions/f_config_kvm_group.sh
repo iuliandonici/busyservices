@@ -1,6 +1,7 @@
 #!/bin/bash
 function f_config_kvm_group() {
     echo "- Creating users and groups for KVM;"
+    source functions/f_get_distro_packager.sh
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
             sudo addgroup $USER kvm
@@ -32,7 +33,7 @@ function f_config_kvm_group() {
     else
         if [[ "$EUID" -ne 0 ]]; then 
             sudo usermod -aG kvm,libvirt $USER
-            sudo newgrp libvirt
+            newgrp libvirt
         else
             usermod -aG kvm,libvirt $USER
             newgrp libvirt
