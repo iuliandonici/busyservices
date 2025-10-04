@@ -39,3 +39,4 @@ function f_config_kvm_group() {
         fi
     fi
 }
+f_config_kvm_group
