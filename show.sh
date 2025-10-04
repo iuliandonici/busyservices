@@ -34,6 +34,7 @@ function f_config_kvm_group() {
         if [[ "$EUID" -ne 0 ]]; then 
             sudo usermod -aG kvm,libvirt $USER
             sudo newgrp libvirt
+            exit
         else
             usermod -aG kvm,libvirt $USER
             newgrp libvirt
