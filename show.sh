@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_config_kvm_group() {
     echo "- Creating users and groups for KVM;"
-    source functions/f_update_software.sh
+    source functions/f_get_distro_packager.sh
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
             sudo addgroup $USER kvm
