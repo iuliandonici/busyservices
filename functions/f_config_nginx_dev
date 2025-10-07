@@ -1,0 +1,13 @@
+server {
+      listen 80;
+      listen [::]:80;
+
+      server_name busydev;
+
+      root /var/www/busydev;
+      index index.html;
+
+      location / {
+              try_files $uri $uri/ =404;
+      }
+}
