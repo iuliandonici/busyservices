@@ -12,9 +12,9 @@ function f_config_kvm_network_interfaces() {
     echo "- and assigning a variable to the network interface we find (en* or eth);"
     var_f_config_kvm_network_wired_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g')
     var_f_config_kvm_network_wireless_interfaces=$(ip a | grep -E "wl.*:" | awk '{print $2}' | sed -e 's/://g')
-    if [ -z "$var_f_config_network_wireless_interfaces" && "$var_f_config_kvm_network_wireless_interfaces"]; then
+    # if [ -z "$var_f_config_network_wireless_interfaces" && "$var_f_config_kvm_network_wireless_interfaces"]; then
 
-    fi
+    # fi
     echo -e "# interfaces(5) file used by ifup(8) and ifdown(8)
 # Include files from /etc/network/interfaces.d:
 # source /etc/network/interfaces.d/*
