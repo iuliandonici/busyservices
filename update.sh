@@ -19,7 +19,7 @@ case $(hostname) in
         f_install_busychrome_audio
         # f_install_bluetooth
         ;;
-    mycontainer | busyt)
+    mycontainer)
         echo "This is $(hostname)."
         source functions/f_install_desktop_dev_software.sh
         f_install_desktop_dev_software
