@@ -19,7 +19,7 @@ case $(hostname) in
         f_install_busychrome_audio
         # f_install_bluetooth
         ;;
-    mycontainer)
+    busyt)
         echo "This is $(hostname)."
         source functions/f_install_desktop_dev_software.sh
         f_install_desktop_dev_software
@@ -29,7 +29,7 @@ case $(hostname) in
         source functions/f_install_server_dev_software.sh
         f_install_server_dev_software
     ;;
-    busyt | busyl | busypc)
+    busyl | busypc)
         echo "This is $(hostname)."
         source functions/f_install_server_kvm_software.sh
         f_install_server_kvm_software
