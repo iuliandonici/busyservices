@@ -18,7 +18,7 @@ case $(hostname) in
         f_install_kde_requirements
         f_install_busychrome_audio
         # f_install_bluetooth
-        ;;
+    ;;
     busyt)
         echo "This is $(hostname)."
         source functions/f_install_desktop_dev_software.sh
@@ -29,7 +29,7 @@ case $(hostname) in
         source functions/f_install_server_dev_software.sh
         f_install_server_dev_software
     ;;
-    busyl | busypc | busyt)
+    busyt)
         echo "This is $(hostname)."
         source functions/f_install_server_kvm_software.sh
         f_install_server_kvm_software
