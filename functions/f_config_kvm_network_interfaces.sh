@@ -21,11 +21,14 @@ iface lo inet loopback \n
     var_f_config_kvm_network_wired_interfaces_status=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $9}' | sed -e 's/://g')
     var_f_config_kvm_network_wireless_interfaces=$(ip a | grep -E "wl.*:" | awk '{print $2}' | sed -e 's/://g')
     var_f_config_kvm_network_wireless_interfaces_status=$(ip a | grep -E "wl.*:" | awk '{print $9}' | sed -e 's/://g')
+    # If wired and wireless interfaces aren't empty
      if [ ! -z "${var_f_config_kvm_network_wired_interfaces}" ] && [ ! -z "${var_f_config_kvm_network_wireless_interfaces}" ]; then
         echo "- We found both network interfaces:"
+        # If the wired interface is down and wireless is up/down
         if [[ "$var_f_config_network_wired_interfaces_status" -eq "DOWN" && "$var_f_config_network_wired_interfaces_status" -eq "DOWN|UP" ]]; then
             echo "- but wired ($var_f_config_kvm_network_wired_interfaces) interface is $var_f_config_kvm_network_wired_interfaces_status;"
             echo "- and wireless ($var_f_config_kvm_network_wireless_interfaces) interface is $var_f_config_kvm_network_wireless_interfaces_status so we're going to use NAT for our local KVM which means we won't modify anything in our network config;"
+        # Else if the wired interface is up and wireless is up/down
         elif [[ "$var_f_config_network_wired_interfaces_status" -eq "UP" && "$var_f_config_network_wireless_interfaces_status" -eq "DOWN|UP" ]]; then
             echo "- but wireless ($var_f_config_kvm_network_wireless_interfaces) interface is $var_f_config_kvm_network_wireless_interfaces_status;"
             echo "- and wired ($var_f_config_kvm_network_wired_interfaces) interface is $var_f_config_kvm_network_wired_interfaces_status so we're going to create a bridge for our local KVM;"
@@ -46,6 +49,7 @@ iface bridge0 inet dhcp
    bridge_maxwait  0
    bridge_fd       0" >> config_kvm_network_interfaces.yaml
         fi
+    # And if the wired or wireless interface is empty, create a default eth0 and a bridge
     elif [ -z "${var_f_config_kvm_network_wired_interfaces}" ] || [ -z "${var_f_config_kvm_network_wireless_interfaces}" ]; then
         echo "- and since the network interface variable is empty, we're creating a eth0 as a default one;"
         var_f_config_kvm_network_wired_interfaces="eth0"
