@@ -33,8 +33,8 @@ function f_config_kvm_group() {
     else
         if [[ "$EUID" -ne 0 ]]; then 
             echo "-then this"
-            usermod -aG kvm,libvirt $USER
-            newgrp libvirt
+            sudo usermod -aG kvm,libvirt $USER
+            sudo newgrp libvirt
         else
             usermod -aG kvm,libvirt $USER
             newgrp libvirt
