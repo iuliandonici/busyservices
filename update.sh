@@ -29,7 +29,7 @@ case $(hostname) in
         source functions/f_install_server_dev_software.sh
         f_install_server_dev_software
     ;;
-   busyt)
+   busyt | busyl)
        echo "This is $(hostname)."
        source functions/f_install_server_kvm_software.sh
        f_install_server_kvm_software
