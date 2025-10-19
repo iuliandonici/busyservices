@@ -31,7 +31,7 @@ iface lo inet loopback \n
         echo $var_f_config_kvm_network_wireless_interfaces_status
         # If the wired interface is down and
         # Else if the wired interface is up and wireless is up/down
-        if ([[ $var_f_config_kvm_network_wired_interfaces_status == "UP" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "UP" ]]) || ([[ $var_f_config_kvm_network_wired_interfaces_status == "DOWN" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "UP" ]]) ; then
+        if ([[ $var_f_config_kvm_network_wired_interfaces_status == "UP" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "UP" ]]) || ([[ $var_f_config_kvm_network_wired_interfaces_status == "UP" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "DOWN" ]]) ; then
             echo "- but wireless ($var_f_config_kvm_network_wireless_interfaces) interface is $var_f_config_kvm_network_wireless_interfaces_status;"
             echo "- and wired ($var_f_config_kvm_network_wired_interfaces) interface is $var_f_config_kvm_network_wired_interfaces_status so we're going to create a bridge for our local KVM;"
             echo -e "auto $var_f_config_kvm_network_wired_interfaces
