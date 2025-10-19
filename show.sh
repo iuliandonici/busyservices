@@ -26,7 +26,7 @@ iface lo inet loopback \n
      if [ ! -z "${var_f_config_kvm_network_wired_interfaces}" ] && [ ! -z "${var_f_config_kvm_network_wireless_interfaces}" ]; then
         echo "- We found both network interfaces:"
         # If the wired interface is down and wireless is up/down
-        if [[ "$var_f_config_network_wired_interfaces_status" -eq "DOWN" && "$var_f_config_network_wired_interfaces_status" -eq "UP" ]]; then
+        if [ "${var_f_config_network_wired_interfaces_status}" -eq "DOWN" ] && [ "${var_f_config_network_wired_interfaces_status}" -eq "UP" ]; then
             echo "- but wired ($var_f_config_kvm_network_wired_interfaces) interface is $var_f_config_kvm_network_wired_interfaces_status;"
             echo "- and wireless ($var_f_config_kvm_network_wireless_interfaces) interface is $var_f_config_kvm_network_wireless_interfaces_status so we're going to use NAT for our local KVM which means we won't modify anything in our network config;"
         # Else if the wired interface is up and wireless is up/down
