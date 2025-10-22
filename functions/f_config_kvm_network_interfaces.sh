@@ -6,20 +6,14 @@ function f_config_kvm_network_interfaces() {
     var_f_config_kvm_network_interfaces_macaddr=$(echo $FQDN|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/')
     echo "- currently removing the previous network interfaces file being root or not;"
     if [[ "$EUID" -ne 0 ]]; then
-        if [ -f /etc/network/interfaces ]; then
-            echo "- currently, the /etc/network/interfaces already exists so we're not going to repopulate it;"
-        else
-            echo "- currently, removing the /etc/network/interfaces file;"
-            sudo rm -rf /etc/network/interfaces
-        fi
+        echo "- currently, removing the /etc/network/interfaces file;"
+        sudo rm -rf /etc/network/interfaces
     else 
-        if [ -f /etc/network/interfaces ]; then
-            echo "- currently, the /etc/network/interfaces already exists so we're not going to repopulate it;"
-        else
-            echo "- currently, removing the /etc/network/interfaces file;"
-            rm -rf /etc/network/interfaces
-            echo "- and creating a default config for a new /etc/network/interfaces;"
-            echo -e "# interfaces(5) file used by ifup(8) and ifdown(8)
+        echo "- currently, removing the /etc/network/interfaces file;"
+        rm -rf /etc/network/interfaces
+    fi
+    echo "- and creating a default config for a new /etc/network/interfaces;"
+    echo -e "# interfaces(5) file used by ifup(8) and ifdown(8)
 # Include files from /etc/network/interfaces.d:
 # source /etc/network/interfaces.d/*
 # The loopback network interface
@@ -27,8 +21,6 @@ auto lo
 iface lo inet loopback \n
 # Specify that the physical interface that should be connected to the bridge
 # should be configured manually, to avoid conflicts with NetworkManager" >> config_kvm_network_interfaces.yaml
-        fi
-    fi
     var_f_config_kvm_network_wired_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g')
     var_f_config_kvm_network_wired_interfaces_status=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $9}' | sed -e 's/://g')
     var_f_config_kvm_network_wireless_interfaces=$(ip a | grep -E "wl.*:" | awk '{print $2}' | sed -e 's/://g')
