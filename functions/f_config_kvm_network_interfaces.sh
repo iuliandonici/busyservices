@@ -12,7 +12,7 @@ function f_config_kvm_network_interfaces() {
     fi
     enable sleep
     sleep 5s
-    echo "- currently generating variables for network interfaces and their status;"
+    echo "- currently generating variables for network interfaces status;"
     var_f_config_kvm_network_wired_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g')
     var_f_config_kvm_network_wired_interfaces_status=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $9}' | sed -e 's/://g')
     if [[ $var_f_config_kvm_network_wired_interfaces_status == "bridge0" ]]; then
