@@ -28,8 +28,13 @@ iface lo inet loopback \n
     # If wired and wireless interfaces aren't empty
      if [ ! -z "${var_f_config_kvm_network_wired_interfaces}" ] && [ ! -z "${var_f_config_kvm_network_wireless_interfaces}" ]; then
         echo "- We found both network interfaces: $var_f_config_kvm_network_wired_interfaces ($var_f_config_kvm_network_wired_interfaces_status) and $var_f_config_kvm_network_wireless_interfaces ($var_f_config_kvm_network_wireless_interfaces_status);"
-        # If the wired interface is down and
-        # Else if the wired interface is up and wireless is up/down
+        echo "- trying, just in case, to bring $var_f_config_kvm_network_wired_interfaces online;"
+        if [[ "$EUID" -ne 0 ]]; then
+            sudo ip link set $var_f_config_kvm_network_wired_interfaces up
+        else
+            ip link set $var_f_config_kvm_network_wired_interfaces up
+        fi
+        # If the wired interface is up and wireless is up/down
         if ([[ $var_f_config_kvm_network_wired_interfaces_status == "UP" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "UP" ]]) || ([[ $var_f_config_kvm_network_wired_interfaces_status == "UP" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "DOWN" ]]); then
             echo "- but wireless ($var_f_config_kvm_network_wireless_interfaces) interface is $var_f_config_kvm_network_wireless_interfaces_status;"
             echo "- and wired ($var_f_config_kvm_network_wired_interfaces) interface is $var_f_config_kvm_network_wired_interfaces_status so we're going to create a bridge for our local KVM;"
