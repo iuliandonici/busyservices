@@ -12,6 +12,8 @@ function f_config_kvm_virtual_network() {
  ResultInactive=yes
  ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
             sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
+            sudo rc-update add dbus
+            sudo rc-service dbus start
             sudo rc-update add libvirtd
             sudo rc-service libvirtd start
             sudo rc-service polkit restart
@@ -48,7 +50,8 @@ net.bridge.bridge-nf-call-iptables=0" > bridging.conf
  ResultInactive=yes
  ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
             mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
-            rc-service polkit restart
+            rc-update add dbus
+            rc-service dbus start
             rc-update add libvirtd
             rc-service libvirtd start
             rc-service polkit restart
