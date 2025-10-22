@@ -57,8 +57,8 @@ iface bridge0 inet dhcp
    bridge_ports $var_f_config_kvm_network_wired_interfaces
    bridge_stp      off
    bridge_maxwait  0
-   bridge_fd       0" >> config_kvm_network_interfaces.yaml
-            echo "# The wireless interface settings
+   bridge_fd       0
+# The wireless interface settings
 auto $var_f_config_kvm_network_wireless_interfaces
 iface $var_f_config_kvm_network_wireless_interfaces inet manual" >> config_kvm_network_interfaces.yaml
         elif ([[ $var_f_config_kvm_network_wired_interfaces_status == "DOWN" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "UP" ]]); then
