@@ -3,6 +3,8 @@ function f_config_kvm_virtual_network() {
     echo "- Creating a virtual bridged network;"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
+            # Allow VMs to start and stop when the host does so
+            sudo rc-update add libvirt-guests
             # sudo cp -r functions/f_config_kvm_virtual_network.xml .
             sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
             sudo echo "[Remote libvirt SSH access]
@@ -42,6 +44,8 @@ net.bridge.bridge-nf-call-iptables=0" > bridging.conf
             sudo virsh net-start bridged-network
             sudo virsh net-autostart bridged-network
         else
+            # Allow VMs to start and stop when the host does so
+            rc-update add libvirt-guests
             # cp -r functions/f_config_kvm_virtual_network.xml 
             mkdir -p /etc/polkit-1/localauthority/50-local.d/
             echo "[Remote libvirt SSH access]
