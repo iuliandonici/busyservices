@@ -20,11 +20,11 @@ function f_config_kvm_virtual_network() {
             sudo rc-service polkit restart
             sudo echo "tap" >> tap.conf
             sudo mv tap.conf /etc/modules-load.d/
-            sudo cat /etc/modules | grep tan || sudo echo tan >> /etc/modules
+            sudo cat /etc/modules | grep tan || sudo echo "tan" >> /etc/modules
             sudo modprobe tun
             sudo echo "tun" >> tun.conf
             sudo mv tun.conf /etc/modules-load.d/
-            sudo cat /etc/modules | grep tun || sudo echo tun >> /etc/modules
+            sudo cat /etc/modules | grep tun || doas echo "tun" >> /etc/modules
             sudo echo "allow bridge0" > bridge.conf
             sudo mv bridge.conf /etc/qemu/
             sudo echo "# Enable bridge forwarding.
