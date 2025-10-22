@@ -6,9 +6,9 @@ function f_config_kvm_network_interfaces() {
     var_f_config_kvm_network_interfaces_macaddr=$(echo $FQDN|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/')
     echo "- currently trying, just in case, to bring $var_f_config_kvm_network_wired_interfaces online;"
     if [[ "$EUID" -ne 0 ]]; then
-        sudo ip link set $var_f_config_kvm_network_wired_interfaces up
+        sudo ip link set dev $var_f_config_kvm_network_wired_interfaces up
     else
-        ip link set $var_f_config_kvm_network_wired_interfaces up
+        ip link set dev $var_f_config_kvm_network_wired_interfaces up
     fi
     enable sleep
     sleep 5s
