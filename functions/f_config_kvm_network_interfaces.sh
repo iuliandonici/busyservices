@@ -27,11 +27,7 @@ iface lo inet loopback \n
     var_f_config_kvm_network_wireless_interfaces_status=$(ip a | grep -E "wl.*:" | awk '{print $9}' | sed -e 's/://g')
     # If wired and wireless interfaces aren't empty
      if [ ! -z "${var_f_config_kvm_network_wired_interfaces}" ] && [ ! -z "${var_f_config_kvm_network_wireless_interfaces}" ]; then
-        echo "- We found both network interfaces:"
-        echo $var_f_config_kvm_network_wired_interfaces
-        echo $var_f_config_kvm_network_wired_interfaces_status
-        echo $var_f_config_kvm_network_wireless_interfaces
-        echo $var_f_config_kvm_network_wireless_interfaces_status
+        echo "- We found both network interfaces: $var_f_config_kvm_network_wired_interfaces ($var_f_config_kvm_network_wired_interfaces_status) and $var_f_config_kvm_network_wireless_interfaces ($var_f_config_kvm_network_wireless_interfaces_status);"
         # If the wired interface is down and
         # Else if the wired interface is up and wireless is up/down
         if ([[ $var_f_config_kvm_network_wired_interfaces_status == "UP" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "UP" ]]) || ([[ $var_f_config_kvm_network_wired_interfaces_status == "UP" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "DOWN" ]]); then
