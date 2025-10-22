@@ -4,6 +4,7 @@ function f_config_kvm_network_interfaces() {
     echo "- Creating the network interfaces yaml file;"
     echo "- currently generating a random MAC address for the bridge interface;"
     var_f_config_kvm_network_interfaces_macaddr=$(echo $FQDN|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/')
+    var_f_config_kvm_network_wired_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g')
     echo "- currently trying, just in case, to bring $var_f_config_kvm_network_wired_interfaces online;"
     if [[ "$EUID" -ne 0 ]]; then
         sudo ip link set dev $var_f_config_kvm_network_wired_interfaces up
@@ -13,7 +14,6 @@ function f_config_kvm_network_interfaces() {
     enable sleep
     sleep 5s
     echo "- currently generating variables for network interfaces status;"
-    var_f_config_kvm_network_wired_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g')
     var_f_config_kvm_network_wired_interfaces_status=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $9}' | sed -e 's/://g')
     if [[ $var_f_config_kvm_network_wired_interfaces_status == "bridge0" ]]; then
         var_f_config_kvm_network_wired_interfaces_status=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $11}' | sed -e 's/://g')
