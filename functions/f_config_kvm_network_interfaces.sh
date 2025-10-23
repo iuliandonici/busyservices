@@ -67,10 +67,6 @@ iface $var_f_config_kvm_network_wireless_interfaces inet manual" >> config_kvm_n
         elif ([[ $var_f_config_kvm_network_wired_interfaces_status == "DOWN" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "UP" ]]); then
             echo "- but wireless ($var_f_config_kvm_network_wireless_interfaces) interface is $var_f_config_kvm_network_wireless_interfaces_status;"
             echo "- and wired ($var_f_config_kvm_network_wired_interfaces) interface is $var_f_config_kvm_network_wired_interfaces_status so we're going to use NAT for our local KVM;"
-            echo "auto $var_f_config_kvm_network_wired_interfaces
-iface $var_f_config_kvm_network_wired_interfaces inet manual
-auto $var_f_config_kvm_network_wireless_interfaces
-iface $var_f_config_kvm_network_wireless_interfaces inet manual" >> config_kvm_network_interfaces.yaml
         fi
     # And if the wired or wireless interface is empty, create a default eth0 and a bridge
     elif [ -z "${var_f_config_kvm_network_wired_interfaces}" ] || [ -z "${var_f_config_kvm_network_wireless_interfaces}" ]; then
