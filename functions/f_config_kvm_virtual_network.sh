@@ -1,6 +1,6 @@
 #!/bin/bash
 function f_config_kvm_virtual_network() {
-    echo "- Creating a virtual bridged network;"
+    echo "- Creating a virtual bridged network:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
             # Allow VMs to start and stop when the host does so
@@ -105,7 +105,7 @@ net.bridge.bridge-nf-call-iptables=0" > bridging.conf
         fi
     else
         if ([[ $var_f_config_kvm_network_wired_interfaces_status == "DOWN" ]] && [[ $var_f_config_kvm_network_wireless_interfaces_status == "UP" ]]); then
-            echo "- since the wired interface is DOWN and wireless is UP, we're not going to create a custom virtual network interface but instead we're going to use NAT, the default virtual network interface for KVM;"
+            echo "- but since the wired interface is DOWN and wireless is UP, we're not going to create a custom virtual network interface but instead we're going to use NAT, the default virtual network interface for KVM;"
             if [[ "$EUID" -ne 0 ]]; then 
                 # sudo cp -r functions/f_config_kvm_virtual_network.xml .
                 sudo systemctl restart libvirtd
