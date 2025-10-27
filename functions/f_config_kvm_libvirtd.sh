@@ -1,6 +1,6 @@
 #!/bin/bash
 function f_config_kvm_libvirtd() {
-    echo " - Configuring KVM for remote ssh;"
+    echo "- Configuring KVM for remote ssh;"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
             sudo rc-service libvirtd stop
