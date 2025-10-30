@@ -67,10 +67,9 @@ iface $var_f_config_kvm_network_wireless_interfaces inet manual" >> config_kvm_n
             echo "- but wireless ($var_f_config_kvm_network_wireless_interfaces) interface is $var_f_config_kvm_network_wireless_interfaces_status;"
             echo "- and wired ($var_f_config_kvm_network_wired_interfaces) interface is $var_f_config_kvm_network_wired_interfaces_status so we're going to use NAT for our local KVM;"
         fi
-    # And if the wired or wireless interface is empty, create a default eth0 and a bridge
-    elif [ -z "${var_f_config_kvm_network_wired_interfaces}" ] || [ -z "${var_f_config_kvm_network_wireless_interfaces}" ]; then
-        echo "- and since the network interface variable is empty, we're creating a eth0 as a default one;"
-        var_f_config_kvm_network_wired_interfaces="eth0"
+    # And if the wired network interface variable isn't empty but wireless is empty, then create a bridge0 based on the wired interface
+    elif ([[ ! -z $var_f_config_kvm_network_wired_interfaces ]] && [[ -z $var_f_config_kvm_network_wireless_interfaces]]); then
+        echo "- and since the wireless network interface variable is empty, we're creating a bridge0 interface based on the wired ($var_f_config_kvm_network_wired_interfaces) interface as a default one;"
         echo -e "auto $var_f_config_kvm_network_wired_interfaces
 iface $var_f_config_kvm_network_wired_interfaces inet manual \n" >> config_kvm_network_interfaces.yaml
 echo "# The bridge0 bridge settings
@@ -87,6 +86,8 @@ iface bridge0 inet dhcp
    bridge_stp      off
    bridge_maxwait  0
    bridge_fd       0" >> config_kvm_network_interfaces.yaml
+    elif ([[ -z $var_f_config_kvm_network_wired_interfaces ]] && [[ ! -z $var_f_config_kvm_network_wireless_interfaces]]); then
+        echo "- but our wired network interface variable is empty while the wireless ($var_f_config_kvm_network_wireless_interfaces) one isn't which means we're going to use NAT as our default virtual network interface;" 
     fi
     if [[ "$EUID" -ne 0 ]]; then 
         sudo cp -r config_kvm_network_interfaces.yaml /etc/network/interfaces
