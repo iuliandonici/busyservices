@@ -86,7 +86,7 @@ iface bridge0 inet dhcp
    bridge_stp      off
    bridge_maxwait  0
    bridge_fd       0" >> config_kvm_network_interfaces.yaml
-    elif ([[ -z $var_f_config_kvm_network_wired_interfaces ]] && [[ ! -z $var_f_config_kvm_network_wireless_interfaces]]); then
+    elif ([[ -z $var_f_config_kvm_network_wired_interfaces ]] && [[ ! -z $var_f_config_kvm_network_wireless_interfaces ]]); then
         echo "- but our wired network interface variable is empty while the wireless ($var_f_config_kvm_network_wireless_interfaces) one isn't which means we're going to use NAT as our default virtual network interface;" 
     fi
     if [[ "$EUID" -ne 0 ]]; then 
