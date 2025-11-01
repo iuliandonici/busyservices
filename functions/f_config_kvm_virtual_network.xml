@@ -2,4 +2,9 @@
   <name>bridged-network</name>
   <forward mode="bridge"/>
   <bridge name="bridge0"/>
+    <ip address="192.168.168.0" netmask="255.255.255.0">
+    <dhcp>
+      <range start="192.168.168.190" end="192.168.168.200"/>
+    </dhcp>
+  </ip>
 </network>
