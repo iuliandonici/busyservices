@@ -2,8 +2,8 @@
 function f_config_kvm_virtual_network() {
     echo "- Creating a virtual bridged network:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
+        if [[ ]]
         if [[ "$EUID" -ne 0 ]]; then 
-            
             # Allow VMs to start and stop when the host does so
             sudo rc-update add libvirt-guests
             # sudo cp -r functions/f_config_kvm_virtual_network.xml .
