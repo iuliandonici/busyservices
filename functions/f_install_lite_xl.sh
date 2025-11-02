@@ -20,6 +20,7 @@ function f_install_lite_xl() {
       fi
     else
       apk update
+      
       apk add lite-xl
       echo "- currently adding the lite-xl plugin manager called lpm;"
       wget https://github.com/lite-xl/lite-xl-plugin-manager/releases/download/latest/lpm.`uname -m | sed 's/arm64/aarch64/'`-`uname | tr '[:upper:]' '[:lower:]'` -O lpm && chmod +x lpm
