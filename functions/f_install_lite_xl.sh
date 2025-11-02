@@ -1,5 +1,6 @@
 #!/bin/bash
 function f_install_lite_xl() {
+  pwd
   source functions/f_check_networks.sh
   echo " - Installing code editor lite-xl:"
   if [[ $(f_check_networks) == "UP" ]]; then
