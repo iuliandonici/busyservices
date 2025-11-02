@@ -37,5 +37,7 @@ function f_install_lite_xl() {
       mv lpm /usr/bin/
       lpm plugin install autocomplete autosave editorconfig formatter gitstatus indentguide language_cmake language_containerfile language_htaccess language_sh language_csharp language_env language_fstab language_go language_ignore language_ini language_json language_nginx language_objc language_ssh_config language_yaml lsp plugin_manager restoretabs search_ui select_colorscheme selectionhighlight settings snippets tab_switcher --assume-yes
     fi
+  else
+    echo "- Lite-xl hasn't been tested on this distro;"
   fi
 }
