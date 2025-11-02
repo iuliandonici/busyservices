@@ -16,8 +16,8 @@ function f_config_kde_networking() {
 
             [device]
             wifi.scan-rand-mac-address=yes
-            wifi.backend=wpa_supplicant
-            wifi.wpa_supplicant.autoconnect=yes" >> NetworkManager.conf
+            wifi.backend=iwd
+            wifi.iwd.autoconnect=yes" >> NetworkManager.conf
                 sudo mv NetworkManager.conf /etc/NetworkManager/
                 sudo mkdir -p /etc/NetworkManager/conf.d/
                 echo "[main]
@@ -25,11 +25,11 @@ function f_config_kde_networking() {
                 sudo mv any-user.conf /etc/NetworkManager/conf.d/
                 sudo rc-service networking stop
                 sudo rc-service wpa_supplicant stop
+                sudo rc-service iwd start
                 sudo rc-service networkmanager restart
                 sudo rc-update add networkmanager default
                 sudo rc-update del networking boot
                 sudo rc-update del wpa_supplicant boot
-                sudo rc-update add wpa_supplicant default
             else
                 adduser $USER plugdev
                 echo "[main] 
@@ -41,8 +41,8 @@ function f_config_kde_networking() {
 
             [device]
             wifi.scan-rand-mac-address=yes
-            wifi.backend=wpa_supplicant
-            wifi.wpa_supplicant.autoconnect=yes" >> NetworkManager.conf
+            wifi.backend=iwd
+            wifi.iwd.autoconnect=yes" >> NetworkManager.conf
                 mv NetworkManager.conf /etc/NetworkManager/
                 mkdir -p /etc/NetworkManager/conf.d/
                 echo "[main]
@@ -50,11 +50,11 @@ function f_config_kde_networking() {
                 mv any-user.conf /etc/NetworkManager/conf.d/
                 rc-service networking stop
                 rc-service wpa_supplicant stop
+                rc-service iwd start
                 rc-service networkmanager restart
                 rc-update add networkmanager default
                 rc-update del networking boot
                 rc-update del wpa_supplicant boot
-                rc-update add wpa_supplicant default
             fi
         fi
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
