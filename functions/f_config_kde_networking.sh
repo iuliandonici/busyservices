@@ -16,8 +16,8 @@ function f_config_kde_networking() {
 
             [device]
             wifi.scan-rand-mac-address=yes
-            wifi.backend=iwd
-            wifi.iwd.autoconnect=yes" >> NetworkManager.conf
+            wifi.backend=wpa_supplicant
+            wifi.wpa_supplicant.autoconnect=yes" >> NetworkManager.conf
                 sudo mv NetworkManager.conf /etc/NetworkManager/
                 sudo mkdir -p /etc/NetworkManager/conf.d/
                 echo "[main]
@@ -25,7 +25,6 @@ function f_config_kde_networking() {
                 sudo mv any-user.conf /etc/NetworkManager/conf.d/
                 sudo rc-service networking stop
                 sudo rc-service wpa_supplicant stop
-                sudo rc-service iwd start
                 sudo rc-service networkmanager restart
                 sudo rc-update add networkmanager default
                 sudo rc-update del networking boot
@@ -41,8 +40,8 @@ function f_config_kde_networking() {
 
             [device]
             wifi.scan-rand-mac-address=yes
-            wifi.backend=iwd
-            wifi.iwd.autoconnect=yes" >> NetworkManager.conf
+            wifi.backend=wpa_supplicant
+            wifi.wpa_supplicant.autoconnect=yes" >> NetworkManager.conf
                 mv NetworkManager.conf /etc/NetworkManager/
                 mkdir -p /etc/NetworkManager/conf.d/
                 echo "[main]
@@ -50,7 +49,6 @@ function f_config_kde_networking() {
                 mv any-user.conf /etc/NetworkManager/conf.d/
                 rc-service networking stop
                 rc-service wpa_supplicant stop
-                rc-service iwd start
                 rc-service networkmanager restart
                 rc-update add networkmanager default
                 rc-update del networking boot
