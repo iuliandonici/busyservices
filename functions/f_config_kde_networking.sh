@@ -29,6 +29,7 @@ function f_config_kde_networking() {
                 sudo rc-update add networkmanager default
                 sudo rc-update del networking boot
                 sudo rc-update del wpa_supplicant boot
+                sudo rc-update add wpa_supplicant default
             else
                 adduser $USER plugdev
                 echo "[main] 
@@ -53,6 +54,7 @@ function f_config_kde_networking() {
                 rc-update add networkmanager default
                 rc-update del networking boot
                 rc-update del wpa_supplicant boot
+                rc-update add wpa_supplicant default
             fi
         fi
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
