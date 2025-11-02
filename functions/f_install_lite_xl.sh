@@ -19,7 +19,7 @@ function f_install_lite_xl() {
       sudo mv lpm /usr/bin/
       wget https://github.com/lite-xl/lite-xl-plugin-manager/releases/download/latest/lpm.`uname -m | sed 's/arm64/aarch64/'`-`uname | tr '[:upper:]' '[:lower:]'` -O lpm && chmod +x lpm
       ./lpm install plugin_manager --assume-yes
-      lpm plugin install autocomplete autosave autowrap editorconfig formatter gitstatus indentguide language_cmake language_containerfile language_htaccess language_sh language_csharp language_env language_fstab language_go language_ignore language_ini language_json language_nginx language_objc language_ssh_config language_yaml lsp plugin_manager restoretabs search_ui select_colorscheme selectionhighlight settings snippets tab_switcher --asume-yes
+      lpm plugin install autocomplete autosave editorconfig formatter gitstatus indentguide language_cmake language_containerfile language_htaccess language_sh language_csharp language_env language_fstab language_go language_ignore language_ini language_json language_nginx language_objc language_ssh_config language_yaml lsp plugin_manager restoretabs search_ui select_colorscheme selectionhighlight settings snippets tab_switcher --asume-yes
     else
       if grep -wq "edge/testing" /etc/apk/repositories; then
         echo "- but the edge testing Alpine repository exists already;"
@@ -35,7 +35,7 @@ function f_install_lite_xl() {
       wget https://github.com/lite-xl/lite-xl-plugin-manager/releases/download/latest/lpm.`uname -m | sed 's/arm64/aarch64/'`-`uname | tr '[:upper:]' '[:lower:]'` -O lpm && chmod +x lpm
       ./lpm install plugin_manager --assume-yes
       mv lpm /usr/bin/
-      lpm plugin install autocomplete autosave autowrap editorconfig formatter gitstatus indentguide language_cmake language_containerfile language_htaccess language_sh language_csharp language_env language_fstab language_go language_ignore language_ini language_json language_nginx language_objc language_ssh_config language_yaml lsp plugin_manager restoretabs search_ui select_colorscheme selectionhighlight settings snippets tab_switcher --assume-yes
+      lpm plugin install autocomplete autosave editorconfig formatter gitstatus indentguide language_cmake language_containerfile language_htaccess language_sh language_csharp language_env language_fstab language_go language_ignore language_ini language_json language_nginx language_objc language_ssh_config language_yaml lsp plugin_manager restoretabs search_ui select_colorscheme selectionhighlight settings snippets tab_switcher --assume-yes
     fi
   fi
 }
