@@ -5,9 +5,9 @@ function f_config_kde_networking() {
         if [[ -f /etc/NetworkManager/NetworkManager.conf ]]; then
             echo "- but the NetworkManager.conf file already exists, so we're not going to configure the networking;"
         else
-            if [[ "$EUID" -ne 0 ]]; then 
+            if [[ "$EUID" -ne 0 ]]; then
                 sudo adduser $USER plugdev
-                echo "[main] 
+                echo "[main]
             dhcp=internal
             plugins=ifupdown,keyfile
 

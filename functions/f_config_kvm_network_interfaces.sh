@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 function f_config_kvm_network_interfaces() {
     echo "- Creating the network interfaces yaml file;"
     echo "- currently generating a random MAC address for the bridge interface;"
