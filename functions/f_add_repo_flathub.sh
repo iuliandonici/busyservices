@@ -4,7 +4,7 @@ function f_add_repo_flathub() {
   source functions/f_check_networks.sh
   source functions/f_get_distro_id.sh
   # A variable to see what environment is currently installed
-  var_f_add_repo_flathub_desktop=$(printf 'Desktop: %s' "$XDG_CURRENT_DESKTOP")
+  var_f_add_repo_flathub_desktop=$(printf 'desktop: %s' "$XDG_CURRENT_DESKTOP")
   if [[ $(f_get_distro_packager) == "apk" ]]; then
     if [[ $(f_check_networks) == "UP" ]]; then
       f_update_software
@@ -12,7 +12,7 @@ function f_add_repo_flathub() {
         # Install the package
         doas apk add flatpak
         # Install the Software Flatpak plugin for KDE
-        echo "- and we're using $var_f_add_repo_flathub_desktop;"
+        echo "- and we are using $var_f_add_repo_flathub_desktop;"
         echo "- currently installing the Software Flatpak plugin;"
         # if its' KDE
         if [[ $var_f_add_repo_flathub_desktop == "KDE" ]]; then
