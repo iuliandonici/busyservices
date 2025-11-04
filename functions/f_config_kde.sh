@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_config_kde() {
     source functions/f_update_software.sh
-    echo "- Currently configuring KDE;"
+    echo "- and currently configuring KDE;"
     f_update_software
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then

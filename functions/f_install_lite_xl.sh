@@ -1,8 +1,7 @@
 #!/bin/bash
 function f_install_lite_xl() {
-  pwd
   source functions/f_check_networks.sh
-  echo " - Installing code editor lite-xl:"
+  echo " - installing code editor lite-xl:"
   if [[ $(f_check_networks) == "UP" ]]; then
     if [[ $(f_get_distro_packager) == "apk" ]]; then
       if [[ "$EUID" -ne 0 ]]; then

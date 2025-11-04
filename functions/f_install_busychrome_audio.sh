@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_install_busychrome_audio() {
         source functions/f_check_networks.sh
-        echo "- and currently installing audio;"
+        echo " - and installing audio;"
         if [[ $(f_check_networks) == "UP" ]]; then
                 git clone git@github.com:iuliandonici/busychrome-audio.git
                 cd busychrome-audio
