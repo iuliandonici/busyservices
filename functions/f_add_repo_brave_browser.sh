@@ -1,20 +1,17 @@
 #!/bin/bash
 function f_add_repo_brave_browser() {
     source functions/f_check_networks.sh
+    source functions/f_add_repo_flathub.sh
     echo "- Currently adding the Brave browser repo using $(f_get_distro_packager):"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
             echo "- but Brave browser isn't available on $(f_get_distro_id) using the $(f_get_distro_packager) package so instead we're using flatpak;"
-            if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) add flatpak
-                sudo $(f_get_distro_packager) add discover-backend-flatpak
-                flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-                flatpak install flathub com.brave.Browser
+            if [[ "$EUID" -ne 0 ]]; then
+                f_add_repo_flathub
+                flatpak install -y flathub com.brave.Browser
             else
-                $(f_get_distro_packager) add flatpak
-                $(f_get_distro_packager) add discover-backend-flatpak
-                flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-                flatpak install flathub com.brave.Browser
+                f_add_repo_flathub
+                flatpak install -y flathub com.brave.Browser
             fi
         else
             echo "- but we can't install Brave browser because the networks are down;"
