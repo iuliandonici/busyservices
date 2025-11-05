@@ -5,7 +5,7 @@ function f_add_repo_brave_browser() {
     echo " - and currently adding the Brave browser repo using $(f_get_distro_packager):"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
-            echo "- and since Brave browser isn't available on $(f_get_distro_id) using the $(f_get_distro_packager) packager so instead we're using flatpak;"
+            echo "- and since Brave browser isn't available natively on $(f_get_distro_id) using the $(f_get_distro_packager) packager so instead we're using flatpak;"
             f_add_repo_flathub
             flatpak install -y flathub com.brave.Browser
             f_update_software
