@@ -2,7 +2,7 @@
 function f_add_repo_brave_browser() {
     source functions/f_update_software.sh
     source functions/f_add_repo_flathub.sh
-    echo "- and currently adding the Brave browser repo using $(f_get_distro_packager):"
+    echo " - and currently adding the Brave browser repo using $(f_get_distro_packager):"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
             echo "- but Brave browser isn't available on $(f_get_distro_id) using the $(f_get_distro_packager) packager so instead we're using flatpak;"
