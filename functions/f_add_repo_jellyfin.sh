@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_add_repo_jellyfin() {
     source functions/f_update_software.sh
-    echo "- Currently adding the Jellyfin repo using $(f_get_distro_packager)."
+    echo " - currently adding the Jellyfin repo using $(f_get_distro_packager):"
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         if [[ "$( f_check_networks)" == "UP" ]]; then
             if [[ "$EUID" -ne 0 ]]; then 
@@ -21,7 +21,7 @@ function f_add_repo_jellyfin() {
     Signed-By: /etc/apt/keyrings/jellyfin.gpg
     EOF
                 else
-                    echo "- There is no version of Jellyfin for x86."
+                    echo "- but here is no version of Jellyfin for x86;"
                 fi            
             else
     # Setting a variable for getting the machine's architecture
@@ -40,7 +40,7 @@ function f_add_repo_jellyfin() {
     Signed-By: /etc/apt/keyrings/jellyfin.gpg
     EOF
                 else
-                    echo "There is no Jellyfin version for this architecture."
+                    echo "- but there is no Jellyfin version for this architecture;"
                 fi
             fi
             f_update_software
