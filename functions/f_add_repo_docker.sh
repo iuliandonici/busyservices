@@ -3,7 +3,6 @@ function f_add_repo_docker() {
     source functions/f_check_networks.sh
     echo " - and currently adding the Docker repo using $(f_get_distro_packager):"
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
-        if [[
         if [[ "$EUID" -ne 0 ]]; then 
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
