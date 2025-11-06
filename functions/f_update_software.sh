@@ -19,7 +19,7 @@ function f_update_software() {
                 fi
             done
         else
-            echo "- but can't update because the networks are down"
+            echo "- but can't update because the networks are down;"
         fi
     elif [[ "$(f_get_distro_packager)" == "dnf" ]]; then
         for i in "${!var_update_commands_array_alma[@]}"
