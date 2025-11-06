@@ -19,7 +19,7 @@ function f_install_base_software() {
                 if [[ "$EUID" -ne 0 ]]; then 
                     sudo $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
                 else
-                        $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
+                    $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
                 fi
             done
         else
