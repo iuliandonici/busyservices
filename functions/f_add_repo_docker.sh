@@ -16,7 +16,7 @@ function f_add_repo_docker() {
                 $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
                 sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
             else
-                echo "- There is no version of Docker for x86."
+                echo "- but there is no version of Docker for x86;"
             fi            
         else
 # Setting a variable for getting the machine's architecture
@@ -31,7 +31,7 @@ function f_add_repo_docker() {
                     $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
                 tee /etc/apt/sources.list.d/docker.list > /dev/null
             else
-                echo "There is no Docker version for this architecture."
+                echo "- but there is no Docker version for this architecture;"
             fi
         fi
     fi
