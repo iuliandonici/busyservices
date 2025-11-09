@@ -10,7 +10,6 @@ function f_install_bluetooth() {
     do
         echo " $i ${var_install_bluetooth_software_array[$i]}"
     done
-    f_update_software
     if [[ $(f_check_networks) == "UP" ]]; then
         if [[ $(f_get_distro_packager) == "apk" ]]; then
             for i in "${!var_install_bluetooth_software_array[@]}"
@@ -33,7 +32,8 @@ function f_install_bluetooth() {
                     rc-update add bluetooth default
                     sed -e "s/#Experimental = false/Experimental = true/g" -e "s/#AutoEnable=true/AutoEnable=false/g" -e "s/#Name = BlueZ/Name = $var_install_bluetooth_name/g" -i /etc/bluetooth/main.conf
                 fi
-            done     
+            done
+            f_update_software
         elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
             for i in "${!var_install_bluetooth_software_array[@]}"
             do
