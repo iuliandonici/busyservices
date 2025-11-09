@@ -8,7 +8,7 @@ function f_config_docker() {
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 if [[ -f /usr/bin/docker ]]; then
-                    echo "- Docker is installed. Now, we'll restart it."
+                    echo "- and Docker is installed; now, we'll restart it;"
                     sudo groupadd docker
                     sudo usermod -aG docker $USER
                     sudo systemctl stop docker.socket
@@ -17,18 +17,18 @@ function f_config_docker() {
                     sudo systemctl start docker.socket
                     sudo systemctl start docker.service
                 else 
-                    echo "- Can't configure Docker because it's not installed:"
+                    echo "- but can't configure Docker because it's not installed:"
                     ls -alh /usr/bin/ | grep "docker"
                 fi
             else
-                echo "This isn't a functional architecture for this function."
+                echo "- but this isn't a functional architecture for this function;"
             fi
         else
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 if [[ -f /usr/bin/docker ]]; then
-                    echo "- Docker is installed. Now, we'll restart it."
+                    echo "- but Docker is installed; now, we'll restart it;"
                     groupadd docker
                     usermod -aG docker $USER
                     systemctl stop docker.socket
@@ -37,11 +37,11 @@ function f_config_docker() {
                     systemctl start docker.socket
                     systemctl start docker.service
                 else 
-                    echo "- Can't configure Docker because it's not installed:"
+                    echo "- but can't configure Docker because it's not installed:"
                     ls -alh /usr/bin/ | grep "docker"
                 fi
             else
-                echo "This isn't a functional architecture for this function." 
+                echo "- but this isn't a functional architecture for this function." 
             fi
         fi
     fi
