@@ -4,8 +4,8 @@ function f_install_bluetooth() {
     source functions/f_check_networks.sh
     var_install_bluetooth_software_array=("bluez" "bluedevil" "bluetuith" "blueman")
     var_install_bluetooth_name="$(hostname)-bt"
-    echo "- Installing bluetooth;"
-    echo "- List of base software that will be installed using $(f_get_distro_packager):"
+    echo " - and installing bluetooth;"
+    echo "- here's a list of base software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_bluetooth_software_array[@]}"
     do
         echo " $i ${var_install_bluetooth_software_array[$i]}"
