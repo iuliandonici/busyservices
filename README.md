@@ -1,6 +1,10 @@
 # busyservices
 ### Scripts that install various services.
 #### Goals:
+- [ ] Functions:
+            - [ ] - 
+            - [ ] f_update_software:
+                        [ ] - 
 - [x] KVM on: 
     - [x]busypc:
         - [x] tested:

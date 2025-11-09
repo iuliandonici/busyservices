@@ -6,6 +6,7 @@ var_update_commands_array_opensuse=("refresh" "update -y" "clean")
 function f_update_software() {
     source functions/f_get_distro_packager.sh
     source functions/f_check_networks.sh
+    source functions/f_update_flatpak.sh
     echo " - updating, upgrading and cleaning software;"
     if [[ "$(f_get_distro_packager)" == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
@@ -13,11 +14,12 @@ function f_update_software() {
             do
                 echo "- and currently running: $i ${var_update_commands_array_alpine[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    sudo $(f_get_distro_packager) ${var_update_commands_array_alpine[$i]}  
+                    doas $(f_get_distro_packager) ${var_update_commands_array_alpine[$i]}  
                 else
                     $(f_get_distro_packager) ${var_update_commands_array_alpine[$i]}  
                 fi
             done
+            f_update_flatpak
         else
             echo "- but can't update because the networks are down;"
         fi

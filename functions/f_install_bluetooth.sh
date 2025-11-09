@@ -17,13 +17,13 @@ function f_install_bluetooth() {
             do
                 echo "- and currently installing: $i ${var_install_bluetooth_software_array[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    sudo $(f_get_distro_packager) add ${var_install_bluetooth_software_array[$i]}
-                    sudo setup-devd udev
-                    sudo modprobe btusb
-                    sudo adduser $USER lp
-                    sudo rc-service bluetooth start
-                    sudo rc-update add bluetooth default
-                    sudo sed -e "s/#Experimental = false/Experimental = true/g" -e "s/#AutoEnable=true/AutoEnable=false/g" -e "s/#Name = BlueZ/Name = $var_install_bluetooth_name/g" -i /etc/bluetooth/main.conf
+                    doas $(f_get_distro_packager) add ${var_install_bluetooth_software_array[$i]}
+                    doas setup-devd udev
+                    doas modprobe btusb
+                    doas adduser $USER lp
+                    doas rc-service bluetooth start
+                    doas rc-update add bluetooth default
+                    doas sed -e "s/#Experimental = false/Experimental = true/g" -e "s/#AutoEnable=true/AutoEnable=false/g" -e "s/#Name = BlueZ/Name = $var_install_bluetooth_name/g" -i /etc/bluetooth/main.conf
                 else
                     $(f_get_distro_packager) add ${var_install_bluetooth_software_array[$i]}                
                     setup-devd udev

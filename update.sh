@@ -19,7 +19,7 @@ case $(hostname) in
       source functions/f_add_repo_brave_browser.sh
       f_install_kde_requirements
       f_install_busychrome_audio
-      # f_install_bluetooth
+      f_install_bluetooth
       f_install_lite_xl
       f_add_repo_brave_browser
   ;;
