@@ -27,7 +27,7 @@ function f_install_gitea() {
         doas service mariadb start
         doas rc-update add mariadb
         doas mariadb-secure-installation
-        mysql -u root -p
+        mariadb -u root -p
         doas service gitea start
         doas rc-update add gitea
       else
@@ -35,7 +35,7 @@ function f_install_gitea() {
         service mariadb start
         rc-update add mariadb
         mariadb-secure-installation
-        mysql -u root -p
+        mariadb -u root -p
         service gitea start
         rc-update add gitea
       fi 
