@@ -28,6 +28,8 @@ function f_install_gitea() {
         doas rc-update add mariadb
         doas mariadb-secure-installation
         mariadb -u root -p
+        doas rm -rf /etc/gitea/app.ini
+        doas cp -r functions/f_config_gitea /etc/gitea/app.ini
         doas service gitea start
         doas rc-update add gitea
       else
@@ -36,6 +38,8 @@ function f_install_gitea() {
         rc-update add mariadb
         mariadb-secure-installation
         mariadb -u root -p
+        rm -rf /etc/gitea/app.ini
+        cp -r functions/f_config_gitea /etc/gitea/app.ini
         service gitea start
         rc-update add gitea
       fi 
