@@ -46,4 +46,3 @@ function f_install_gitea() {
     echo "- but Gitea wasn't tested on this distro;"
   fi
 }
-f_install_gitea
