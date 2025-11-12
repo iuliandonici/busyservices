@@ -16,5 +16,9 @@ function f_check_networks() {
   else 
     echo "networks aren't here;"
   fi
+  echo $var_f_config_network_wired_interfaces
+  echo $var_f_config_network_wired_interfaces_status
+  echo $var_f_config_network_wireless_interfaces
+  echo $var_f_config_network_wireless_interfaces_status
 }
 f_check_networks
