@@ -1,5 +1,7 @@
 #!/bin/bash
+var_install_server_kvm_software_array_alpine=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-kvm" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
 var_install_server_kvm_software_array=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-kvm" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
+
 function f_install_server_kvm_software() {
     source functions/f_update_software.sh
     source functions/f_config_kvm_sshd.sh
@@ -11,15 +13,15 @@ function f_install_server_kvm_software() {
     source functions/f_config_kvm_bridged_networking.sh
     source functions/f_config_kvm_virtual_network.sh
     f_update_software
-    echo "- here's a list of extra software that will be installed using $(f_get_distro_packager):"
-    for i in "${!var_install_server_kvm_software_array[@]}"
-    do
-        echo " $i ${var_install_server_kvm_software_array[$i]}"
-    done
     if [[ $(f_get_distro_packager) == "apk" ]]; then
-        for i in "${!var_install_server_kvm_software_array[@]}"
+        echo "- here's a list of extra software that will be installed using $(f_get_distro_packager):"
+        for i in "${!var_install_server_kvm_software_array_alpine[@]}"
         do
-            echo "- and currently installing: $i ${var_install_server_kvm_software_array[$i]}"
+            echo " $i ${var_install_server_kvm_software_array_alpine[$i]}"
+        done
+        for i in "${!var_install_server_kvm_software_array_alpine[@]}"
+        do
+            echo "- and currently installing: $i ${var_install_server_kvm_software_array_[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                 sudo $(f_get_distro_packager) add ${var_install_server_kvm_software_array[$i]}  
             else
@@ -39,7 +41,7 @@ function f_install_server_kvm_software() {
     else
         for i in "${!var_install_server_kvm_software_array[@]}"
         do
-            echo "- and currently installing: $i ${var_install_server_kvm_software_array[$i]}"
+            echo "- and c1urrently installing: $i ${var_install_server_kvm_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                 sudo $(f_get_distro_packager) install -y ${var_install_server_kvm_software_array[$i]}  
             else
