@@ -1,5 +1,6 @@
 #!/bin/bash
 var_install_server_kvm_software_array_alpine=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-kvm" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
+var_install_server_kvm_software_array_debian=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-kvm" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
 var_install_server_kvm_software_array=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-kvm" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
 
 function f_install_server_kvm_software() {
@@ -39,13 +40,13 @@ function f_install_server_kvm_software() {
             fi
         done        
     else
-        for i in "${!var_install_server_kvm_software_array[@]}"
+        for i in "${!var_install_server_kvm_software_array_debian[@]}"
         do
-            echo "- and c1urrently installing: $i ${var_install_server_kvm_software_array[$i]}"
+            echo "- and c1urrently installing: $i ${var_install_server_kvm_software_array_debian[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_server_kvm_software_array[$i]}  
+                sudo $(f_get_distro_packager) install -y ${var_install_server_kvm_software_array_debian[$i]}  
             else
-                $(f_get_distro_packager) install -y ${var_install_server_kvm_software_array[$i]}  
+                $(f_get_distro_packager) install -y ${var_install_server_kvm_software_array_debian[$i]}  
             fi
             # echo "- Rebooting the network";
             # sudo systemctl restart networking.service 
