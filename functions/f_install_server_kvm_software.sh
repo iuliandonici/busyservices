@@ -22,11 +22,11 @@ function f_install_server_kvm_software() {
         done
         for i in "${!var_install_server_kvm_software_array_alpine[@]}"
         do
-            echo "- and currently installing: $i ${var_install_server_kvm_software_array_[$i]}"
+            echo "- and currently installing: $i ${var_install_server_kvm_software_array_alpine[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) add ${var_install_server_kvm_software_array[$i]}  
+                sudo $(f_get_distro_packager) add ${var_install_server_kvm_software_array_alpine[$i]}  
             else
-                $(f_get_distro_packager) add ${var_install_server_kvm_software_array[$i]}  
+                $(f_get_distro_packager) add ${var_install_server_kvm_software_array_alpine[$i]}  
             fi
         done     
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
