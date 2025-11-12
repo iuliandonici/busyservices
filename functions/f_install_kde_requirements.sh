@@ -6,7 +6,7 @@ function f_install_kde_requirements() {
     source functions/f_config_kde.sh
     source functions/f_config_kde_networking.sh
     echo " - installing KDE desktop environment:"
-    echo "- list of base software that will be installed using $(f_get_distro_packager):"
+    echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_base_software_array[@]}"
     do
         echo " $i ${var_install_kde_software_array[$i]}"

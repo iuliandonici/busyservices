@@ -1,5 +1,30 @@
 #!/bin/bash
-function f_install_desktop_kvm_software() {
-
+function f_install_gitea() {
+  var_install_gitea_software_array=("gitea" "mariadb" "mariadb-client")
+  source functions/f_update_software.sh
+  echo " - installing Gitea;"
+  if [[ $(f_get_distro_packager) == "apk" ]]; then
+    if [[ $(f_check_networks) == "UP" ]]; then
+      echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
+      for i in "${!var_install_gitea_software_array[@]}"
+      do
+          echo " $i ${var_install_gitea_software_array[$i]}"
+      done
+      f_update_software
+      for i in "${!var_install_kde_software_array[@]}"
+      do
+          echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
+          if [[ "$EUID" -ne 0 ]]; then 
+              sudo $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
+          else
+              $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
+          fi
+      done
+    else
+          echo "- but can't install them because the networks are down;"
+    fi
+  else 
+    echo "- but Gitea wasn't tested on this distro;"
+  fi
 }
-f_install_desktop_kvm_software
+f_install_gitea
