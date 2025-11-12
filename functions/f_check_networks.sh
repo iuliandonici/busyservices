@@ -13,5 +13,7 @@ function f_check_networks() {
     else 
       echo "DOWN"
     fi
+  else
+    echo "- can't figure networks out;"
   fi
 }
