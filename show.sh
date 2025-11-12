@@ -7,7 +7,7 @@ function f_install_gitea() {
   echo " - installing Gitea;"
   if [[ $(f_get_distro_packager) == "apk" ]]; then
     if [[ $(f_check_networks) == "UP" ]]; then
-      echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
+      echo "- here's a list of base software that will be installed using $(f_get_distro_packager):"
       for i in "${!var_install_gitea_software_array[@]}"
       do
           echo " $i ${var_install_gitea_software_array[$i]}"
