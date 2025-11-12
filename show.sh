@@ -18,24 +18,27 @@ function f_install_gitea() {
         echo "- and currently installing: $i ${var_install_gitea_software_array[$i]}"
         if [[ "$EUID" -ne 0 ]]; then 
           doas $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}
-          doas mysql_install_db --user=mysql --datadir=/var/lib/mysql
-          doas service mariadb start
-          doas rc-update add mariadb
-          doas mysql_secure_installation
-          mysql -u root -p
-          doas service gitea start
-          doas rc-update add gitea
         else
           $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}
-          mysql_install_db --user=mysql --datadir=/var/lib/mysql
-          service mariadb start
-          rc-update add mariadb
-          mysql_secure_installation
-          mysql -u root -p
-          service gitea start
-          rc-update add gitea           
         fi
       done
+      if [[ "$EUID" -ne 0 ]]; then    
+        doas mysql_install_db --user=mysql --datadir=/var/lib/mysql
+        doas service mariadb start
+        doas rc-update add mariadb
+        doas mysql_secure_installation
+        mysql -u root -p
+        doas service gitea start
+        doas rc-update add gitea
+      else
+        mysql_install_db --user=mysql --datadir=/var/lib/mysql
+        service mariadb start
+        rc-update add mariadb
+        mysql_secure_installation
+        mysql -u root -p
+        service gitea start
+        rc-update add gitea
+      fi 
     else
           echo "- but can't install them because the networks are down;"
     fi
