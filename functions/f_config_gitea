@@ -1,0 +1,27 @@
+RUN_USER = gitea
+RUN_MODE = prod
+
+[repository]
+ROOT = /var/lib/gitea/git
+SCRIPT_TYPE = sh
+
+[server]
+STATIC_ROOT_PATH = /usr/share/webapps/gitea
+APP_DATA_PATH    = /var/lib/gitea/data
+LFS_START_SERVER = true
+
+[database]
+DB_TYPE = mysql
+HOST = /var/run/mysqld/mysqld.sock
+NAME = gitea			; The database name set with 'CREATE DATABASE'
+USER = busyneo		; The database user
+PASSWD = giteapassword		; The password for the database user
+
+[session]
+PROVIDER = file
+
+[log]
+ROOT_PATH = /var/log/gitea
+MODE = file
+LEVEL = Info
+
