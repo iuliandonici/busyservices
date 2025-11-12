@@ -17,9 +17,13 @@ function f_install_gitea() {
       do
           echo "- and currently installing: $i ${var_install_gitea_software_array[$i]}"
           if [[ "$EUID" -ne 0 ]]; then 
-              doas $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}  
+              doas $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}
+              doas service gitea start
+              doas rc-update add gitea           
           else
-              $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}  
+              $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}
+              service gitea start
+              rc-update add gitea           
           fi
       done
     else
