@@ -13,6 +13,8 @@ function f_check_networks() {
     else 
       echo "DOWN"
     fi
+  else 
+    echo "networks aren't here;"
   fi
 }
 f_check_networks
