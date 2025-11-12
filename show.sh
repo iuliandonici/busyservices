@@ -22,19 +22,19 @@ function f_install_gitea() {
           $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}
         fi
       done
-      if [[ "$EUID" -ne 0 ]]; then    
-        doas mysql_install_db --user=mysql --datadir=/var/lib/mysql
+      if [[ "$EUID" -ne 0 ]]; then
+        doas mariadb-install-db --user=mysql --datadir=/var/lib/mysql
         doas service mariadb start
         doas rc-update add mariadb
-        doas mysql_secure_installation
+        doas mariadb-secure-installation
         mysql -u root -p
         doas service gitea start
         doas rc-update add gitea
       else
-        mysql_install_db --user=mysql --datadir=/var/lib/mysql
+        mariadb-install-db --user=mysql --datadir=/var/lib/mysql
         service mariadb start
         rc-update add mariadb
-        mysql_secure_installation
+        mariadb-secure-installation
         mysql -u root -p
         service gitea start
         rc-update add gitea
