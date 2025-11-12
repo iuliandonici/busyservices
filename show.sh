@@ -13,7 +13,7 @@ function f_install_gitea() {
           echo " $i ${var_install_gitea_software_array[$i]}"
       done
       f_update_software
-      for i in "${!var_install_kde_software_array[@]}"
+      for i in "${!var_install_gitea_software_array[@]}"
       do
           echo "- and currently installing: $i ${var_install_gitea_software_array[$i]}"
           if [[ "$EUID" -ne 0 ]]; then 
