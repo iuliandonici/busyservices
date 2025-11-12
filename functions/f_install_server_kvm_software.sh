@@ -12,7 +12,7 @@ function f_install_server_kvm_software() {
     source functions/f_config_kvm_bridged_networking.sh
     source functions/f_config_kvm_virtual_network.sh
     f_update_software
-    echo "- List of extra software that will be installed using $(f_get_distro_packager):"
+    echo "- here's a list of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_server_kvm_software_array[@]}"
     do
         echo " $i ${var_install_server_kvm_software_array[$i]}"
