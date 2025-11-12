@@ -1,6 +1,6 @@
 #!/bin/bash
 var_install_base_software_array=("bash" "apt-utils" "lsb-release" "hostname" "wget" "rsync" "curl" "keychain" "net-tools" "unzip" "git" "nano" "ca-certificates" "curl" "gnupg" "software-properties-common" "acl" "openssh-server-pam")
-var_install_base_software_array_alpine=("bash" "lsb-release" "wget" "rsync" "curl" "keychain" "net-tools" "unzip" "git" "nano" "ca-certificates" "curl" "gnupg" "software-properties-common" "acl" "openssh-server-pam")
+var_install_base_software_array_alpine=("bash" "lsb-release" "wget" "rsync" "curl" "keychain" "net-tools" "unzip" "git" "nano" "ca-certificates" "curl" "gnupg" "acl" "openssh-server-pam")
 function f_install_base_software() {
     source functions/f_get_distro_packager.sh
     source functions/f_check_networks.sh
