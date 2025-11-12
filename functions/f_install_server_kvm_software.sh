@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_server_kvm_software_array_alpine=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-kvm" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "bridge-utils")
+var_install_server_kvm_software_array_alpine=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "bridge-utils")
 var_install_server_kvm_software_array_debian=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-kvm" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
 var_install_server_kvm_software_array=("virt-install" "dbus" "polkit" "virt-manager" "font-terminus" "qemu" "qemu-kvm" "qemu-system-x86_64" "qemu-img" "qemu-guest-agent" "qemu-tools" "libvirt" "libvirt-daemon" "libvirt-qemu" "libvirt-daemon-system" "libvirt-clients" "bridge-utils" "ifupdown")
 
