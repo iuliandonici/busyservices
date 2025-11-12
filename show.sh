@@ -3,6 +3,7 @@ function f_install_gitea() {
   var_install_gitea_software_array=("gitea" "mariadb" "mariadb-client")
   source functions/f_update_software.sh
   source functions/f_get_distro_packager.sh
+  source functions/f_check_networks.sh
   echo " - installing Gitea;"
   if [[ $(f_get_distro_packager) == "apk" ]]; then
     if [[ $(f_check_networks) == "UP" ]]; then
