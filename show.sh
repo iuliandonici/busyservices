@@ -15,11 +15,11 @@ function f_install_gitea() {
       f_update_software
       for i in "${!var_install_kde_software_array[@]}"
       do
-          echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
+          echo "- and currently installing: $i ${var_install_gitea_software_array[$i]}"
           if [[ "$EUID" -ne 0 ]]; then 
-              sudo $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
+              doas $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}  
           else
-              $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
+              $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}  
           fi
       done
     else
