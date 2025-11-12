@@ -1,25 +1,26 @@
 #!/bin/bash
 var_install_base_software_array=("bash" "apt-utils" "lsb-release" "hostname" "wget" "rsync" "curl" "keychain" "net-tools" "unzip" "git" "nano" "ca-certificates" "curl" "gnupg" "software-properties-common" "acl" "openssh-server-pam")
+var_install_base_software_array_alpine=("bash" "apt-utils" "lsb-release" "wget" "rsync" "curl" "keychain" "net-tools" "unzip" "git" "nano" "ca-certificates" "curl" "gnupg" "software-properties-common" "acl" "openssh-server-pam")
 function f_install_base_software() {
     source functions/f_get_distro_packager.sh
     source functions/f_check_networks.sh
     source functions/f_update_software.sh
     source functions/f_config_git.sh
-    echo " - here's a list of base software that will be installed using $(f_get_distro_packager):"
-    for i in "${!var_install_base_software_array[@]}"
-    do
-        echo " $i ${var_install_base_software_array[$i]}"
-    done
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
             f_update_software
-            for i in "${!var_install_base_software_array[@]}"
+            echo " - here's a list of base software that will be installed using $(f_get_distro_packager):"
+            for i in "${!var_install_base_software_array_alpine[@]}"
             do
-                echo "- and currently installing: $i ${var_install_base_software_array[$i]}"
+                echo " $i ${var_install_base_software_array_alpine[$i]}"
+            done
+            for i in "${!var_install_base_software_array_alpine[@]}"
+            do
+                echo "- and currently installing: $i ${var_install_base_software_array_alpine[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    doas $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
+                    doas $(f_get_distro_packager) add ${var_install_base_software_array_alpine[$i]}  
                 else
-                    $(f_get_distro_packager) add ${var_install_base_software_array[$i]}  
+                    $(f_get_distro_packager) add ${var_install_base_software_array_alpine[$i]}  
                 fi
             done
         else
