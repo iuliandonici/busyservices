@@ -1,6 +1,6 @@
 #!/bin/bash
-var_install_nginx_requirements=("nginx")
 function f_install_nginx_requirements() {
+    var_install_nginx_requirements=("nginx")
     source functions/f_update_software.sh
     source functions/f_config_nginx.sh
     source functions/f_check_networks.sh
@@ -44,6 +44,7 @@ function f_install_nginx_requirements() {
         else
             echo "- but can't install them because the networks are down;"
         fi
+    else
         if [[ $(f_check_networks) == "UP" ]]; then
             echo "- here's a list of software that will be installed using $(f_get_distro_packager):"
             for i in "${!var_install_nginx_requirements[@]}"
