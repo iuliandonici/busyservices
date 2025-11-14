@@ -10,6 +10,6 @@ server {
               try_files $uri $uri/ =404;
       }
       location jellyfin {
-            proxy_pass http://192.168.50.230:8096/web/;
+            proxy_pass http://busydev:8096/web/;
       }
 }
