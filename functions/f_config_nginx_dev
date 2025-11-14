@@ -7,7 +7,7 @@ server {
         root /var/www/busydev;
         index index.html;
         }
-      location /busyfin {
-        proxy_pass http://192.168.50.230:8096;
+      location /transmission {
+        proxy_pass http://192.168.50.230:9091/transmission;
     }
 }
