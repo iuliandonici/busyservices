@@ -10,7 +10,7 @@ server {
       location / {
             try_files $uri $uri/ =404;
       }
-      location transmission {
+      location /transmission {
             proxy_pass http://busydev:9091;
             proxy_buffering off;
             proxy_set_header X-Real-IP $remote_addr;
