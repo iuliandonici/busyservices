@@ -2,7 +2,7 @@ server {
       listen 80;
       listen [::]:80;
 
-      server_name busyprod;
+      server_name busycenter;
 
       root /var/www/busyprod;
       location / {
