@@ -1,15 +1,17 @@
 server {
-  listen 80;
-  listen [::]:80;
-  server_name busydev.router.ho.me;
-  root /var/www/busydev;
-  location / {
-        index index.html;
-    }
-    location /busytrans {
-        proxy_pass http://192.168.50.230:9091/transmission;
-    }
-    location /busyfin {
-        proxy_pass http://192.168.50.230:8096/web;
-    }
+      listen 80;
+      listen [::]:80;
+
+      server_name busydev;
+
+      root /var/www/busydev;
+      location / {
+            index index.html;
+      }
+      location /transmission {
+            proxy_pass http://busycenter:9091/transmission;
+      }
+      location /busyfin {
+            proxy_pass http://192.168.50.230:8096/web;
+      }
 }
