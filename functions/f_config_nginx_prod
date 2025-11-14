@@ -6,14 +6,13 @@ server {
 
       root /var/www/busyprod;
       index index.html;
-
       location / {
-            try_files $uri $uri/ =404;
+            index index.html;
       }
-      location /transmission {
-            proxy_pass http://busydev:9091;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-Host $host;
-            proxy_set_header X-Forwarded-Port $server_port;
+      location /busytrans {
+            proxy_pass http://192.168.50.230:9091/transmission;
+      }
+      location /busyfin {
+            proxy_pass http://192.168.50.230:8096/web;
       }
 }
