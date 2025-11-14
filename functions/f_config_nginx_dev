@@ -7,7 +7,7 @@ server {
      }
 server {
     listen 80;
-    server_name busyfin.busydev.router.ho.me;
+    server_name busyfin.busydev;
 
     location / {
         proxy_pass http://192.168.50.230:8096;
