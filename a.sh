@@ -15,7 +15,7 @@ function f_check_networks() {
     echo "here is wired:$var_f_config_network_wired_interfaces "
   fi
   if ([[ -z $var_f_config_network_wired_interfaces ]] && [[ ! -z $var_f_config_network_wireless_interfaces ]]) || ([[ ! -z $var_f_config_network_wired_interfaces ]] && [[ -z $var_f_config_network_wireless_interfaces ]]); then
-    if ([[ $var_f_config_network_wired_interfaces_status == "UP" ]] || [[ $var_f_config_network_wireless_interfaces_status == "UP" ]]); then
+    if ([[ "$var_f_config_network_wired_interfaces_status" == "UP" ]] || [[ "$var_f_config_network_wireless_interfaces_status" == "UP" ]]); then
       echo "UP"
     else 
       echo "DOWN"
