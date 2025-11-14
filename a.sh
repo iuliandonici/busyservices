@@ -7,10 +7,6 @@ function f_check_networks() {
   fi
   var_f_config_network_wireless_interfaces=$(ip a | grep -E "wl.*:" | awk '{print $2}' | sed -e 's/://g')
   var_f_config_network_wireless_interfaces_status=$(ip a | grep -E "wl.*:" | awk '{print $9}' | sed -e 's/://g')
-  echo $var_f_config_network_wired_interfaces
-  echo $var_f_config_network_wireless_interfaces
-  echo $var_f_config_network_wired_interfaces_status
-  echo $var_f_config_network_wireless_interfaces_status
   if ([[ ! -z $var_f_config_network_wired_interfaces ]]); then
     echo "here is wired:$var_f_config_network_wired_interfaces "
   fi
@@ -20,4 +16,3 @@ function f_check_networks() {
     echo "DOWN"
   fi
 }
-f_check_networks

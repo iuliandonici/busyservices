@@ -7,11 +7,9 @@ function f_check_networks() {
   fi
   var_f_config_network_wireless_interfaces=$(ip a | grep -E "wl.*:" | awk '{print $2}' | sed -e 's/://g')
   var_f_config_network_wireless_interfaces_status=$(ip a | grep -E "wl.*:" | awk '{print $9}' | sed -e 's/://g')
-  if ([[ -z $var_f_config_network_wired_interfaces ]] && [[ ! -z $var_f_config_network_wireless_interfaces ]]) || ([[ ! -z $var_f_config_network_wired_interfaces ]] && [[ -z $var_f_config_network_wireless_interfaces ]]); then
-    if ([[ $var_f_config_network_wired_interfaces_status == "UP" ]] || [[ $var_f_config_network_wireless_interfaces_status == "UP" ]]); then
-      echo "UP"
-    else 
-      echo "DOWN"
-    fi
+  if ([[ ! -z $var_f_config_network_wired_interfaces ]] && [[ $var_f_config_network_wired_interfaces_status == "UP" ]]) || ([[ ! -z $var_f_config_network_wireless_interfaces ]] && [[ $var_f_config_network_wireless_interfaces_status == "UP" ]]) ; then
+    echo "UP"
+  else
+    echo "DOWN"
   fi
 }
