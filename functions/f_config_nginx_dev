@@ -7,9 +7,9 @@ server {
       index index.html;
 
       location / {
-              try_files $uri $uri/ =404;
+            proxy_pass http://192.168.50.230:8096;
       }
       location jellyfin {
-            proxy_pass http://busydev:8096/web/;
+            proxy_pass http://192.168.50.230:8096;
       }
 }
