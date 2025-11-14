@@ -6,7 +6,7 @@ server {
   location / {
         index index.html;
     }
-    location /transmission {
+    location /busytrans {
         proxy_pass http://192.168.50.230:9091/transmission;
     }
     location /busyfin {
