@@ -6,9 +6,6 @@ server {
       root /var/www/busydev;
       index index.html;
 
-      jellyfin.busydev.router.ho.me {
-      reverse_proxy http://192.168.50.230:8096
-      }
       location /jellyfin {
             proxy_set_header X-Real-IP  $remote_addr;
             proxy_set_header X-Forwarded-For $remote_addr;
