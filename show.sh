@@ -1,8 +1,8 @@
 #!/bin/bash
 function f_install_nginx_requirements() {
     var_install_nginx_requirements=("nginx")
-    source functions/f_update_software.sh
     source functions/f_get_distro_packager.sh
+    source functions/f_update_software.sh
     source functions/f_check_networks.sh
     source functions/f_config_nginx.sh
     if [[ $(f_get_distro_packager) == "apk" ]]; then
@@ -69,5 +69,6 @@ function f_install_nginx_requirements() {
         fi
         f_config_nginx
     fi
+
 }
 f_install_nginx_requirements
