@@ -8,8 +8,8 @@ server {
       location / {
             index index.html;
       }
-      location /transmission {
-            proxy_pass http://busycenter:9091/transmission;
+      location /busytrans {
+            proxy_pass http://busycenter:9091/transmission/web;
       }
       location /busyfin {
             proxy_pass http://192.168.50.230:8096/web;
