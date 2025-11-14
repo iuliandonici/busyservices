@@ -25,6 +25,7 @@ function f_install_nginx_requirements() {
         else
             echo "- but can't install them because the networks are down;"
         fi
+        f_config_nginx
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
             echo "- here's a list of software that will be installed using $(f_get_distro_packager):"
@@ -45,6 +46,7 @@ function f_install_nginx_requirements() {
         else
             echo "- but can't install them because the networks are down;"
         fi
+        f_config_nginx
     else
         if [[ $(f_check_networks) == "UP" ]]; then
             echo "- here's a list of software that will be installed using $(f_get_distro_packager):"
