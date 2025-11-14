@@ -2,9 +2,9 @@ server {
       listen 80;
       listen [::]:80;
       server_name busydev.router.ho.me;
+    root /var/www/busydev;
 
       location / {
-        root /var/www/busydev;
         index index.html;
         }
       location /transmission {
