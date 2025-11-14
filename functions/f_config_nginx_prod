@@ -12,6 +12,6 @@ server {
             proxy_pass http://busycenter:9091/transmission;
       }
       location /busyfin {
-            proxy_pass http://busycenter:8096/web;
+            proxy_pass http://192.168.50.230:8096;
       }
 }
