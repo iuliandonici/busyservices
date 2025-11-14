@@ -7,7 +7,7 @@ server {
       index index.html;
 
       location / {
-            try_files $uri;
+            try_files $uri index.html;
       }
       location /jellyfin {
             proxy_set_header X-Real-IP  $remote_addr;
