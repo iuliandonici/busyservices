@@ -64,5 +64,7 @@ function f_install_nginx_requirements() {
         else
             echo "- but can't install them because the networks are down;"
         fi
+        f_config_nginx
     fi
 }
+f_install_nginx_requirements
