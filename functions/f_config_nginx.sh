@@ -2,7 +2,7 @@
 function f_config_nginx() {
     # Verify if Nginx has been installed
     if [[ -f /usr/sbin/nginx ]]; then
-        echo "- Nginx is installed, now we'll config it."
+        echo "- and since nginx is installed, now we'll config it;"
         if [[ "$EUID" -ne 0 ]]; then 
             sudo rm -rf /var/www/html/
             sudo rm -rf /etc/nginx/sites-enabled/default
@@ -67,7 +67,7 @@ function f_config_nginx() {
             service nginx restart
         fi
     else
-        echo "- Nginx isn't installed:"
+        echo "- but nginx isn't installed:"
         ls -alh /usr/sbin/ | grep "nginx"
     fi
 }

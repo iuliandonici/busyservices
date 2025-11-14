@@ -7,11 +7,11 @@ function f_install_nginx_requirements() {
     f_update_software
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
-                echo "- List of base software that will be installed using $(f_get_distro_packager):"
-    for i in "${!var_install_nginx_requirements[@]}"
-    do
-        echo " $i ${var_install_nginx_requirements[$i]}"
-    done
+            echo "- here's a list of base software that will be installed using $(f_get_distro_packager):"
+            for i in "${!var_install_nginx_requirements[@]}"
+            do
+                echo " $i ${var_install_nginx_requirements[$i]}"
+            done
 
             for i in "${!var_install_nginx_requirements[@]}"
             do
@@ -22,7 +22,7 @@ function f_install_nginx_requirements() {
                     $(f_get_distro_packager) add ${var_install_nginx_requirements[$i]}  
                 fi
             done 
-elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
         for i in "${!var_install_nginx_requirements[@]}"
         do
             echo "- Currently installing: $i ${var_install_nginx_requirements[$i]}"
