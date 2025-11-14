@@ -2,8 +2,9 @@
 function f_install_nginx_requirements() {
     var_install_nginx_requirements=("nginx")
     source functions/f_update_software.sh
-    source functions/f_config_nginx.sh
+    source functions/f_get_distro_packager.sh
     source functions/f_check_networks.sh
+    source functions/f_config_nginx.sh
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
             echo "- here's a list of software that will be installed using $(f_get_distro_packager):"
