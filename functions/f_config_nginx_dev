@@ -3,7 +3,6 @@ server {
       listen [::]:80;
 
       server_name busydev.router.ho.me;
-
       root /var/www/busydev;
       index index.html;
 
