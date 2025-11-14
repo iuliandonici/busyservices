@@ -2,8 +2,11 @@ server {
       listen 80;
       listen [::]:80;
       server_name busydev.router.ho.me;
-      root /var/www/busydev;
-      index index.html;
+
+      location / {
+        root /var/www/busydev;
+        index index.html;
+        }
       location /busyfin {
         proxy_pass http://192.168.50.230:8096;
     }
