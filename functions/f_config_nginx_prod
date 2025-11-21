@@ -22,7 +22,7 @@ server {
             proxy_pass http://busycenter:8800/;
       }
       location /busy3 {
-            proxy_pass http://busycenter:8800/;
+            proxy_pass http://0.0.0.0:8800/;
       }
       location /busy4 {
             proxy_pass http://192.168.50.10:8800;
