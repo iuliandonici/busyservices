@@ -10,6 +10,5 @@ server {
         proxy_set_header        X-Forwarded-Proto $scheme;
         proxy_pass              http://192.168.50.10:9091;
         proxy_read_timeout      90;
-        proxy_redirect          http://192.168.50.10:9091 http://busycenter;
     }
 }
