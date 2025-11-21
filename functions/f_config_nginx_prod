@@ -1,7 +1,10 @@
+upstream backendnginxserver {
+      server 192.168.50.10:80;
+}
 server {
       listen 80;
       listen [::]:80;
-      server_name 192.168.50.10;
+      server_name busycenter;
       root /var/www/busyprod;
       location / {
             index index.html;
@@ -12,20 +15,18 @@ server {
       location /busyfin {
             proxy_pass http://busycenter:8096/web;
       }
-      location /busyspot {
-            proxy_pass http://busycenter:8800;
+      location /busy1 {
+            proxy_pass http://backendnginxserver:8800/;
       }      
-      location /busy {
-            proxy_pass http://busycenter:8800/;
-      }
       location /busy2 {
-            proxy_pass http://busycenter:8800/;
+            proxy_pass http://backendnginxserver:8800;
       }
       location /busy3 {
-            proxy_pass http://0.0.0.0:8800/;
+            proxy_pass http://backendnginxserver:8800;
       }
       location /busy4 {
-            proxy_pass http://192.168.50.10:8800/;
+            proxy_pass http://busycenter:8800;
       }
+
       
 }
