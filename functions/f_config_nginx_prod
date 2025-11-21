@@ -1,6 +1,7 @@
 server {
       listen 80;
-      server_name 192.168.50.10;
+      listen [::]:80;
+      server_name busycenter;
       root /var/www/busyprod;
       location / {
             index index.html;
@@ -12,7 +13,7 @@ server {
             proxy_pass http://busycenter:8096/web;
       }
       location /busyspot {
-            proxy_pass http://192.168.50.10:8800;
+            proxy_pass http://busycenter:8800;
       }      
       location /busy {
             proxy_pass http://busycenter:8800;
@@ -22,6 +23,9 @@ server {
       }
       location /busy3 {
             proxy_pass http://busycenter:8800/;
+      }
+      location /busy4 {
+            proxy_pass http://192.168.50.10:8800;
       }
       
 }
