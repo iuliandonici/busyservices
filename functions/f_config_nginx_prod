@@ -1,6 +1,7 @@
 server {
     listen 80;
-    server_name                 busycenter;
+    server_name busycenter;
+    root /var/www/busyprod;
 
     location /busytrans {
         proxy_set_header        Host $host;
