@@ -1,22 +1,17 @@
-upstream busyfin {
-      server 127.0.0.1:8096;
-}
-upstream busytrans {
-      server 192.168.50.10:9091;
-}
 server {
-      listen 80;
-      listen [::]:80;
-      server_name busycenter;
-      root /var/www/busyprod;
-      
-      location / {
-            index index.html;
-      }
-      location /busytrans {
-            proxy_pass http://busytrans;
-      }
-      location /busyfin {
-            proxy_pass http://busyfin;
-      }
+    listen 80;
+    server_name                 busycenter;
+
+    access_log                  /var/log/nginx/qnap.peterannabel.com/access.log;
+    error_log                   /var/log/nginx/qnap.peterannabel.com/error.log;
+
+    location /busytrans {
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+        proxy_pass              http://192.168.50.10:9091;
+        proxy_read_timeout      90;
+        proxy_redirect          http://192.168.50.10:9091 http://busycenter;
+    }
 }
