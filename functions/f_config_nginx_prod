@@ -14,4 +14,7 @@ server {
       location /busyfin {
             proxy_pass http://192.168.50.10:8096/web;
       }
+      location /busyspot {
+            proxy_pass http://busycenter:8800;
+      }
 }
