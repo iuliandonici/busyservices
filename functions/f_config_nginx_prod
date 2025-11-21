@@ -18,6 +18,9 @@ server {
       location /busyfin {
             proxy_pass http://busyfin;
       }
+      location /fin {
+
+      }
       location /busyspot {
             proxy_pass http://busycenter:8800/;
       }
@@ -26,8 +29,5 @@ server {
       }
       location /busyspot3 {
             proxy_pass http://busyspotdl;
-      }
-      location /busyspot4 {
-            proxy_pass http://backend;
       }
 }
