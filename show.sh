@@ -55,7 +55,7 @@ function f_install_spotdl() {
       pipx install spotdl
       pipx ensurepath
       mkdir ~/audio && cd ~/audio
-      ~/.local/bin/spotdl web --host $var_install_spotdl_host_ip --keep-alive --allowed-origins 192.168.50.10 --web-use-output-dir
+      ~/.local/bin/spotdl web --host $var_install_spotdl_host_ip --keep-alive --allowed-origins 192.168.50.* --web-use-output-dir
     else
       echo "- but can't install it because the networks are down;"
     fi
