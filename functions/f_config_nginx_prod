@@ -1,33 +1,16 @@
-upstream busyspotdl {
-      server 192.168.50.10:8800;
-      }
-upstream busyfin {
-      server 192.168.50.10:8096;
-      }
 server {
       listen 80;
       listen [::]:80;
       server_name busycenter;
       root /var/www/busyprod;
-      location / {
-            index index.html;
-      }
+     
       location /transmission {
             proxy_pass http://busycenter:9091/transmission;
       }
-      location /busyfin {
-            proxy_pass http://busyfin;
+      location / {
+            proxy_pass http://busycenter:8096/web;
       }
-      location /fin {
-
-      }
-      location /busyspot {
-            proxy_pass http://busycenter:8800/;
-      }
-      location /busyspot2 {
-            proxy_pass http://busycenter:8800;
-      }
-      location /busyspot3 {
-            proxy_pass http://busyspotdl;
+      location /web {
+            proxy_pass http://busycenter:8096/web;
       }
 }
