@@ -1,7 +1,6 @@
 server {
       listen 80;
       server_name busycenter;
-
       access_log /var/log/nginx/jellyfin.access;
       error_log /var/log/nginx/jellyfin.error;
 
