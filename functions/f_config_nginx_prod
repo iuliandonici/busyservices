@@ -2,9 +2,6 @@ server {
     listen 80;
     server_name                 busycenter;
 
-    access_log                  /var/log/nginx/qnap.peterannabel.com/access.log;
-    error_log                   /var/log/nginx/qnap.peterannabel.com/error.log;
-
     location /busytrans {
         proxy_set_header        Host $host;
         proxy_set_header        X-Real-IP $remote_addr;
