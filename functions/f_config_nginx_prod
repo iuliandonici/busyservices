@@ -1,5 +1,5 @@
 upstream backendnginxserver {
-      server 192.168.50.10:80;
+      server 192.168.50.10:8800;
 }
 server {
       listen 80;
@@ -19,7 +19,7 @@ server {
             proxy_pass http://backendnginxserver:8800/;
       }      
       location /busy2 {
-            proxy_pass http://backendnginxserver:8800;
+            proxy_pass http://backendnginxserver;
       }
       location /busy3 {
             proxy_pass http://backendnginxserver:8800;
