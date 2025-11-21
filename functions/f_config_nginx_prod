@@ -15,6 +15,6 @@ server {
             proxy_pass http://busycenter:8096/web;
       }
       location /busyspot {
-            proxy_pass http://busyalpinevm:8800;
+            proxy_pass http://busycenter:8800;
       }
 }
