@@ -1,3 +1,9 @@
+upstream busyfin {
+      server 192.168.50.10:8096;
+}
+upstream busytrans {
+      server 192.168.50.10:9091;
+}
 server {
       listen 80;
       listen [::]:80;
@@ -8,9 +14,9 @@ server {
             index index.html;
       }
       location /busytrans {
-            proxy_pass http://busycenter:9091/transmission/;
+            proxy_pass http://busytrans;
       }
       location /busyfin {
-            proxy_pass http://busycenter:8096/web;
+            proxy_pass http://busyfin;
       }
 }
