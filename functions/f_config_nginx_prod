@@ -1,14 +1,14 @@
 server {
       listen 80;
       listen [::]:80;
-      include /etc/nginx/conf.d/*.conf;
-      include /etc/nginx/sites-enabled/*;
-
+      
       server_name busycenter;
 
       root /var/www/busyprod;
       location / {
             index index.html;
+            include /etc/nginx/conf.d/*.conf;
+            include /etc/nginx/sites-enabled/*;
       }
       location /transmission {
             proxy_pass http://busycenter:9091/transmission;
