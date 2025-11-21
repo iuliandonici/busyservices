@@ -16,15 +16,9 @@ server {
             proxy_pass http://busycenter:8096/web;
       }
       location /busy1 {
-            proxy_pass http://backendnginxserver:8800/;
-      }      
-      location /busy2 {
             proxy_pass http://backendnginxserver;
       }
-      location /busy3 {
-            proxy_pass http://backendnginxserver:8800;
-      }
-      location /busy4 {
+      location /busy2 {
             proxy_pass http://busycenter:8800;
       }
 
