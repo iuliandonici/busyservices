@@ -30,7 +30,4 @@ server {
       location /busyspot4 {
             proxy_pass http://backend;
       }
-      location /test {
-            proxy_pass http://google.com;
-      }
 }
