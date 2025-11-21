@@ -1,6 +1,9 @@
-upstream backend {
+upstream busyspotdl {
       server 192.168.50.10:8800;
-}
+      }
+upstream busyfin {
+      server 192.168.50.10:8096;
+      }
 server {
       listen 80;
       listen [::]:80;
@@ -13,7 +16,7 @@ server {
             proxy_pass http://busycenter:9091/transmission;
       }
       location /busyfin {
-            proxy_pass http://busycenter:8096/web/;
+            proxy_pass http://busyfin;
       }
       location /busyspot {
             proxy_pass http://busycenter:8800/;
@@ -22,7 +25,7 @@ server {
             proxy_pass http://busycenter:8800;
       }
       location /busyspot3 {
-            proxy_pass http://192.168.50.10:8800/;
+            proxy_pass http://busyspotdl;
       }
       location /busyspot4 {
             proxy_pass http://backend;
