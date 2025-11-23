@@ -1,22 +1,11 @@
 server {
-      listen 80;
-      listen [::]:80;
+      listen 8800;
+      listen [::]:8800;
 
-      server_name busycenter;
+      server_name busyspot;
 
       location / {
             index index.html;
-            root /var/www/busyprod;
-      }
-      location /busytrans {
-            proxy_pass http://busycenter:9091/transmission;
-      }
-      location /busyfin {
-            proxy_pass http://192.168.50.10:8096/web;
-      }
-      location /busyspot {
-            root /var/www/busyprod/busyspot/;
-            proxy_pass http://192.168.50.10:8800/;
-            error_log /var/log/nginx/spotdl.log info;
+            root /var/www/busyprod/busyspot;
       }
 }
