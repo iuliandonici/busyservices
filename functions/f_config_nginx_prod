@@ -8,6 +8,9 @@ server {
         proxy_pass http://192.168.50.10:8800;
         access_log /var/log/nginx/busyspot-access.log;
         error_log /var/log/nginx/busyspot-error.log info;
+        auth_basic "Dialog prompt";
+
+auth_basic_user_file ./htpasswd;
     }
     location /busyfin {
         proxy_pass http://192.168.50.10:8096/web;
