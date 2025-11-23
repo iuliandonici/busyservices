@@ -6,6 +6,7 @@ function f_install_server_prod_software() {
     source functions/f_config_docker.sh
     source functions/f_add_repo_jellyfin.sh
     source functions/f_install_nginx_requirements.sh
+    source functions/f_install_spotdl.sh
     source functions/f_install_transmission_requirements.sh
     f_update_software
     f_add_repo_docker
