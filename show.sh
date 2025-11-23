@@ -1,5 +1,6 @@
 #!/bin/bash
 function f_install_spotdl() {
+  source functions/f_config_spotdl_htpasswd.sh
   var_install_spotdl_software_array_alpine=("python3" "py3-pip" "pipx" "ffmpeg")
   var_install_spotdl_software_array_debian=("pip-check-reqs" "pipx" "python3-full" "ffmpeg")
   var_install_spotdl_host_ip=$(ip a | grep "inet 192.168.50" | awk '{print $2}' | sed 's/\/24//g')
@@ -29,6 +30,7 @@ function f_install_spotdl() {
       pipx install spotdl
       pipx ensurepath
       mkdir ~/audio && cd ~/audio
+      f_config_spotdl_htpasswd
       echo "- and currently launching spotdl on the $var_install_spotdl_host_ip as host:"
       ~/.local/bin/spotdl web --host $var_install_spotdl_host_ip --keep-alive --web-gui-location ~/.config/spotdl/web-ui/dist --web-use-output-dir
     else
@@ -56,6 +58,7 @@ function f_install_spotdl() {
       pipx install spotdl
       pipx ensurepath
       mkdir ~/audio && cd ~/audio
+      f_config_spotdl_htpasswd
       echo "- and currently launching spotdl on the $var_install_spotdl_host_ip as host:"
       ~/.local/bin/spotdl web --host $var_install_spotdl_host_ip --keep-alive --web-gui-location ~/.config/spotdl/web-ui/dist --web-use-output-dir
     else
