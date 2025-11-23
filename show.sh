@@ -60,7 +60,7 @@ function f_install_spotdl() {
       mkdir ~/audio && cd ~/audio
       f_config_spotdl_htpasswd
       echo "- and currently launching spotdl on the $var_install_spotdl_host_ip as host:"
-      ~/.local/bin/spotdl web --host $var_install_spotdl_host_ip --keep-alive --web-gui-location ~/.config/spotdl/web-ui/dist --web-use-output-dir
+      ~/.local/bin/spotdl web -fg --host $var_install_spotdl_host_ip --keep-alive --web-gui-location ~/.config/spotdl/web-ui/dist --web-use-output-dir
     else
       echo "- but can't install it because the networks are down;"
     fi
