@@ -5,4 +5,7 @@ server {
     location /busyfin {
         proxy_pass http://192.168.50.10:8096/web;
     }
+    location /busytrans
+        proxy_pass proxy_pass http://192.168.50.10:9091;
+    }
 }
