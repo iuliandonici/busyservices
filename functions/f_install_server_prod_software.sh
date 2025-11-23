@@ -53,6 +53,7 @@ function f_install_server_prod_software() {
     f_config_docker
     f_update_software
     f_install_spotdl
+    f_update_software
     f_install_nginx_requirements
     f_update_software
     f_install_transmission_requirements
