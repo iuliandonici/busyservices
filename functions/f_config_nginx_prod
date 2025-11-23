@@ -16,7 +16,7 @@ server {
             proxy_pass http://192.168.50.10:8096/web;
             error_log /var/log/nginx/busyfin.log info;
       }
-      location /busyspot/ {
+      location /busyspot {
             proxy_pass http://192.168.50.10:8800;
       }
       location /spot {
