@@ -2,7 +2,7 @@ server {
       listen 80;
       listen [::]:80;
 
-      server_name busycenter;
+      server_name busycenter busyserver.asuscomm.com;
 
       root /var/www/busyprod;
       location / {
