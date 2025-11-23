@@ -10,20 +10,22 @@ server {
       }
       location /transmission {
             proxy_pass http://busycenter:9091/transmission;
+            error_log /var/log/nginx/busytrans.log info;
       }
       location /busyfin {
             proxy_pass http://192.168.50.10:8096/web;
+            error_log /var/log/nginx/busyfin.log info;
       }
-      location /busyspot {
+      location /busyspot/ {
             proxy_pass http://192.168.50.10:8800;
       }
       location /spot/ {
-            proxy_pass http://192.168.50.10:8800/;
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection $http_connection;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_pass http://0.0.0.0:8800/spot/;
+                error_log /var/log/nginx/spotdl.log info;
+                proxy_redirect     off;
+                proxy_set_header   Host $host;
+                proxy_set_header   X-Real-IP $remote_addr;
+                proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header   X-Forwarded-Host $server_name;
       }
 }
