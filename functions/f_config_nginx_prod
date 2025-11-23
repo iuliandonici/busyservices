@@ -10,7 +10,7 @@ server {
         error_log /var/log/nginx/busyfin-error.log info;
     }
     location /busytrans {
-        proxy_pass http://192.168.50.10:9091/transmission/web;
+        proxy_pass http://192.168.50.10:9091/transmission/web/;
         access_log /var/log/nginx/busytrans-access.log;
         error_log /var/log/nginx/busytrans-error.log info;
     }
