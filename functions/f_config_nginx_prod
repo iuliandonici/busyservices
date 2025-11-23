@@ -4,9 +4,9 @@ server {
 
       server_name busycenter;
 
-      root /var/www/busyprod;
       location / {
             index index.html;
+            root /var/www/busyprod;
       }
       location /transmission {
             proxy_pass http://busycenter:9091/transmission;
