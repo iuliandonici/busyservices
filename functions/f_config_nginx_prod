@@ -18,7 +18,7 @@ server {
             proxy_pass http://192.168.50.10:8800;
       }
       location /spot {
-            root ~/spotify-downloader/;
+            root ~/.config/spotdl/web-ui/dist/;
             proxy_pass http://192.168.50.10:8800/;
             error_log /var/log/nginx/spotdl.log info;
       }
