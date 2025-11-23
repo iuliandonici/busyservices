@@ -4,7 +4,7 @@ server {
 
       server_name busycenter;
         auth_basic "Dialog prompt";
-        auth_basic_user_file $HOME/.config/spotdl/web-ui/dist/.htpasswd;
+        auth_basic_user_file /home/busyneo/.config/spotdl/web-ui/dist/.htpasswd;
 
       location / {
         proxy_pass http://192.168.50.10:8800;
