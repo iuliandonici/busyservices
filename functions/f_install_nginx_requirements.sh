@@ -1,6 +1,6 @@
 #!/bin/bash
 function f_install_nginx_requirements() {
-    var_install_nginx_requirements=("nginx")
+    var_install_nginx_requirements=("nginx" "apache2-utils")
     source functions/f_get_distro_packager.sh
     source functions/f_update_software.sh
     source functions/f_check_networks.sh
