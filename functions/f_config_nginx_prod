@@ -13,8 +13,13 @@ server {
       }
       location /busytrans {
             proxy_pass http://busycenter:9091/transmission;
+            access_log /var/log/nginx/busytrans-access.log;
+            error_log /var/log/nginx/busytrans-error.log info;
       }
       location /busyfin {
             proxy_pass http://192.168.50.10:8096/web;
+            access_log /var/log/nginx/busyfin-access.log;
+            error_log /var/log/nginx/busyfin-error.log info;
+
       }
 }
