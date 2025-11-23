@@ -26,8 +26,8 @@ function f_config_nginx() {
                     sudo rm -rf /etc/nginx/sites-available/busyprod
                     sudo rm -rf /var/www/busyprod/
                     sudo mkdir /var/www/busyprod/
-                    sudo cp -r functions/f_config_nginx_prod.html index.html
-                    sudo mv index.html /var/www/busyprod/
+                    sudo cp -r functions/f_config_nginx_prod.html index2.html
+                    sudo mv index2.html /var/www/busyprod/
                     sudo cp -r functions/f_config_nginx_prod busyprod
                     sudo mv busyprod /etc/nginx/sites-available/
                     sudo ln -s /etc/nginx/sites-available/busyprod /etc/nginx/sites-enabled/busyprod
@@ -45,7 +45,7 @@ function f_config_nginx() {
                     rm -rf /etc/nginx/sites-available/busydev
                     rm -rf /var/www/busydev/
                     mkdir /var/www/busydev/
-                    cp -r functions/f_config_nginx_dev.html index.html
+                    cp -r functions/f_config_nginx_dev.html index2.html
                     mv index.html /var/www/busydev/
                     cp -r functions/f_config_nginx_dev busydev
                     mv busydev /etc/nginx/sites-available/
@@ -57,8 +57,8 @@ function f_config_nginx() {
                     rm -rf /etc/nginx/sites-available/busyprod
                     rm -rf /var/www/busyprod/
                     mkdir /var/www/busyprod/
-                    cp -r functions/f_config_nginx_prod.html index.html
-                    mv index.html /var/www/busyprod/
+                    cp -r functions/f_config_nginx_prod.html index2.html
+                    mv index2.html /var/www/busyprod/
                     cp -r functions/f_config_nginx_prod busyprod
                     mv busyprod /etc/nginx/sites-available/
                     ln -s /etc/nginx/sites-available/busyprod /etc/nginx/sites-enabled/busyprod

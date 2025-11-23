@@ -5,7 +5,7 @@ server {
       server_name busycenter;
 
       location / {
-            index index.html;
+            index index2.html;
             root /var/www/busyprod;
       }
       location /busyspot {
