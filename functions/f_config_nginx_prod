@@ -2,7 +2,7 @@ server {
       listen 80;
       listen [::]:80;
 
-      server_name busycenter busyserver.asuscomm.com;
+      server_name busycenter;
 
       root /var/www/busyprod;
       location / {
@@ -20,6 +20,7 @@ server {
             proxy_pass http://192.168.50.10:8800;
       }
       location /spot {
+              server_name busyserver.asuscomm.com/spot;
               root ~/spotify-downloader/;
               proxy_pass http://192.168.50.10:8800;
               error_log /var/log/nginx/spotdl.log info;
