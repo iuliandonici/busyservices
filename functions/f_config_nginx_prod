@@ -3,8 +3,8 @@ server {
       listen [::]:80;
 
       server_name busycenter;
-        auth_basic "Dialog prompt";
-        auth_basic_user_file /home/busyneo/.config/spotdl/web-ui/dist/.htpasswd;
+      auth_basic "Dialog prompt";
+      auth_basic_user_file /home/busyneo/.config/spotdl/web-ui/dist/.htpasswd;
 
       location / {
         proxy_pass http://192.168.50.10:8800;
@@ -20,5 +20,7 @@ server {
         proxy_pass http://192.168.50.10:9091/transmission;
         access_log /var/log/nginx/busytrans-access.log;
         error_log /var/log/nginx/busytrans-error.log info;
+        auth_basic "Dialog prompt";
+        auth_basic_user_file /usr/share/transmission/public_html/.htpasswd;
     }
 }
