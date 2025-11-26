@@ -44,3 +44,4 @@ function f_install_transmission_requirements() {
     pwd
     f_config_transmission
 }
+f_install_transmission_requirements
