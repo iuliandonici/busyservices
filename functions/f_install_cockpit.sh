@@ -3,6 +3,7 @@ var_install_cockpit_software_array_debian=("cockpit" "cockpit-machines" "cockpit
 " "cockpit-selinux" "cockpit-kdump" "cockpit-sosreport" "cockpit-files")
 function f_install_cockpit() {
     source functions/f_update_software.sh
+    source functions/f_get_distro_packager.sh
     echo " - here's a list of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_cockpit_software_array_debian[@]}"
     do
