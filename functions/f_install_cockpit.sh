@@ -1,6 +1,5 @@
 #!/bin/bash
-var_install_cockpit_software_array_debian=("cockpit" "cockpit-machines" "cockpit-storaged" "cockpit-networkmanager" "cockpit-packagekit" "ostree" "cockpit-machines" "cockpit-podman
-" "cockpit-sosreport")
+var_install_cockpit_software_array_debian=("cockpit" "cockpit-machines" "cockpit-storaged" "cockpit-networkmanager" "cockpit-packagekit" "ostree" "cockpit-machines" "cockpit-podman" "cockpit-sosreport")
 function f_install_cockpit() {
     source functions/f_update_software.sh
     source functions/f_get_distro_packager.sh
