@@ -6,6 +6,7 @@ function f_config_transmission() {
         echo "- Transmission is installed, now we'll config it."
         if [[ "$EUID" -ne 0 ]]; then 
             sudo systemctl stop transmission-daemon.service
+            # sudo sed -i -e 's/Type=notify/Type=simple/g' /etc/systemd/system/transmission-daemon.service
             sudo sed -i -e 's/Type=notify/Type=simple/g' /lib/systemd/system/transmission-daemon.service
             sudo cp -r functions/f_config_transmission.json settings.json
             sudo mv settings.json /var/lib/transmission-daemon/info/
@@ -17,6 +18,7 @@ function f_config_transmission() {
             sudo systemctl daemon-reload
         else
             systemctl stop transmission-daemon.service
+            # sed -i -e 's/Type=notify/Type=simple/g' /etc/systemd/system/transmission-daemon.service
             sed -i -e 's/Type=notify/Type=simple/g' /lib/systemd/system/transmission-daemon.service
             cp -r functions/f_config_transmission.json settings.json 
             mv settings.json /var/lib/transmission-daemon/info/
