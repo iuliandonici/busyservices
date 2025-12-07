@@ -13,8 +13,7 @@ function f_config_transmission() {
             sudo usermod -a -G debian-transmission $USER
             sudo chmod 777 ~/
             sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
-    source functions/f_config_transmission_htpasswd.sh
-            
+            pwd
             sudo f_config_transmission_htpasswd "$@"
             sudo systemctl start transmission-daemon.service
             sudo systemctl daemon-reload
