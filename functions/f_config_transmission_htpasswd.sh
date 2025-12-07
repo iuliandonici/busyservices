@@ -6,4 +6,5 @@ function f_config_transmission_htpasswd () {
   else
     htpasswd -c /usr/share/transmission/public_html/.htpasswd $USER
   fi
+  exit
 }
