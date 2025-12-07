@@ -1,5 +1,5 @@
 #!/bin/bash
-function f_config_transmission() {
+f_config_transmission() {
     source functions/f_config_transmission_htpasswd.sh
     # Verify if Transmission has been installed
     if [[ -f /usr/bin/transmission-daemon ]]; then
