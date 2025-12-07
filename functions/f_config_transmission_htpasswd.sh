@@ -7,3 +7,4 @@ function f_config_transmission_htpasswd () {
     htpasswd -c /usr/share/transmission/public_html/.htpasswd $USER
   fi
 }
+export -f f_config_transmission_htpasswd
