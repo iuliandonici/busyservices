@@ -38,7 +38,7 @@ case $(hostname) in
     source functions/f_install_server_kvm_software.sh
     f_install_server_kvm_software
   ;;
-  busycenter)
+  busycenter | busyubuntus)
     echo "This is $(hostname)."
     source functions/f_install_server_prod_software.sh
     f_install_server_prod_software
