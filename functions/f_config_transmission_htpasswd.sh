@@ -10,3 +10,4 @@ function f_config_transmission_htpasswd () {
     fi
   fi
 }
+export -f f_config_transmission_htpasswd
