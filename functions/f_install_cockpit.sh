@@ -13,9 +13,13 @@ function f_install_cockpit() {
         do
             echo "- Currently installing: $i ${var_install_cockpit_software_array_debian[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                doas $(f_get_distro_packager) add ${var_install_cockpit_software_array_debian[$i]}  
+                doas $(f_get_distro_packager) add ${var_install_cockpit_software_array_debian[$i]}
+                doas rc-service cockpit start
+                doas rc-update add cockpit
             else
-                $(f_get_distro_packager) add ${var_install_cockpit_software_array_debian[$i]}  
+                $(f_get_distro_packager) add ${var_install_cockpit_software_array_debian[$i]} 
+                rc-service cockpit start
+                rc-update add cockpit
             fi
         done     
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
