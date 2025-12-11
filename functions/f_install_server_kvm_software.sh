@@ -24,7 +24,7 @@ function f_install_server_kvm_software() {
         do
             echo "- and currently installing: $i ${var_install_server_kvm_software_array_alpine[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) add ${var_install_server_kvm_software_array_alpine[$i]}  
+                doas $(f_get_distro_packager) add ${var_install_server_kvm_software_array_alpine[$i]}  
             else
                 $(f_get_distro_packager) add ${var_install_server_kvm_software_array_alpine[$i]}  
             fi
