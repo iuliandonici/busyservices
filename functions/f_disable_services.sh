@@ -1,7 +1,12 @@
 #!/bin/bash
 var_disable_services_array=("systemd-networkd-wait-online")
 function f_disable_services() {
-  echo "- Currently disabling the ${var_disable_services_array[$i]} service;"
+  echo "- List of extra services that will be disabled:"
+  for i in "${!var_disable_services_array[@]}"
+  do
+      echo " $i ${var_disable_services_array[$i]}"
+  done
+
   if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
     for i in "${!var_disable_services_array[@]}"
     do
