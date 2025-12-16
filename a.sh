@@ -1,5 +1,6 @@
 #!/bin/bash
-source functions/f_remove_packages.sh
-source functions/f_disable_services.sh
-f_remove_packages
-f_disable_services
+if grep -wq "renderer" "/etc/netplan/50-cloud-init.yaml"; then
+    echo "- but NetworkManager as renderer is already being used;"
+else
+    echo -e "\t renderer: NetworkManager";
+fi
