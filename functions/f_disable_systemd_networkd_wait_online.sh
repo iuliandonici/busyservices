@@ -2,7 +2,7 @@
 var_disable_systemd_networkd_wait_online_services_array=("systemd-networkd-wait-online")
 function f_disable_systemd_networkd_wait_online() {
   echo "- Currently removing the ${var_disable_systemd_networkd_wait_online_services_array[$i]} service;"
-  if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get"]]; then
+  if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
     for i in "${!var_disable_systemd_networkd_wait_online_services_array[@]}"
     do
         echo "- currently removing: $i ${var_disable_systemd_networkd_wait_online_services_array[$i]}"
