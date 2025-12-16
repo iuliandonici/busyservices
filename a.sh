@@ -1,5 +1,5 @@
 #!/bin/bash
-source functions/f_remove_cloud_init.sh
-source functions/f_disable_systemd_networkd_wait_online.sh
-f_remove_cloud_init
-f_disable_systemd_networkd_wait_online
+source functions/f_remove_packages.sh
+source functions/f_disable_services.sh
+f_remove_packages
+f_disable_services
