@@ -9,7 +9,7 @@ function f_remove_cloud_init() {
   do
       echo " $i ${var_remove_cloud_init_software_array[$i]}"
   done
-  if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get"]]; then
+  if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
     for i in "${!var_install_server_prod_software_array[@]}"
     do
         echo "- currently removing: $i ${var_remove_cloud_init_software_array[$i]}"
