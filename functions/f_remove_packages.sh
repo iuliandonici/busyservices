@@ -1,7 +1,6 @@
 #!/bin/bash
 var_remove_packages_array=("cloud-init")
 function f_remove_packages() {
-  source functions/f_update_software.sh
   source functions/f_get_distro_packager.sh
   echo "- Currently removing software;"
   echo "- List of extra software that will be removed using $(f_get_distro_packager):"
