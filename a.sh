@@ -6,3 +6,4 @@ function f_add_network_manager() {
       sudo echo -e "\trenderer: NetworkManager" >> /etc/netplan/50-cloud-init.yaml
   fi
 }
+f_add_network_manager
