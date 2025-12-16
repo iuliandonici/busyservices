@@ -2,6 +2,7 @@
 var_remove_cloud_init_software_array=("cloud-init")
 function f_remove_cloud_init() {
   source functions/f_update_software.sh
+  source functions/f_get_distro_packager.sh
   echo "- Currently removing cloud init and disabling systemd-networkd-wait-online service;"
   echo "- List of extra software that will be removed using $(f_get_distro_packager):"
   for i in "${!var_remove_cloud_init_software_array[@]}"
