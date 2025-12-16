@@ -2,6 +2,8 @@
 var_install_server_prod_software_array=("docker-ce" "docker-ce-cli" "containerd.io" "docker-compose-plugin" "jellyfin")
 function f_install_server_prod_software() {
     source functions/f_update_software.sh
+    source functions/f_remove_cloud_init.sh
+    source functions/f_disable_systemd_networkd_wait_online.sh
     source functions/f_add_repo_docker.sh
     source functions/f_config_docker.sh
     source functions/f_add_repo_jellyfin.sh

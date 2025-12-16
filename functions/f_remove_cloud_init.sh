@@ -9,13 +9,17 @@ function f_remove_cloud_init() {
   do
       echo " $i ${var_remove_cloud_init_software_array[$i]}"
   done
-  for i in "${!var_install_server_prod_software_array[@]}"
-  do
-      echo "- currently removing: $i ${var_remove_cloud_init_software_array[$i]}"
-      if [[ "$EUID" -ne 0 ]]; then 
-          sudo $(f_get_distro_packager) remove -y ${var_install_server_prod_software_array[$i]} 
-      else
-          $(f_get_distro_packager) remove -y ${var_install_server_prod_software_array[$i]}  
-      fi
-  done
+  if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get"]]; then
+    for i in "${!var_install_server_prod_software_array[@]}"
+    do
+        echo "- currently removing: $i ${var_remove_cloud_init_software_array[$i]}"
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo $(f_get_distro_packager) remove -y ${var_install_server_prod_software_array[$i]} 
+        else
+            $(f_get_distro_packager) remove -y ${var_install_server_prod_software_array[$i]}  
+        fi
+    done
+  else
+    echo "- but this function hasn't been tested on this os;"
+  fi
 }
