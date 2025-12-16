@@ -13,4 +13,3 @@ function f_disable_systemd_networkd_wait_online() {
       fi
   done
 }
-f_disable_systemd_networkd_wait_online
