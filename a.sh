@@ -1,5 +1,6 @@
 #!/bin/bash
 function f_add_netplan_network_manager() {
+  source functions/f_update_software.sh
   echo "- Currently configuring netplan;"
   if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
     if [[ "$EUID" -ne 0 ]]; then 
