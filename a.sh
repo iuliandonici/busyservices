@@ -8,7 +8,7 @@ function f_add_netplan_network_manager() {
         echo "- but NetworkManager as renderer is already being used;"
       else
         sudo chmod 600 /etc/netplan/*.yaml
-        sudo printf "\t renderer: NetworkManager" >> /etc/netplan/50-cloud-init.yaml
+        sudo printf "%s\t" "renderer: NetworkManager" >> /etc/netplan/50-cloud-init.yaml
         sudo netplan apply
       fi
     else
