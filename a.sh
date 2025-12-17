@@ -5,15 +5,17 @@ function f_add_netplan_network_manager() {
   if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
     if [[ "$EUID" -ne 0 ]]; then 
       if sudo grep -wq "renderer" "/etc/netplan/50-cloud-init.yaml"; then
-          echo "- but NetworkManager as renderer is already being used;"
+        echo "- but NetworkManager as renderer is already being used;"
       else
-          sudo echo -e "\trenderer: NetworkManager" >> /etc/netplan/50-cloud-init.yaml
-          sudo netplan apply
+        sudo chmod 600 /etc/netplan/50-cloud-init.yaml
+        sudo echo -e "\trenderer: NetworkManager" >> /etc/netplan/50-cloud-init.yaml
+        sudo netplan apply
       fi
     else
       if grep -wq "renderer" "/etc/netplan/50-cloud-init.yaml"; then
         echo "- but NetworkManager as renderer is already being used;"
       else
+        chmod 600 /etc/netplan/50-cloud-init.yaml
         echo -e "\trenderer: NetworkManager" >> /etc/netplan/50-cloud-init.yaml
         netplan apply
       fi
