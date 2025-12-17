@@ -4,6 +4,7 @@ function f_install_server_dev_software() {
     source functions/f_update_software.sh
     source functions/f_remove_packages.sh
     source functions/f_disable_services.sh
+    source functions/f_add_netplan_network_manager.sh
     source functions/f_add_repo_docker.sh
     source functions/f_config_docker.sh
     source functions/f_add_repo_jellyfin.sh
@@ -13,6 +14,7 @@ function f_install_server_dev_software() {
     f_remove_packages
     f_update_software
     f_disable_services
+    f_add_netplan_network_manager
     f_update_software
     f_add_repo_docker
     f_update_software
