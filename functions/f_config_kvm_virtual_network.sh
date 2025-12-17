@@ -26,6 +26,7 @@ function f_config_kvm_virtual_network() {
                 sudo echo "tap" >> tap.conf
                 sudo mv tap.conf /etc/modules-load.d/
                 sudo cat /etc/modules | grep tan || sudo echo "tan" >> /etc/modules
+                sudo cat /etc/modules | grep tan || echo "tan" | sudo tee -a >> /etc/modules
                 sudo modprobe tun
                 sudo echo "tun" >> tun.conf
                 sudo mv tun.conf /etc/modules-load.d/
