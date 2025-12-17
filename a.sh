@@ -1,6 +1,7 @@
 #!/bin/bash
 # Installing 
 function f_install_acf() {
+  source functions/f_get_distro_packager.sh
   echo "- Currently setting up ACF (Alpine Configuration Framework):"
   if [[ $(f_get_distro_packager) == "apk" ]]; then
 
