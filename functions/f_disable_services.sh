@@ -6,7 +6,6 @@ function f_disable_services() {
   do
       echo " $i ${var_disable_services_array[$i]}"
   done
-
   if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
     for i in "${!var_disable_services_array[@]}"
     do
