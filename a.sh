@@ -1,4 +1,5 @@
 #!/bin/bash
+var_add_netplan_network_manager_spacer="    "
 function f_add_netplan_network_manager() {
   source functions/f_get_distro_packager.sh
   echo "- Currently configuring netplan;"
@@ -8,7 +9,7 @@ function f_add_netplan_network_manager() {
         echo "- but NetworkManager as renderer is already being used;"
       else
         sudo chmod 0600 /etc/netplan/*.yaml
-        echo -e "\trenderer: NetworkManager" | sudo tee -a /etc/netplan/50-cloud-init.yaml
+        echo "${var_add_netplan_network_manager_spacer}renderer: NetworkManager" | sudo tee -a /etc/netplan/50-cloud-init.yaml
         sudo netplan apply
       fi
     else
