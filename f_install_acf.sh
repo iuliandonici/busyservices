@@ -20,4 +20,3 @@ function f_install_acf() {
     echo "- but this function hasn't been tested on this os;"
   fi
 }
-f_install_acf

@@ -13,6 +13,7 @@ function f_install_server_kvm_software() {
     source functions/f_config_kvm_network_interfaces.sh
     source functions/f_config_kvm_bridged_networking.sh
     source functions/f_config_kvm_virtual_network.sh
+    source functions/f_install_acf.sh
     f_update_software
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         echo " - here's a list of extra software that will be installed using $(f_get_distro_packager):"
@@ -61,4 +62,6 @@ function f_install_server_kvm_software() {
     f_config_kvm_bridged_networking
     f_config_kvm_virtual_network
     f_config_kvm_libvirtd
+    f_update_software
+    f_install_acf
 }
