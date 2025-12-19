@@ -42,7 +42,9 @@ case $(hostname) in
     echo "This is $(hostname)."
     source functions/f_install_server_kvm_software.sh
     source functions/f_install_cockpit.sh
+    source functions/f_add_repo_brave_browser.sh
     f_install_server_kvm_software
+    f_add_repo_brave_browser
   ;;
   busycenter | busyubuntus)
     echo "This is $(hostname)."
