@@ -38,7 +38,12 @@ case $(hostname) in
     source functions/f_install_server_dev_software.sh
     f_install_server_dev_software
   ;;
-  busyt | busyl)
+  busykvm)
+    echo "This is $(hostname)."
+    source functions/f_install_kde_requirements.sh
+    f_install_kde_requirements
+  ;;
+  busyt)
     echo "This is $(hostname)."
     source functions/f_install_server_kvm_software.sh
     source functions/f_install_cockpit.sh
