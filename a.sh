@@ -1,23 +1,4 @@
-#!/bin/bash
-# Installing ACF (https://wiki.alpinelinux.org/wiki/Managing_ACF)
-function f_install_acf() {
-  source functions/f_get_distro_packager.sh
-  echo "- Currently setting up ACF (Alpine Configuration Framework):"
-  if [[ $(f_get_distro_packager) == "apk" ]]; then
-
-    if [ -d /usr/share/acf ]; then
-      echo "- but ACF is already installed;"
-    else
-      if [[ "$EUID" -ne 0 ]]; then 
-        doas setup-acf
-        doas acfpasswd -s root
-      else
-        setup-acf
-        acfpasswd -s root
-      fi
-    fi
-  else
-    echo "- but this function hasn't been tested on this os;"
-  fi
-}
-f_install_acf
+openssl req -x509 -out localhost.crt -keyout localhost.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=localhost' -extensions EXT -config <( \
+   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
