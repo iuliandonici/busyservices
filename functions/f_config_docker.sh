@@ -2,7 +2,52 @@
 source functions/f_get_distro_packager.sh
 source functions/f_get_distro_id.sh
 function f_config_docker() {
-    if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
+    echo "- and currently configuring Docker;"
+    if [[ "$(f_get_distro_packager)" == "apk" ]]; then
+        if [[ "$EUID" -ne 0 ]]; then 
+# Setting a variable for getting the machine's architecture
+            architecture=$(uname -m)
+            if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
+                if [[ -f /usr/bin/docker ]]; then
+                    echo "- and Docker is installed; now, we'll restart it;"
+                    doas addgroup ${USER} docker
+                    doas rc-update add docker boot
+                    doas rc-update add docker default
+                    doas rc-service docker.socket stop
+                    doas rc-service docker.service stop
+                    doas cp -r functions/f_config_docker.json /etc/docker/daemon.json
+                    doas rc-service docker.socket start
+                    doas rc-service docker.service start
+                else 
+                    echo "- but can't configure Docker because it's not installed:"
+                    ls -alh /usr/bin/ | grep "docker"
+                fi
+            else
+                echo "- but this isn't a functional architecture for this function;"
+            fi
+        else
+# Setting a variable for getting the machine's architecture
+            architecture=$(uname -m)
+            if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
+                if [[ -f /usr/bin/docker ]]; then
+                    echo "- but Docker is installed; now, we'll restart it;"
+                    addgroup ${USER} docker
+                    rc-update add docker boot
+                    rc-update add docker default
+                    rc-service docker.socket stop
+                    rc-service docker.service stop    
+                    cp -r functions/f_config_docker.json /etc/docker/daemon.json
+                    rc-service docker.socket start
+                    rc-service docker.service start
+                else 
+                    echo "- but can't configure Docker because it's not installed:"
+                    ls -alh /usr/bin/ | grep "docker"
+                fi
+            else
+                echo "- but this isn't a functional architecture for this function." 
+            fi
+        fi
+    elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
