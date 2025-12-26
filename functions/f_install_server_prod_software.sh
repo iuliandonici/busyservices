@@ -1,14 +1,12 @@
 #!/bin/bash
-var_install_server_prod_software_array=("docker-ce" "docker-ce-cli" "containerd.io" "docker-compose-plugin" "jellyfin")
+var_install_server_prod_software_array=("jellyfin")
 function f_install_server_prod_software() {
     source functions/f_update_software.sh
     source functions/f_remove_packages.sh
     source functions/f_disable_services.sh
     source functions/f_add_netplan_network_manager.sh
-    source functions/f_add_repo_docker.sh
-    source functions/f_config_docker.sh
+    source functions/f_install_docker.sh
     source functions/f_add_repo_jellyfin.sh
-    source functions/f_install_nginx_requirements.sh
     source functions/f_install_transmission_requirements.sh
     source functions/f_install_cockpit.sh
     f_update_software
@@ -16,8 +14,6 @@ function f_install_server_prod_software() {
     f_update_software
     f_disable_services
     f_add_netplan_network_manager
-    f_update_software
-    f_add_repo_docker
     f_update_software
     f_add_repo_jellyfin
     f_update_software
@@ -58,10 +54,7 @@ function f_install_server_prod_software() {
         done
     fi
     f_update_software
-    f_config_docker
-    f_update_software
-    f_update_software
-    f_install_nginx_requirements
+    f_install_docker
     f_update_software
     f_install_transmission_requirements
     f_update_software
