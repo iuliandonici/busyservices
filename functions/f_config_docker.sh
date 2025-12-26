@@ -14,7 +14,7 @@ function f_config_docker() {
                     doas rc-update add docker boot
                     doas rc-update add docker default
                     doas rc-service docker stop
-                    doas cp -r functions/f_config_docker.json /etc/docker/daemon.json
+                    # doas cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     doas rc-service docker start
                 else 
                     echo "- but can't configure Docker because it's not installed:"
