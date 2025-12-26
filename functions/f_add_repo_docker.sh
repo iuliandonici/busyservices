@@ -4,7 +4,6 @@ function f_add_repo_docker() {
     echo " - and currently adding the Docker repo using $(f_get_distro_packager):"
     if [[ "$(f_get_distro_packager)" == "apk" ]]; then
         echo "- but Docker on Alpine doesn't need repo adding;"
-    fi
     elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
 # Setting a variable for getting the machine's architecture
