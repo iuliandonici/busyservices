@@ -1,6 +1,6 @@
 #!/bin/bash
 var_install_docker_software_array_debian=("docker-ce" "docker-ce-cli" "containerd.io" "docker-compose-plugin")
-var_install_docker_software_array_alpine=("docker" "docker-cli-compose")
+var_install_docker_software_array_alpine=("docker" "docker-cli-compose" "containerd.io")
 function f_install_docker() {
     source functions/f_update_software.sh
     source functions/f_add_repo_docker.sh
