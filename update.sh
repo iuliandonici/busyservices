@@ -31,8 +31,9 @@ case $(hostname) in
   busydocker)
     echo "This is $(hostname)."
     source functions/f_install_acf.sh
-    source functions/f_inst
+    source functions/f_install_docker.sh
     f_install_acf
+    f_install_docker
   ;;
   busydev)
     echo "This is $(hostname)."
