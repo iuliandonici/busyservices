@@ -13,10 +13,8 @@ function f_config_docker() {
                     doas addgroup ${USER} docker
                     doas rc-update add docker boot
                     doas rc-update add docker default
-                    doas rc-service docker.socket stop
                     doas rc-service docker.service stop
                     doas cp -r functions/f_config_docker.json /etc/docker/daemon.json
-                    doas rc-service docker.socket start
                     doas rc-service docker.service start
                 else 
                     echo "- but can't configure Docker because it's not installed:"
@@ -34,10 +32,8 @@ function f_config_docker() {
                     addgroup ${USER} docker
                     rc-update add docker boot
                     rc-update add docker default
-                    rc-service docker.socket stop
                     rc-service docker.service stop    
                     cp -r functions/f_config_docker.json /etc/docker/daemon.json
-                    rc-service docker.socket start
                     rc-service docker.service start
                 else 
                     echo "- but can't configure Docker because it's not installed:"
