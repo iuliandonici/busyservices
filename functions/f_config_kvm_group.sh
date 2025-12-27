@@ -4,14 +4,14 @@ function f_config_kvm_group() {
     source functions/f_get_distro_packager.sh
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
-            sudo addgroup $USER kvm
-            sudo addgroup $USER libvirt
-            sudo addgroup $USER wheel
-            sudo addgroup $USER qemu
-            sudo addgroup busyneo kvm
-            sudo addgroup busyneo libvirt
-            sudo addgroup busyneo wheel
-            sudo addgroup busyneo qemu
+            doas addgroup $USER kvm
+            doas addgroup $USER libvirt
+            doas addgroup $USER wheel
+            doas addgroup $USER qemu
+            doas addgroup busyneo kvm
+            doas addgroup busyneo libvirt
+            doas addgroup busyneo wheel
+            doas addgroup busyneo qemu
         else
             addgroup $USER kvm
             addgroup $USER libvirt
