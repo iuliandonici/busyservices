@@ -5,8 +5,8 @@ function f_config_kde() {
     f_update_software
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then
-            sudo setup-xorg-base
-            sudo rc-update add sddm
+            doas setup-xorg-base
+            doas rc-update add sddm
             # sudo f_install_busychrome_audio
         else
             setup-xorg-base
