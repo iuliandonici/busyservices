@@ -3,9 +3,9 @@ function f_config_kvm_sshd() {
     echo "- Removing, copying our own sshd config and restarting ssh;"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
-            sudo rm -rf /etc/ssh/sshd_config
-            sudo cp -r functions/f_config_kvm_sshd /etc/ssh/sshd_config
-            sudo rc-service sshd restart
+            doas rm -rf /etc/ssh/sshd_config
+            doas cp -r functions/f_config_kvm_sshd /etc/ssh/sshd_config
+            doas rc-service sshd restart
         else
             rm -rf /etc/ssh/sshd_config
             cp -r functions/f_config_kvm_sshd /etc/ssh/sshd_config
