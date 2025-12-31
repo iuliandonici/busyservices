@@ -1,5 +1,6 @@
 #!/bin/bash
 function f_install_dockge() {
+    source functions/f_get_distro_packager.sh
     echo "- installing Dockge:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         # Create directories that store your stacks and store Dockge's stack
