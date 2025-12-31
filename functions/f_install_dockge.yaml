@@ -1,7 +1,6 @@
 services:
-  busydockge-service:
+  busydockge-container:
     image: louislam/dockge:latest
-    container_name: busydockge-container
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
