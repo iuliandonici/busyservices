@@ -9,7 +9,7 @@ services:
     ports:
       - 5001:5001
     networks:
-      - busynetwork-containers:
+      busynetwork-containers:
         - mac_address: fa:2a:02:c7:1a:90
     environment:
       - DOCKGE_STACKS_DIR=/opt/busystacks/
