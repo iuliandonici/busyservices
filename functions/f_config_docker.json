@@ -1,4 +1,4 @@
 {
-   "hosts": ["tcp://localhost:2375"]
+   "hosts": ["tcp://192.168.50.21:2375"]
    "metrics-addr": "0.0.0.0:9323"
   }
