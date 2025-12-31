@@ -3,6 +3,6 @@
 
    #Insecure option, only use this if you are running on a closed network
    "tls": false,
-   "hosts": ["unix:///var/run/docker.sock", "tcp://localhost:2375"]
+   "hosts": ["unix:///var/run/docker.sock", "tcp://0.0.0.0:2375"]
    "metrics-addr": "0.0.0.0:9323"
   }
