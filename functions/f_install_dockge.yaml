@@ -11,6 +11,5 @@ services:
       - DOCKGE_STACKS_DIR=/opt/busystacks/
       - DOCKGE_ENABLE_CONSOLE=true
 networks:
-  default:
-    external:
-      name: bridge
+    busynetwork:
+        driver: bridge
