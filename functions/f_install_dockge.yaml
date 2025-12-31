@@ -9,18 +9,20 @@ services:
     ports:
       - 5001:5001
     networks:
-      - busynetwork-containers
+      busynetwork-containers:
+        - mac_address: fa:2a:02:c7:1a:90
     environment:
       - DOCKGE_STACKS_DIR=/opt/busystacks/
       - DOCKGE_ENABLE_CONSOLE=true
 networks:
   busynetwork-containers:
     name: busynetwork-containers
-    driver: bridge
+    driver: macvlan
     ipam:
       config:
         - subnet: 192.168.50.0/24
           gateway: 192.168.50.1
           ip_range: 192.168.50.0/24
     #     - subnet: 2001:3984:3989::/64
+    
         
