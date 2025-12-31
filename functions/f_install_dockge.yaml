@@ -15,12 +15,11 @@ services:
       - DOCKGE_ENABLE_CONSOLE=true
 networks:
   busynetwork-containers:
-    name: busynetwork-containers
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.50.0/24
-          gateway: 192.168.50.1
+        - subnet: "192.168.50.0/24"
+          gateway: "192.168.50.1"
           # ip_range: 192.168.50.0/24
     #     - subnet: 2001:3984:3989::/64
     
