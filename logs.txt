@@ -1,0 +1,91 @@
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "settings" from /home/busyneo/.config/lite-xl/plugins in 51.9ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "plugin_manager" from /home/busyneo/.config/lite-xl/plugins in 15.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "linewrapping" from /usr/share/lite-xl/plugins in 2.8ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "autocomplete" from /usr/share/lite-xl/plugins in 3.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "autoreload" from /usr/share/lite-xl/plugins in 0.6ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "autosave" from /home/busyneo/.config/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "contextmenu" from /usr/share/lite-xl/plugins in 1.4ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "detectindent" from /usr/share/lite-xl/plugins in 0.9ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "drawwhitespace" from /usr/share/lite-xl/plugins in 0.7ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "editorconfig" from /home/busyneo/.config/lite-xl/plugins in 4.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "formatter" from /home/busyneo/.config/lite-xl/plugins in 1.8ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "gitstatus" from /home/busyneo/.config/lite-xl/plugins in 6.2ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "indentguide" from /home/busyneo/.config/lite-xl/plugins in 0.6ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_c" from /usr/share/lite-xl/plugins in 3.5ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_cmake" from /home/busyneo/.config/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_containerfile" from /home/busyneo/.config/lite-xl/plugins in 0.2ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_cpp" from /usr/share/lite-xl/plugins in 1.1ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_csharp" from /home/busyneo/.config/lite-xl/plugins in 0.4ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_css" from /usr/share/lite-xl/plugins in 0.4ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_env" from /home/busyneo/.config/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_fstab" from /home/busyneo/.config/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_go" from /home/busyneo/.config/lite-xl/plugins in 0.6ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_htaccess" from /home/busyneo/.config/lite-xl/plugins in 1.6ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_html" from /usr/share/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [WARN] Malformed pattern #2:2 <$> in .ignore file language plugin: Regex matches an empty string at /usr/share/lite-xl/core/syntax.lua:57
+
+stack traceback:
+/usr/share/lite-xl/core/syntax.lua:57: in function 'core.syntax.add'
+/home/busyneo/.config/lite-xl/plugins/language_ignore.lua:10: in main chunk
+[C]: in function 'require'
+[C]: in function 'xpcall'
+/usr/share/lite-xl/core/init.lua:1247: in function 'core.try'
+/usr/share/lite-xl/core/init.lua:1027: in function 'core.load_plugins'
+/usr/share/lite-xl/core/init.lua:803: in function 'core.init'
+[string "local core..."]:13: in function <[string "local core..."]:6>
+[C]: in function 'xpcall'
+[string "local core..."]:6: in main chunk
+
+Wed Dec 31 19:58:40 2025 [WARN] Malformed pattern #3:2 <$> in .ignore file language plugin: Regex matches an empty string at /usr/share/lite-xl/core/syntax.lua:57
+
+stack traceback:
+/usr/share/lite-xl/core/syntax.lua:57: in function 'core.syntax.add'
+/home/busyneo/.config/lite-xl/plugins/language_ignore.lua:10: in main chunk
+[C]: in function 'require'
+[C]: in function 'xpcall'
+/usr/share/lite-xl/core/init.lua:1247: in function 'core.try'
+/usr/share/lite-xl/core/init.lua:1027: in function 'core.load_plugins'
+/usr/share/lite-xl/core/init.lua:803: in function 'core.init'
+[string "local core..."]:13: in function <[string "local core..."]:6>
+[C]: in function 'xpcall'
+[string "local core..."]:6: in main chunk
+
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_ignore" from /home/busyneo/.config/lite-xl/plugins in 3.2ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_ini" from /home/busyneo/.config/lite-xl/plugins in 0.4ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_js" from /usr/share/lite-xl/plugins in 1.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_lua" from /usr/share/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_md" from /usr/share/lite-xl/plugins in 1.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_nginx" from /home/busyneo/.config/lite-xl/plugins in 1.1ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_objc" from /home/busyneo/.config/lite-xl/plugins in 2.4ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_python" from /usr/share/lite-xl/plugins in 0.7ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_sh" from /home/busyneo/.config/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_ssh_config" from /home/busyneo/.config/lite-xl/plugins in 0.2ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_xml" from /usr/share/lite-xl/plugins in 0.2ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_yaml" from /home/busyneo/.config/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "lineguide" from /usr/share/lite-xl/plugins in 0.4ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "lintplus" from /home/busyneo/.config/lite-xl/plugins in 5.4ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "lsp" from /home/busyneo/.config/lite-xl/plugins in 26.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "lsp_snippets" from /home/busyneo/.config/lite-xl/plugins in 3.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "macro" from /usr/share/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "projectsearch" from /usr/share/lite-xl/plugins in 0.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "quote" from /usr/share/lite-xl/plugins in 0.2ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "reflow" from /usr/share/lite-xl/plugins in 1.7ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "restoretabs" from /home/busyneo/.config/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "scale" from /usr/share/lite-xl/plugins in 0.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "search_ui" from /home/busyneo/.config/lite-xl/plugins in 6.7ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "select_colorscheme" from /home/busyneo/.config/lite-xl/plugins in 0.6ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "selectionhighlight" from /home/busyneo/.config/lite-xl/plugins in 0.2ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "snippets" from /home/busyneo/.config/lite-xl/plugins in 0.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "tab_switcher" from /home/busyneo/.config/lite-xl/plugins in 0.6ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "tabularize" from /usr/share/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "toolbarview" from /usr/share/lite-xl/plugins in 0.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "treeview" from /usr/share/lite-xl/plugins in 0.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "trimwhitespace" from /usr/share/lite-xl/plugins in 0.0ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "workspace" from /usr/share/lite-xl/plugins in 0.6ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded plugin "language_json" from /home/busyneo/.config/lite-xl/plugins in 0.3ms at /usr/share/lite-xl/core/init.lua:1029
+Wed Dec 31 19:58:40 2025 [INFO] Loaded all plugins in 160.2ms at /usr/share/lite-xl/core/init.lua:1042
+Wed Dec 31 19:58:40 2025 [INFO] Opening project "busyservices" from directory /home/busyneo at /usr/share/lite-xl/core/init.lua:807
+Wed Dec 31 19:58:43 2025 [INFO] Opened doc "a.sh" at /usr/share/lite-xl/core/init.lua:1169
+Wed Dec 31 19:59:14 2025 [INFO] Opened doc "functions/f_config_docker.sh" at /usr/share/lite-xl/core/init.lua:1169
+Wed Dec 31 19:59:23 2025 [INFO] Opened doc "functions/f_config_docker.json" at /usr/share/lite-xl/core/init.lua:1169
+Wed Dec 31 20:15:41 2025 [INFO] Opened doc "logs.txt" at /usr/share/lite-xl/core/init.lua:1169
