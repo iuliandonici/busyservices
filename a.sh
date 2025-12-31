@@ -3,10 +3,12 @@ function f_install_dockge() {
     source functions/f_get_distro_packager.sh
     echo "- installing Dockge:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
+        doas docker container rm -f busydockge-container
+        doas rm -rf /opt/busydockge-container/
         # Create directories that store your stacks and store Dockge's stack
-        doas mkdir -p /opt/busystacks /opt/busycontainers/bc-dockge
+        doas mkdir -p /opt/busystacks /opt/busydockge-container/
         # Copy a default Dockge config
-        doas cp -r functions/f_install_dockge.yaml /opt/busycontainers/bc-dockge/compose.yaml
+        doas cp -r functions/f_install_dockge.yaml /opt/busydockge-container/compose.yaml
         cd /opt/busycontainers/bc-dockge/
         # Start the Server
         # docker compose up -d
