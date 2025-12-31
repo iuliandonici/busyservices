@@ -4,12 +4,15 @@ services:
     container_name: busydockge-container
     restart: unless-stopped
     volumes:
-      - ~/busyvolumes/busydockge-data:/app/data
+        - ~/busyvolumes/busydockge-data:/app/data
     ports:
-      - 5001:5001
+        - 5001:5001
+    networks:
+        - busynetwork-containers
     environment:
-      - DOCKGE_STACKS_DIR=/opt/busystacks/
-      - DOCKGE_ENABLE_CONSOLE=true
+        - DOCKGE_STACKS_DIR=/opt/busystacks/
+        - DOCKGE_ENABLE_CONSOLE=true
 networks:
     busynetwork:
+        name: busynetwork-containers
         driver: bridge
