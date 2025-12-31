@@ -14,4 +14,5 @@ services:
       - DOCKGE_ENABLE_CONSOLE=true
 networks:
   busynetwork-containers:
+    name: busynetwork-containers
     driver: bridge
