@@ -1,11 +1,12 @@
 services:
-  bc-dockge:
-    restart: unless-stopped
+  busydockge-service:
     image: louislam/dockge:latest
-    ports:
-      - 5001:5001
+    container_name: busydockge-container
+    restart: unless-stopped
     volumes:
       - ~/busyvolumes/bd-dockge:/app/data
+    ports:
+      - 5001:5001
     environment:
       - DOCKGE_STACKS_DIR=/opt/busystacks/
       - DOCKGE_ENABLE_CONSOLE=true
