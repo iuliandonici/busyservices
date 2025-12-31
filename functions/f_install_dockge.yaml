@@ -10,4 +10,5 @@ services:
     environment:
       - DOCKGE_STACKS_DIR=/opt/busystacks/
       - DOCKGE_ENABLE_CONSOLE=true
-networks: {}
+networks:
+    bridge
