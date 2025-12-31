@@ -5,13 +5,14 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/busystacks:/opt/stacks
       - ~/busyvolumes/busydockge-data:/app/data
     ports:
       - 5001:5001
     networks:
       - busynetwork-containers
     environment:
-      - DOCKGE_STACKS_DIR=/opt/busystacks/
+      - DOCKGE_STACKS_DIR=/opt/busystacks
       - DOCKGE_ENABLE_CONSOLE=true
 networks:
   busynetwork-containers:
