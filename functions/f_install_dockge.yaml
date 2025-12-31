@@ -4,7 +4,7 @@ services:
     container_name: busydockge-container
     restart: unless-stopped
     volumes:
-      - ~/busyvolumes/bd-dockge:/app/data
+      - ~/busyvolumes/busydockge-data:/app/data
     ports:
       - 5001:5001
     environment:
