@@ -12,3 +12,4 @@ function f_install_dockge() {
     # If you are using docker-compose V1 or Podman
     docker-compose up -d
     }
+f_install_dockge
