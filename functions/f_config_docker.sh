@@ -17,7 +17,7 @@ function f_config_docker() {
                     doas mkdir /etc/docker/
                     doas cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     doas rc-service docker start
-                    echo "- sleeping for 5s do we can give a change the Docker daemon to reload;"
+                    echo "- sleeping for 5s do we can give a chance the Docker daemon to reload;"
                     sleep 5
                 else 
                     echo "- but can't configure Docker because it's not installed:"
@@ -39,7 +39,7 @@ function f_config_docker() {
                     mkdir /etc/docker/   
                     cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     rc-service docker start
-                    echo "- sleeping for 5s do we can give a change the Docker daemon to reload;"
+                    echo "- sleeping for 5s do we can give a chance the Docker daemon to reload;"
                     sleep 5
                 else 
                     echo "- but can't configure Docker because it's not installed:"
