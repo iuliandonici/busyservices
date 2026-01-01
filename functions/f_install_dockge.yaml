@@ -12,7 +12,7 @@ services:
     networks:
       - busynetwork-containers
     environment:
-      - DOCKGE_STACKS_DIR=/home/busyneo/busycontainers
+      - DOCKGE_STACKS_DIR=/opt/stacks
       - DOCKGE_ENABLE_CONSOLE=true
 networks:
   busynetwork-containers:
