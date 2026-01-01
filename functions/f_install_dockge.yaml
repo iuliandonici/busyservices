@@ -6,6 +6,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/busyvolumes/busydockge-data:/app/data
+      - /home/busyneo/busycontainers:/opt/stacks
     ports:
       - 5001:5001
     networks:
