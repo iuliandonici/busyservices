@@ -34,7 +34,7 @@ case $(hostname) in
     source functions/f_install_docker.sh
     source functions/f_install_dockge.sh
     f_install_acf
-    f_install_docker
+    f_install_dockerc
     f_install_dockge
   ;;
   busydev)
