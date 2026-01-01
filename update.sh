@@ -32,8 +32,10 @@ case $(hostname) in
     echo "This is $(hostname)."
     source functions/f_install_acf.sh
     source functions/f_install_docker.sh
+    source functions/f_install_dockge.sh
     f_install_acf
     f_install_docker
+    f_install_dockge
   ;;
   busydev)
     echo "This is $(hostname)."

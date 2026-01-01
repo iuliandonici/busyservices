@@ -33,4 +33,3 @@ function f_install_dockge() {
         docker-compose up -d
     fi
 }
-f_install_dockge
