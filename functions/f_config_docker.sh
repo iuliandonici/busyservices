@@ -63,7 +63,7 @@ function f_config_docker() {
                     sudo cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     sudo systemctl start docker.socket
                     sudo systemctl start docker.service
-                    echo "- sleeping for 5s do we can give a change the Docker daemon to reload;"
+                    echo "- sleeping for 5s do we can give a chance the Docker daemon to reload;"
                     sleep 5
                 else 
                     echo "- but can't configure Docker because it's not installed:"
@@ -85,7 +85,7 @@ function f_config_docker() {
                     cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     systemctl start docker.socket
                     systemctl start docker.service
-                    echo "- sleeping for 5s do we can give a change the Docker daemon to reload;"
+                    echo "- sleeping for 5s do we can give a chance the Docker daemon to reload;"
                     sleep 5
                 else 
                     echo "- but can't configure Docker because it's not installed:"
