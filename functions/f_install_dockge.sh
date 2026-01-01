@@ -3,13 +3,15 @@ function f_install_dockge() {
     source functions/f_get_distro_packager.sh
     echo "- installing Dockge:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
-        if [[ "$EUID" -ne 0 ]]; then 
+        if [[ "$EUID" -ne 0 ]]; then
+            echo "- and currently removing previous container:"
             doas docker container rm -f busydockge-container
             # Create directories that store your stacks and store Dockge's stack
             doas mkdir -p ~/busycontainers/busydockge-container/
             # Copy a default Dockge config
             doas cp -r functions/f_install_dockge.yaml ~/busycontainers/busydockge-container/compose.yaml
         else
+            echo "- and currently removing previous container:"
             docker container rm -f busydockge-container
             # Create directories that store your stacks and store Dockge's stack
             mkdir -p ~/busycontainers/busydockge-container/
@@ -20,7 +22,7 @@ function f_install_dockge() {
         # Start the Server
         # docker compose up -d
         # If you are using docker-compose V1 or Podman
-        echo "- composing:"
+        echo "- composing the Dockge container;"
         docker-compose up -d
     elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         # Create directories that store your stacks and store Dockge's stack
