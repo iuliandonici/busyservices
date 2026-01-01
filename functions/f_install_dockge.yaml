@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ~/busyvolumes/busydockge-data:/app/data
-      - ~/busycontainers:/opt/stacks
+      - /home/busyvolumes/busydockge-data:/app/data
+      - /home/busycontainers:/opt/stacks
     ports:
       - 5001:5001
     networks:
