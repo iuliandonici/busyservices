@@ -7,18 +7,18 @@ function f_install_dockge() {
             echo "- and currently removing previous container:"
             doas docker container rm -f busydockge-container
             # Create directories that store your stacks and store Dockge's stack
-            doas mkdir -p ~/busycontainers/busydockge-container/
+            doas mkdir -p /home/busycontainers/busydockge-container/
             # Copy a default Dockge config
-            doas cp -r functions/f_install_dockge.yaml ~/busycontainers/busydockge-container/compose.yaml
+            doas cp -r functions/f_install_dockge.yaml /home/busycontainers/busydockge-container/compose.yaml
         else
             echo "- and currently removing previous container:"
             docker container rm -f busydockge-container
             # Create directories that store your stacks and store Dockge's stack
-            mkdir -p ~/busycontainers/busydockge-container/
+            mkdir -p /home/busycontainers/busydockge-container/
             # Copy a default Dockge config
-            cp -r functions/f_install_dockge.yaml ~/busycontainers/busydockge-container/compose.yaml
+            cp -r functions/f_install_dockge.yaml /home/busycontainers/busydockge-container/compose.yaml
         fi
-        cd ~/busycontainers/busydockge-container/
+        cd /home/busycontainers/busydockge-container/
         # Start the Server
         # docker compose up -d
         # If you are using docker-compose V1 or Podman
