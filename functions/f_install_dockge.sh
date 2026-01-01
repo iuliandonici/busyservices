@@ -9,12 +9,14 @@ function f_install_dockge() {
             doas mkdir -p ~/busycontainers/busydockge-container/
             # Copy a default Dockge config
             doas cp -r functions/f_install_dockge.yaml ~/busycontainers/busydockge-container/compose.yaml
+            doas rc-service docker restart
         else
             docker container rm -f busydockge-container
             # Create directories that store your stacks and store Dockge's stack
             mkdir -p ~/busycontainers/busydockge-container/
             # Copy a default Dockge config
             cp -r functions/f_install_dockge.yaml ~/busycontainers/busydockge-container/compose.yaml
+            doas rc-service docker restart
         fi
         cd ~/busycontainers/busydockge-container/
         # Start the Server
