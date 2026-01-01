@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_check_networks() {
-  var_f_config_network_wired_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g')
-  var_f_config_network_wired_interfaces_status=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $9}' | sed -e 's/://g')
+  var_f_config_network_wired_interfaces=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $2}' | sed -e 's/://g' -e 's/.*@eth.*//g' | sed  '/./!d')
+  var_f_config_network_wired_interfaces_status=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $9}' | sed -e 's/://g' -e 's/.*br-.*//g' | sed  '/./!d')
   if [[ $var_f_config_network_wired_interfaces_status == "bridge0" ]]; then
     var_f_config_network_wired_interfaces_status=$(ip a | grep -E "en.*:|es.*:|eth[0-99]:" | awk '{print $11}' | sed -e 's/://g')
   fi
