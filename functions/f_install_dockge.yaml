@@ -6,13 +6,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/busyvolumes/busydockge-data:/app/data
-      - ~/busycontainers/busydockge-container:/opt/stacks
     ports:
       - 5001:5001
     networks:
       - busynetwork-containers
     environment:
-      - DOCKGE_STACKS_DIR=/opt/busystacks
+      - DOCKGE_STACKS_DIR=~/busycontainers
       - DOCKGE_ENABLE_CONSOLE=true
 networks:
   busynetwork-containers:
