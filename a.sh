@@ -20,6 +20,7 @@ function f_install_dockge() {
         # Start the Server
         # docker compose up -d
         # If you are using docker-compose V1 or Podman
+        echo "- composing:"
         docker-compose up -d
     elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         # Create directories that store your stacks and store Dockge's stack
