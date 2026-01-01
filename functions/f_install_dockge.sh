@@ -1,6 +1,6 @@
 #!/bin/bash
 function f_install_dockge() {
-    source functions/f_get_distro_packager.sh
+    source functions/f_update_software.sh
     echo "- installing Dockge:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
@@ -17,6 +17,7 @@ function f_install_dockge() {
             cp -r functions/f_install_dockge.yaml ~/busycontainers/busydockge-container/compose.yaml
         fi
         cd ~/busycontainers/busydockge-container/
+        f_update_software
         # Start the Server
         # docker compose up -d
         # If you are using docker-compose V1 or Podman
