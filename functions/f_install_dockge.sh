@@ -1,5 +1,6 @@
 #!/bin/bash
 function f_install_dockge() {
+    source functions/f_get_distro_packager.sh
     source functions/f_update_software.sh
     echo "- installing Dockge:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
