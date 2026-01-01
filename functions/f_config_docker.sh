@@ -17,6 +17,8 @@ function f_config_docker() {
                     doas mkdir /etc/docker/
                     doas cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     doas rc-service docker start
+                    echo "- sleeping for 5s;"
+                    sleep 5
                 else 
                     echo "- but can't configure Docker because it's not installed:"
                     ls -alh /usr/bin/ | grep "docker"
