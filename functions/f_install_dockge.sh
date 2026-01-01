@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_install_dockge() {
     source functions/f_get_distro_packager.sh
-    echo "- installing Dockge:"
+    echo "- Installing Dockge:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then
             echo "- and currently removing previous container:"
@@ -22,7 +22,7 @@ function f_install_dockge() {
         # Start the Server
         # docker compose up -d
         # If you are using docker-compose V1 or Podman
-        echo "- composing the Dockge container;"
+        echo "- composing the Dockge container:"
         docker-compose up -d
     elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         # Create directories that store your stacks and store Dockge's stack
