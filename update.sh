@@ -40,7 +40,11 @@ case $(hostname) in
   busydev)
     echo "This is $(hostname)."
     source functions/f_install_server_dev_software.sh
-    f_install_server_dev_software
+    source functions/f_install_docker.sh
+    source functions/f_install_dockge.sh
+    # f_install_server_dev_software
+    f_install_docker
+    f_install_dockge
   ;;
   busyl)
     echo "This is $(hostname)."
