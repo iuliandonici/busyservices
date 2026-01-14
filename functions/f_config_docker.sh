@@ -60,9 +60,13 @@ function f_config_docker() {
                     sudo usermod -aG docker $USER
                     sudo systemctl stop docker.socket
                     sudo systemctl stop docker.service
+                    sudo cp -r /lib/systemd/system/docker.service /etc/systemd/system/
+                    sudo sed -i 's/\ -H\ fd:\/\///g' /etc/systemd/system/docker.service
+                    sudo systemctl restart docker
                     sudo cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     sudo systemctl start docker.socket
                     sudo systemctl start docker.service
+                    sudo systemctl daemon-reload
                     echo "- sleeping for 5s do we can give a chance the Docker daemon to reload;"
                     sleep 5
                 else 
