@@ -86,8 +86,12 @@ function f_config_docker() {
                     usermod -aG docker $USER
                     systemctl stop docker.socket
                     systemctl stop docker.service
+                    # And because on systemd, Docker already starts with the -H flah, we have to override it (https://stackoverflow.com/questions/44052054/unable-to-start-docker-after-configuring-hosts-in-daemon-json)
+                    cp -r /lib/systemd/system/docker.service /etc/systemd/system/
+                    sed -i 's/\ -H\ fd:\/\///g' /etc/systemd/system/docker.service
                     cp -r functions/f_config_docker.json /etc/docker/daemon.json
                     systemctl start docker.socket
+                    systemctl daemon-reload
                     systemctl start docker.service
                     echo "- sleeping for 5s do we can give a chance the Docker daemon to reload;"
                     sleep 5
