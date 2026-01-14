@@ -33,6 +33,6 @@ function f_install_dockge() {
         # Start the Server
         # docker compose up -d
         # If you are using docker-compose V1 or Podman
-        docker-compose up -d
+        docker compose up -d
     fi
 }
