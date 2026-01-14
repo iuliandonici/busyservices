@@ -60,6 +60,7 @@ function f_config_docker() {
                     sudo usermod -aG docker $USER
                     sudo systemctl stop docker.socket
                     sudo systemctl stop docker.service
+                    # And because on systemd, Docker already starts with the -H flah, we have to override it (https://stackoverflow.com/questions/44052054/unable-to-start-docker-after-configuring-hosts-in-daemon-json)
                     sudo cp -r /lib/systemd/system/docker.service /etc/systemd/system/
                     sudo sed -i 's/\ -H\ fd:\/\///g' /etc/systemd/system/docker.service
                     sudo systemctl restart docker
