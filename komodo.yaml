@@ -1,29 +1,50 @@
 services:
-  busykdmongo-service:
-    image: mongo
-    container_name: busykdmongo-container
-    command: --quiet --wiredTigerCacheSizeGB 0.25
+  busykd-postgres-service:
+    # 🚨 Pin to a specific version. Updates can be breaking.
+    # https://github.com/FerretDB/documentdb/pkgs/container/postgres-documentdb
+    container_name: busykd-postgres-container
+    image: ghcr.io/ferretdb/postgres-documentdb
     restart: unless-stopped
     logging:
       driver: ${COMPOSE_LOGGING_DRIVER:-local}
     ports:
-      - 27017:27017
+      - 5432:5432
     volumes:
-      - /home/busyvolumes/busykdmongo-db:/data/db
-      - /home/busyvolumes/busykdmongo-dbconfig:/data/configdb
+      - /home/busyvolumes/busykd-postgres-data:/var/lib/postgresql/data
     networks:
       - busynetwork-containers
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DB_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
+      POSTGRES_USER: ${KOMODO_DB_USERNAME}
+      POSTGRES_PASSWORD: ${KOMODO_DB_PASSWORD}
+      POSTGRES_DB: busykd-postgres-service
     labels:
-      komodo.skip: null # Prevent Komodo from stopping with StopAllContainers
+      komodo.skip: null
+    # Prevent Komodo from stopping with StopAllContainers
+  busykd-ferretdb-service:
+    # 🚨 Pin to a specific version. Updates can be breaking.
+    # https://github.com/FerretDB/FerretDB/pkgs/container/ferretdb
+    container_name: busykd-ferretdb-container
+    image: ghcr.io/ferretdb/ferretdb # Prevent Komodo from stopping with StopAllContainers
+    restart: unless-stopped
+    user: 1000:1000
+    depends_on:
+      - busykd-postgres-service
+    ports:
+      - 27017:27017
+    volumes:
+      - /home/busyvolumes/busykd-ferret-state:/state
+    networks:
+      - busynetwork-containers
+    environment:
+      FERRETDB_POSTGRESQL_URL: postgres://${KOMODO_DB_USERNAME}:${KOMODO_DB_PASSWORD}@busykd-postgres-container:5432/postgres
+    labels:
+      komodo.skip: null
   busykdcore-service:
     image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
     container_name: busykdcore-container
     restart: unless-stopped
     depends_on:
-      - busykdmongo-service
+      - busykd-postgres-service
     logging:
       driver: ${COMPOSE_LOGGING_DRIVER:-local}
     ports:
@@ -32,7 +53,7 @@ services:
       - busynetwork-containers
     env_file: ./.env
     environment:
-      KOMODO_DATABASE_ADDRESS: busykdmongo-service:27017
+      KOMODO_DATABASE_ADDRESS: busykd-ferretdb-service:27017
       KOMODO_DATABASE_USERNAME: ${KOMODO_DB_USERNAME}
       KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
     volumes:
@@ -70,3 +91,4 @@ services:
 networks:
   busynetwork-containers:
     external: true
+
