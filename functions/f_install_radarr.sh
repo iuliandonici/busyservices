@@ -53,6 +53,7 @@ WantedBy=multi-user.target
 EOF
                 sudo systemctl -q daemon-reload
                 sudo systemctl enable --now -q radarr
+                sudo systemctl restart radarr.service
                 sudo rm Radarr*.linux*.tar.gz
             else
                 $(f_get_distro_packager) install -y ${var_install_radarr_software_array_debian[$i]}
@@ -82,6 +83,7 @@ WantedBy=multi-user.target
 EOF
                 systemctl -q daemon-reload
                 systemctl enable --now -q radarr
+                systemctl restart radarr.service
                 rm Radarr*.linux*.tar.gz
             fi
         done
