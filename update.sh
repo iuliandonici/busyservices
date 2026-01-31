@@ -63,7 +63,9 @@ case $(hostname) in
     echo "This is $(hostname)."
     source functions/f_install_server_prod_software.sh
     source functions/f_install_radarr.sh
+    source functions/f_install_sonarr.sh
     f_install_server_prod_software
     f_install_radarr
+    f_install_sonarr
   ;;
 esac
