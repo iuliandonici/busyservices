@@ -1,94 +1,93 @@
 services:
-  busykd-postgres-service:
+  busykdpostgres-service:
     # 🚨 Pin to a specific version. Updates can be breaking.
     # https://github.com/FerretDB/documentdb/pkgs/container/postgres-documentdb
-    container_name: busykd-postgres-container
+    container_name: busykdpostgres-container
     image: ghcr.io/ferretdb/postgres-documentdb
+    labels:
+      komodo.skip: null # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
-    logging:
-      driver: ${COMPOSE_LOGGING_DRIVER:-local}
     ports:
       - 5432:5432
     volumes:
-      - /home/busyvolumes/busykd-postgres-data:/var/lib/postgresql/data
+      - /home/busyvolumes/busykdpostgres-data:/var/lib/postgresql/data
     networks:
       - busynetwork-containers
     environment:
       POSTGRES_USER: ${KOMODO_DB_USERNAME}
       POSTGRES_PASSWORD: ${KOMODO_DB_PASSWORD}
-      POSTGRES_DB: busykd-postgres-service
-    labels:
-      komodo.skip: null
-    # Prevent Komodo from stopping with StopAllContainers
-  busykd-ferretdb-service:
+      POSTGRES_DB: postgres
+  busykdferret-service:
     # 🚨 Pin to a specific version. Updates can be breaking.
     # https://github.com/FerretDB/FerretDB/pkgs/container/ferretdb
-    container_name: busykd-ferretdb-container
-    image: ghcr.io/ferretdb/ferretdb # Prevent Komodo from stopping with StopAllContainers
-    restart: unless-stopped
+    container_name: busykdferret-container
+    image: ghcr.io/ferretdb/ferretdb
     user: 1000:1000
+    restart: unless-stopped
     depends_on:
-      - busykd-postgres-service
+      - busykdpostgres-service
     ports:
       - 27017:27017
     volumes:
-      - /home/busyvolumes/busykd-ferret-state:/state
+      - /home/busyvolumes/busykdferret-state:/state
     networks:
       - busynetwork-containers
-    environment:
-      FERRETDB_POSTGRESQL_URL: postgres://${KOMODO_DB_USERNAME}:${KOMODO_DB_PASSWORD}@busykd-postgres-container:5432/postgres
     labels:
-      komodo.skip: null
+      komodo.skip: null # Prevent Komodo from stopping with StopAllContainers
+    environment:
+      FERRETDB_POSTGRESQL_URL: postgres://${KOMODO_DB_USERNAME}:${KOMODO_DB_PASSWORD}@busykdpostgres-service:5432/postgres
   busykdcore-service:
     image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
     container_name: busykdcore-container
+    labels:
+      komodo.skip: null # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
     depends_on:
-      - busykd-postgres-service
-    logging:
-      driver: ${COMPOSE_LOGGING_DRIVER:-local}
+      - busykdferret-service
     ports:
       - 9120:9120
     networks:
       - busynetwork-containers
     env_file: ./.env
     environment:
-      KOMODO_DATABASE_ADDRESS: busykd-ferretdb-service:27017
+      KOMODO_DATABASE_ADDRESS: busykdferret-container:27017
       KOMODO_DATABASE_USERNAME: ${KOMODO_DB_USERNAME}
       KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
     volumes:
-      ## Core cache for repos for latest commit hash / contents
-      - /home/busyvolumes/busykdcore-repocache:/repo-cache
-    labels:
-      komodo.skip: null
-        # Prevent Komodo from stopping with StopAllContainers
-        # The Komodo Periphery service
+      ## Store dated backups of the database - https://komo.do/docs/setup/backup
+      - ${COMPOSE_KOMODO_BACKUPS_PATH}:/backups
+      ## Store sync files on server
+      # - /path/to/syncs:/syncs
+      ## Optionally mount a custom core.config.toml
+      # - /path/to/core.config.toml:/config/config.toml
+      ## Allows for systemd Periphery connection at 
+      ## "https://host.docker.internal:8120"
+      #    extra_hosts:
+      #      - busydocker:8120
+      #   - host.docker.internal:host-gateway
+
+      ## Deploy Periphery container using this block,
+      ## or deploy the Periphery binary with systemd using 
+      ## https://github.com/moghtech/komodo/tree/main/scripts
   busykdpr-service:
     image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
     container_name: busykdpr-container
     restart: unless-stopped
-    logging:
-      driver: ${COMPOSE_LOGGING_DRIVER:-local}
-    networks:
-      - busynetwork-containers
+    labels:
+      komodo.skip: null # Prevent Komodo from stopping with StopAllContainers
     env_file: ./.env
-    environment:
-      PERIPHERY_REPO_DIR: ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}/repos
-      PERIPHERY_STACK_DIR: ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}/stacks
-      PERIPHERY_SSL_KEY_FILE: ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}/ssl/key.pem
-      PERIPHERY_SSL_CERT_FILE: ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}/ssl/cert.pem
     volumes:
       ## Mount external docker socket
       - /var/run/docker.sock:/var/run/docker.sock
       ## Allow Periphery to see processes outside of container
       - /proc:/proc
-      ## Specify the Periphery agent root directory - must be the same inside and outside the container.
+      ## Specify the Periphery agent root directory.
+      ## Must be the same inside and outside the container,
+      ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
+      ## Default: /etc/komodo.
       - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
-      ## Custom location for docker compose repo
-      - /home/busyvolumes/busykdpr-compose:/mnt/user/compose
-    labels:
-      komodo.skip: null # Prevent Komodo from stopping with StopAllContainers
+    networks:
+      - busynetwork-containers
 networks:
   busynetwork-containers:
     external: true
-
