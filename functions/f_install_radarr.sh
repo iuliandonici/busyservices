@@ -43,7 +43,7 @@ User=radarr
 Group=media
 Type=simple
 
-ExecStart=/opt/Radarr/Radarr -nobrowser -data=/var/lib/radarr/
+ExecStart=/opt/radarr/Radarr -nobrowser -data=/var/lib/radarr/
 TimeoutStopSec=20
 KillMode=process
 Restart=on-failure
