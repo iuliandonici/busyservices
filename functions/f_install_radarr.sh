@@ -34,7 +34,7 @@ function f_install_radarr() {
                 sudo tar -xzvf Radarr*.linux*.tar.gz
                 sudo mv Radarr radarr
                 sudo mv radarr /opt/
-                sudo chown -R radarr:radarr /opt/radarr
+                sudo chown -R $USER:$USER /opt/radarr
                 sudo cat << EOF | sudo tee /etc/systemd/system/radarr.service > /dev/null
 [Unit]
 Description=Radarr Daemon
@@ -63,7 +63,7 @@ EOF
                 tar -xzvf Radarr*.linux*.tar.gz
                 mv Radarr radarr
                 mv radarr /opt/
-                chown -R radarr:radarr /opt/radarr
+                chown -R $USER:$USER /opt/radarr
                 cat << EOF | tee /etc/systemd/system/radarr.service > /dev/null
 [Unit]
 Description=Radarr Daemon
