@@ -6,6 +6,7 @@ var_install_radarr_software_array=("sqlite3")
 function f_install_radarr() {
     source functions/f_update_software.sh
     f_update_software
+    echo "- currently installing radarr;"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         echo " - here's a list of extra software that will be installed using $(f_get_distro_packager):"
         for i in "${!var_install_radarr_software_array_alpine[@]}"
@@ -102,7 +103,7 @@ EOF
     else
         for i in "${!var_install_radarr_software_array_debian[@]}"
         do
-            echo "- and c1urrently installing: $i ${var_install_radarr_software_array_debian[$i]}"
+            echo "- and currently installing: $i ${var_install_radarr_software_array_debian[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
                 sudo $(f_get_distro_packager) install -y ${var_install_radarr_software_array_debian[$i]}  
             else

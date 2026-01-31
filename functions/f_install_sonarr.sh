@@ -6,6 +6,7 @@ var_install_sonarr_software_array=("")
 function f_install_sonarr() {
     source functions/f_update_software.sh
     f_update_software
+    echo "- currently installing sonarr;"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         echo " - here's a list of extra software that will be installed using $(f_get_distro_packager):"
         for i in "${!var_install_sonarr_software_array_alpine[@]}"
