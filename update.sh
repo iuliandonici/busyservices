@@ -62,6 +62,8 @@ case $(hostname) in
   busycenter | busyubuntus)
     echo "This is $(hostname)."
     source functions/f_install_server_prod_software.sh
+    source functions/f_install_radarr.sh
     f_install_server_prod_software
+    f_install_radarr
   ;;
 esac

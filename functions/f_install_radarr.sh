@@ -21,13 +21,14 @@ function f_install_radarr() {
                 $(f_get_distro_packager) add ${var_install_radarr_software_array_alpine[$i]}  
             fi
         done     
-    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
-        for i in "${!var_install_radarr_software_array[@]}"
+    elif [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
+         for i in "${!var_install_radarr_software_array_debian[@]}"
         do
-            echo "- and currently installing: $i ${var_install_radarr_software_array[$i]}"
+            echo "- and currently installing: $i ${var_install_radarr_software_array_debian[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_radarr_software_array[$i]}
+                sudo $(f_get_distro_packager) install -y ${var_install_radarr_software_array_debian[$i]}
                 sudo groupadd media
+                sudo usermod -a -G media $USER
                 sudo mkdir /var/lib/radarr
                 wget --content-disposition 'http://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64'
                 sudo tar -xzvf Radarr*.linux*.tar.gz
@@ -39,7 +40,7 @@ function f_install_radarr() {
 Description=Radarr Daemon
 After=syslog.target network.target
 [Service]
-User=radarr
+User=$USER
 Group=media
 Type=simple
 
@@ -50,6 +51,46 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
+                sudo systemctl -q daemon-reload
+                sudo systemctl enable --now -q radarr
+                sudo rm Radarr*.linux*.tar.gz
+            else
+                $(f_get_distro_packager) install -y ${var_install_radarr_software_array_debian[$i]}
+                groupadd media
+                usermod -a -G media $USER
+                mkdir /var/lib/radarr
+                wget --content-disposition 'http://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64'
+                tar -xzvf Radarr*.linux*.tar.gz
+                mv Radarr radarr
+                mv radarr /opt/
+                chown -R radarr:radarr /opt/radarr
+                cat << EOF | tee /etc/systemd/system/radarr.service > /dev/null
+[Unit]
+Description=Radarr Daemon
+After=syslog.target network.target
+[Service]
+User=$USER
+Group=media
+Type=simple
+
+ExecStart=/opt/radarr/Radarr -nobrowser -data=/var/lib/radarr/
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
+EOF
+                systemctl -q daemon-reload
+                systemctl enable --now -q radarr
+                rm Radarr*.linux*.tar.gz
+            fi
+        done
+    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+        for i in "${!var_install_radarr_software_array[@]}"
+        do
+            echo "- and currently installing: $i ${var_install_radarr_software_array[$i]}"
+            if [[ "$EUID" -ne 0 ]]; then 
+                sudo $(f_get_distro_packager) install -y ${var_install_radarr_software_array[$i]}
             else
                 $(f_get_distro_packager) install -y ${var_install_radarr_software_array[$i]}  
             fi
