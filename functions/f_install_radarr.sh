@@ -52,7 +52,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
                 sudo systemctl -q daemon-reload
-                sudo systemctl enable --now -q radarr
+                sudo systemctl enable --now -q $USER
                 sudo systemctl restart radarr.service
                 sudo rm Radarr*.linux*.tar.gz
             else
@@ -82,7 +82,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
                 systemctl -q daemon-reload
-                systemctl enable --now -q radarr
+                systemctl enable --now -q $USER
                 systemctl restart radarr.service
                 rm Radarr*.linux*.tar.gz
             fi
