@@ -1,5 +1,10 @@
 # busyservices
 ### Scripts that install various services.
+|Function|Tested on|
+|--------|-----|---|---|---|
+|f_install_|   |   |   |   |
+|     |   |   |   |   |
+|     |   |   |   |   |
 #### Goals:
 - [ ] Functions:
             - [ ] - 

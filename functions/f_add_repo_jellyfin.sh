@@ -1,7 +1,8 @@
 #!/bin/bash
-function f_add_repo_jellyfin() {
-    echo " - currently adding the Jellyfin repo using $(f_get_distro_packager):"
+var_install_jellyfin_software_array=("jellyfin")
+function f_install_jellyfin() {
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
+        echo " - currently adding the Jellyfin repo using $(f_get_distro_packager):"
         if [[ "$EUID" -ne 0 ]]; then 
             # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
@@ -18,6 +19,11 @@ Components: main
 Architectures: $( dpkg --print-architecture )
 Signed-By: /etc/apt/keyrings/jellyfin.gpg
 EOF
+                echo "- and here's a list of software needed using $(f_get_distro_packager):"
+                for i in "${!var_install_jellyfin_software_array[@]}"
+                do
+                    echo " $i ${var_install_jellyfin_software_array[$i]}"
+                done
             else
                 echo "- but here is no version of Jellyfin for x86;"
             fi            
