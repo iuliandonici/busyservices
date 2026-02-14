@@ -1,13 +1,11 @@
 # busyservices
 ### Scripts that install various services.
-|Function|Tested on|
-|--------|-----|---|---|---|
-|f_install_|   |   |   |   |
-|     |   |   |   |   |
-|     |   |   |   |   |
 #### Goals:
-- [ ] Functions:
-            - [ ] - 
+- [ ] Functions tested:
+            - [ ] f_install_jellyfin
+                        - [x] Ubuntu;
+                        - [ ] Alpine Linux
+                        
             - [ ] f_update_software:
                         [ ] - 
 - [x] KVM on: 
