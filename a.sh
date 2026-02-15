@@ -119,6 +119,7 @@ EOF
                 echo "- but here is no version of Jellyfin for this architecture ($architecture);"
             fi            
     f_update_software
+        fi
     fi
   }
 # sudo mkdir /etc/apt/keyrings
