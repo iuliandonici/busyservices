@@ -2,7 +2,7 @@
 var_install_jellyfin_software_array=("jellyfin")
 function f_install_jellyfin() {
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
-        echo " - currently adding the Jellyfin repo using $(f_get_distro_packager):"
+        echo " - currently adding the repo and then installing Jellyfin using $(f_get_distro_packager):"
         if [[ "$EUID" -ne 0 ]]; then 
             # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
@@ -34,7 +34,7 @@ EOF
                     fi
                 done
             else
-                echo "- but here is no version of Jellyfin for x86;"
+                echo "- but here is no version of Jellyfin for this architecture ($architecture);"
             fi            
         else
 # Setting a variable for getting the machine's architecture
@@ -67,11 +67,11 @@ EOF
                     fi
                 done
             else
-                echo "- but there is no Jellyfin version for this architecture;"
-            fi
+                echo "- but here is no version of Jellyfin for this architecture ($architecture);"
+            fi            
         fi
     elif [[ "$(f_get_distro_packager)" == "apk" ]]; then
-        echo " - currently adding the Jellyfin repo using $(f_get_distro_packager):"
+        echo " - currently adding the repo and then installing Jellyfin using $(f_get_distro_packager):"
         if [[ "$EUID" -ne 0 ]]; then 
             # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
@@ -93,7 +93,7 @@ EOF
                     fi
                 done
             else
-                echo "- but here is no version of Jellyfin for x86;"
+                echo "- but here is no version of Jellyfin for this architecture ($architecture);"
             fi            
         else
             # Setting a variable for getting the machine's architecture
@@ -116,7 +116,7 @@ EOF
                     fi
                 done
             else
-                echo "- but here is no version of Jellyfin for x86;"
+                echo "- but here is no version of Jellyfin for this architecture ($architecture);"
             fi            
     f_update_software
     fi
