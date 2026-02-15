@@ -31,7 +31,7 @@ case $(hostname) in
   busyalpines | busyubuntus)
     echo "This is $(hostname)."
     source functions/f_install_jellyfin.sh
-    f_update_software
+    f_install_jellyfin
   ;;
 
   busydocker)
