@@ -1,6 +1,7 @@
 #!/bin/bash
 var_install_jellyfin_software_array=("jellyfin" "jellyfin-web")
 function f_install_jellyfin() {
+    source functions/f_update_software.sh
     source functions/f_get_distro_packager.sh
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         echo " - currently adding the repo and then installing Jellyfin using $(f_get_distro_packager):"
@@ -114,10 +115,10 @@ EOF
                     echo "- Currently installing: $i ${var_install_jellyfin_software_array[$i]}"
                     if [[ "$EUID" -ne 0 ]]; then 
                         doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}
-                        doas rc-update add ${var_install_jellyfin_software_array[$i]} boot 
+                        doas rc-update add ${var_install_jellyfin_software_array[0]} boot 
                     else
                         $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}  
-                        rc-update add ${var_install_jellyfin_software_array[$i]} boot 
+                        rc-update add ${var_install_jellyfin_software_array[0]} boot 
                     fi
                 done
             else
