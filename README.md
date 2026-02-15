@@ -3,8 +3,8 @@
 #### Goals:
 - [ ] Functions tested:
             - [ ] f_install_jellyfin
-                        - [x] Ubuntu;
-                        - [ ] Alpine Linux
+                        - [x] Ubuntu (24.04);
+                        - [x] Alpine Linux (3.23)
                         
             - [ ] f_update_software:
                         [ ] - 
