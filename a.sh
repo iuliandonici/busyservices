@@ -95,7 +95,7 @@ EOF
                     else
                         $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}  
                         rc-update add ${var_install_jellyfin_software_array[0]} boot 
-                        doas sed -i 's/--nowebclient//' /etc/conf.d/jellyfin
+                        sed -i 's/--nowebclient//' /etc/conf.d/jellyfin
                     fi
                 done
                 f_update_software
