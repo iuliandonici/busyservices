@@ -88,9 +88,11 @@ EOF
                 do
                     echo "- Currently installing: $i ${var_install_jellyfin_software_array[$i]}"
                     if [[ "$EUID" -ne 0 ]]; then 
-                        doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}  
+                        doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}
+                        doas rc-update add ${var_install_jellyfin_software_array[$i]} boot 
                     else
                         $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}  
+                        rc-update add ${var_install_jellyfin_software_array[$i]} boot 
                     fi
                 done
             else
@@ -111,9 +113,11 @@ EOF
                 do
                     echo "- Currently installing: $i ${var_install_jellyfin_software_array[$i]}"
                     if [[ "$EUID" -ne 0 ]]; then 
-                        doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}  
+                        doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}
+                        doas rc-update add ${var_install_jellyfin_software_array[$i]} boot 
                     else
                         $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}  
+                        rc-update add ${var_install_jellyfin_software_array[$i]} boot 
                     fi
                 done
             else
