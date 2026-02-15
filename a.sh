@@ -78,7 +78,7 @@ EOF
             # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                echo "http://repo.jellyfin.org/alpine/latest" | doas tee -a /etc/apk/repositories
+                echo "https://repo.jellyfin.org/alpine/latest" | doas tee -a /etc/apk/repositories
                 wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key --no-check-certificate | doas tee /etc/apk/keys/jellyfin_team.rsa.pub >/dev/null
                 echo "- and here's a list of software needed using $(f_get_distro_packager):"
                 for i in "${!var_install_jellyfin_software_array[@]}"
@@ -96,6 +96,7 @@ EOF
                         rc-update add ${var_install_jellyfin_software_array[0]} boot 
                     fi
                 done
+                f_update_software
             else
                 echo "- but here is no version of Jellyfin for this architecture ($architecture);"
             fi            
@@ -103,7 +104,7 @@ EOF
             # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                echo "http://repo.jellyfin.org/alpine/latest" | tee -a /etc/apk/repositories
+                echo "https://repo.jellyfin.org/alpine/latest" | tee -a /etc/apk/repositories
                 wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key --no-check-certificate | tee /etc/apk/keys/jellyfin_team.rsa.pub >/dev/null
                 echo "- and here's a list of software needed using $(f_get_distro_packager):"
                 for i in "${!var_install_jellyfin_software_array[@]}"
@@ -121,10 +122,10 @@ EOF
                         rc-update add ${var_install_jellyfin_software_array[0]} boot 
                     fi
                 done
+                f_update_software
             else
                 echo "- but here is no version of Jellyfin for this architecture ($architecture);"
             fi            
-    f_update_software
         fi
     fi
   }
