@@ -28,7 +28,7 @@ case $(hostname) in
     source functions/f_install_desktop_dev_software.sh
     f_install_desktop_dev_software
   ;;
-  busyalpines)
+  busyalpines | busyubuntus)
     echo "This is $(hostname)."
     source functions/f_install_jellyfin.sh
     f_update_software
