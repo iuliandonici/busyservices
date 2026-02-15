@@ -73,13 +73,13 @@ EOF
             fi            
         fi
     elif [[ "$(f_get_distro_packager)" == "apk" ]]; then
-        echo " - currently adding the repo and then installing Jellyfin using $(f_get_distro_packager):"
+        echo " - currently installing Jellyfin using $(f_get_distro_packager):"
         if [[ "$EUID" -ne 0 ]]; then 
             # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                echo "https://repo.jellyfin.org/alpine/latest" | doas tee -a /etc/apk/repositories
-                wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key --no-check-certificate | doas tee /etc/apk/keys/jellyfin_team.rsa.pub >/dev/null
+                # echo "https://repo.jellyfin.org/alpine/latest" | doas tee -a /etc/apk/repositories
+                # wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key --no-check-certificate | doas tee /etc/apk/keys/jellyfin_team.rsa.pub >/dev/null
                 echo "- and here's a list of software needed using $(f_get_distro_packager):"
                 for i in "${!var_install_jellyfin_software_array[@]}"
                 do
@@ -87,7 +87,7 @@ EOF
                 done
                 for i in "${!var_install_jellyfin_software_array[@]}"
                 do
-                    echo "- Currently installing: $i ${var_install_jellyfin_software_array[$i]}"
+                    echo " - currently installing: $i ${var_install_jellyfin_software_array[$i]}"
                     if [[ "$EUID" -ne 0 ]]; then 
                         doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}
                         doas rc-update add ${var_install_jellyfin_software_array[0]} boot 
@@ -104,8 +104,8 @@ EOF
             # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                echo "https://repo.jellyfin.org/alpine/latest" | tee -a /etc/apk/repositories
-                wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key --no-check-certificate | tee /etc/apk/keys/jellyfin_team.rsa.pub >/dev/null
+                # echo "https://repo.jellyfin.org/alpine/latest" | tee -a /etc/apk/repositories
+                # wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key --no-check-certificate | tee /etc/apk/keys/jellyfin_team.rsa.pub >/dev/null
                 echo "- and here's a list of software needed using $(f_get_distro_packager):"
                 for i in "${!var_install_jellyfin_software_array[@]}"
                 do
@@ -113,7 +113,7 @@ EOF
                 done
                 for i in "${!var_install_jellyfin_software_array[@]}"
                 do
-                    echo "- Currently installing: $i ${var_install_jellyfin_software_array[$i]}"
+                    echo " - currently installing: $i ${var_install_jellyfin_software_array[$i]}"
                     if [[ "$EUID" -ne 0 ]]; then 
                         doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}
                         doas rc-update add ${var_install_jellyfin_software_array[0]} boot 
