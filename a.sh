@@ -44,7 +44,7 @@ EOF
                 mkdir /etc/apt/keyrings
                 DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
                 CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
-                curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key | gpg --batch --yes --dearmor -o /etc/apt/keyrings/jellyfin.gpg
+                curl -fsSL https://repo.jellyfin.org/${DISTRO}/jellyfin_team.gpg.key --no-check-certificate | gpg --batch --yes --dearmor -o /etc/apt/keyrings/jellyfin.gpg
                 cat <<EOF | tee /etc/apt/sources.list.d/jellyfin.sources
 Types: deb
 URIs: https://repo.jellyfin.org/${DISTRO}
