@@ -27,6 +27,7 @@ EOF
                 do
                     echo " $i ${var_install_jellyfin_software_array[$i]}"
                 done
+                f_update_software
                 for i in "${!var_install_jellyfin_software_array[@]}"
                 do
                     echo " - currently installing: $i ${var_install_jellyfin_software_array[$i]}"
@@ -60,6 +61,7 @@ EOF
                 do
                     echo " $i ${var_install_jellyfin_software_array[$i]}"
                 done
+                f_update_software
                 for i in "${!var_install_jellyfin_software_array[@]}"
                 do
                     echo " - currently installing: $i ${var_install_jellyfin_software_array[$i]}"
