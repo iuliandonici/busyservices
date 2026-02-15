@@ -101,7 +101,7 @@ EOF
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 echo "http://repo.jellyfin.org/alpine/latest" | tee -a /etc/apk/repositories
-                wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key | tee /etc/apk/keys/jellyfin_team.rsa.pub >/dev/null
+                wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key --no-check-certificate | tee /etc/apk/keys/jellyfin_team.rsa.pub >/dev/null
                 echo "- and here's a list of software needed using $(f_get_distro_packager):"
                 for i in "${!var_install_jellyfin_software_array[@]}"
                 do
