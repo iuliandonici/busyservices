@@ -89,16 +89,21 @@ EOF
                 do
                     echo " - currently installing: $i ${var_install_jellyfin_software_array[$i]}"
                     if [[ "$EUID" -ne 0 ]]; then 
+                        f_update_software
                         doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}
+                        f_update_software
                         doas rc-update add ${var_install_jellyfin_software_array[0]} boot
+                        f_update_software
                         doas sed -i 's/--nowebclient//' /etc/conf.d/jellyfin
                     else
-                        $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}  
-                        rc-update add ${var_install_jellyfin_software_array[0]} boot 
+                        f_update_software
+                        $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}
+                        f_update_software
+                        rc-update add ${var_install_jellyfin_software_array[0]} boot
+                        f_update_software
                         sed -i 's/--nowebclient//' /etc/conf.d/jellyfin
                     fi
                 done
-                f_update_software
             else
                 echo "- but here is no version of Jellyfin for this architecture ($architecture);"
             fi            
