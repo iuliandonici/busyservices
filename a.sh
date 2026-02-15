@@ -90,10 +90,12 @@ EOF
                     echo " - currently installing: $i ${var_install_jellyfin_software_array[$i]}"
                     if [[ "$EUID" -ne 0 ]]; then 
                         doas $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}
-                        doas rc-update add ${var_install_jellyfin_software_array[0]} boot 
+                        doas rc-update add ${var_install_jellyfin_software_array[0]} boot
+                        doas sed -i 's/--nowebclient//g/' /etc/conf.d/jellyfin
                     else
                         $(f_get_distro_packager) add ${var_install_jellyfin_software_array[$i]}  
                         rc-update add ${var_install_jellyfin_software_array[0]} boot 
+                        sed -i 's/--nowebclient//g/' /etc/conf.d/jellyfin
                     fi
                 done
                 f_update_software
