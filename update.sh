@@ -28,6 +28,12 @@ case $(hostname) in
     source functions/f_install_desktop_dev_software.sh
     f_install_desktop_dev_software
   ;;
+  busyalpines)
+    echo "This is $(hostname)."
+    source functions/f_install_jellyfin.sh
+    f_install_jellyfin
+  ;;
+
   busydocker)
     echo "This is $(hostname)."
     source functions/f_install_acf.sh
