@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_jellyfin_software_array=("jellyfin")
+var_install_jellyfin_software_array=("jellyfin" "jellyfin-web")
 function f_install_jellyfin() {
     source functions/f_get_distro_packager.sh
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
