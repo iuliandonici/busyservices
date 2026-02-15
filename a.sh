@@ -1,6 +1,7 @@
 #!/bin/bash
 var_install_jellyfin_software_array=("jellyfin")
 function f_install_jellyfin() {
+    source functions/f_update_software.sh
     if [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
         echo " - currently adding the repo and then installing Jellyfin using $(f_get_distro_packager):"
         if [[ "$EUID" -ne 0 ]]; then 
