@@ -120,8 +120,6 @@ EOF
             fi            
     f_update_software
     fi
-    }
-}
 # sudo mkdir /etc/apt/keyrings
 # DISTRO="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
 # CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
