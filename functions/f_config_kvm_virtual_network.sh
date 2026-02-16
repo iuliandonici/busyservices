@@ -1,38 +1,38 @@
 #!/bin/bash
 function f_config_kvm_virtual_network() {
-    echo "- Creating a virtual bridged network:"
+    echo " - Creating a virtual bridged network:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if ([[ -z $var_f_config_kvm_network_wired_interfaces ]] && [[ ! -z $var_f_config_kvm_network_wireless_interfaces ]]); then
             echo "- but the wired  network interface is empty while the wireless ($var_f_config_kvm_network_wireless_interfaces) one isn't which means we're going to use NAT as our default virtual network;"
         else      
             if [[ "$EUID" -ne 0 ]]; then 
                 # Allow VMs to start and stop when the host does so
-                sudo rc-update add libvirt-guests
+                doas rc-update add libvirt-guests
                 # sudo cp -r functions/f_config_kvm_virtual_network.xml .
-                sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
-                sudo echo "[Remote libvirt SSH access]
+                doas mkdir -p /etc/polkit-1/localauthority/50-local.d/
+                doas echo "[Remote libvirt SSH access]
     Identity=unix-group:libvirt
     Action=org.libvirt.unix.manage
     ResultAny=yes
     ResultInactive=yes
     ResultActive=yes" > 50-libvirt-ssh-remote-access-policy.pkla
-                sudo mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
-                sudo rc-update add dbus
-                sudo rc-update add dbus boot
-                sudo rc-service dbus start
-                sudo rc-update add libvirtd
-                sudo rc-service libvirtd start
-                sudo rc-service polkit restart
-                sudo echo "tap" >> tap.conf
-                sudo mv tap.conf /etc/modules-load.d/
-                sudo cat /etc/modules | grep tan || echo "tan" | doas tee -a /etc/modules
-                sudo modprobe tun
-                sudo echo "tun" >> tun.conf
-                sudo mv tun.conf /etc/modules-load.d/
-                sudo cat /etc/modules | grep tan || echo "tun" | doas tee -a /etc/modules
-                sudo echo "allow bridge0" > bridge.conf
-                sudo mv bridge.conf /etc/qemu/
-                sudo echo "# Enable bridge forwarding.
+                doas mv 50-libvirt-ssh-remote-access-policy.pkla /etc/polkit-1/localauthority/50-local.d/
+                doas rc-update add dbus
+                doas rc-update add dbus boot
+                doas rc-service dbus start
+                doas rc-update add libvirtd
+                doas rc-service libvirtd start
+                doas rc-service polkit restart
+                doas echo "tap" >> tap.conf
+                doas mv tap.conf /etc/modules-load.d/
+                doas cat /etc/modules | grep tan || echo "tan" | doas tee -a /etc/modules
+                doas modprobe tun
+                doas echo "tun" >> tun.conf
+                doas mv tun.conf /etc/modules-load.d/
+                doas cat /etc/modules | grep tan || echo "tun" | doas tee -a /etc/modules
+                doas echo "allow bridge0" > bridge.conf
+                doas mv bridge.conf /etc/qemu/
+                doas echo "# Enable bridge forwarding.
     #net.ipv4.conf.bridge0_bc_forwarding=1
     net.ipv4.ip_forward=1
     # Ignore iptables on bridge interfaces.

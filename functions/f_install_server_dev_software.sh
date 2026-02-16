@@ -5,7 +5,7 @@ function f_install_server_dev_software() {
     source functions/f_remove_packages.sh
     source functions/f_disable_services.sh
     source functions/f_add_netplan_network_manager.sh
-    source functions/f_add_repo_jellyfin.sh
+    source functions/f_install_jellyfin.sh
     source functions/f_install_transmission_requirements.sh
     f_update_software
     f_remove_packages
@@ -13,7 +13,7 @@ function f_install_server_dev_software() {
     f_disable_services
     f_add_netplan_network_manager
     f_update_software
-    f_add_repo_jellyfin
+    f_install_jellyfin
     f_update_software
     echo " - here's a list of extra software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_server_dev_software_array[@]}"
