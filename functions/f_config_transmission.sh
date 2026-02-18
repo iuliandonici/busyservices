@@ -10,7 +10,7 @@ function f_config_transmission() {
                 doas mv settings.json /var/lib/transmission/config/settings.json
                 doas addgroup $USER transmission
                 doas addgroup root transmission
-                doas mkdir /var/downloads
+                doas mkdir /var/downloads/
                 doas chown -R $USER:$USER /var/downloads
                 doas rc-update add transmission-daemon
                 doas lbu_commit device
@@ -21,7 +21,7 @@ function f_config_transmission() {
                 mv settings.json /var/lib/transmission/config/settings.json
                 addgroup $USER transmission
                 addgroup root transmission
-                mkdir /var/downloads
+                mkdir /var/downloads/
                 chown -R $USER:$USER /var/downloads
                 rc-update add transmission-daemon
                 lbu_commit device
