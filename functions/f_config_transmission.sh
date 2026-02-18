@@ -11,7 +11,7 @@ function f_config_transmission() {
                 doas addgroup $USER transmission
                 doas addgroup root transmission
                 doas mkdir /var/downloads/
-                doas chown -R $USER:$USER /var/downloads
+                doas chown -R $USER:$USER /var/downloads/
                 doas rc-update add transmission-daemon
                 doas lbu_commit device
                 doas rc-service transmission-daemon restart
@@ -22,7 +22,7 @@ function f_config_transmission() {
                 addgroup $USER transmission
                 addgroup root transmission
                 mkdir /var/downloads/
-                chown -R $USER:$USER /var/downloads
+                chown -R $USER:$USER /var/downloads/
                 rc-update add transmission-daemon
                 lbu_commit device
                     rc-service transmission-daemon restart
