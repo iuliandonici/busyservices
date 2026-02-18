@@ -25,7 +25,7 @@ function f_config_transmission() {
                 chown -R $USER:$USER /var/downloads/
                 rc-update add transmission-daemon
                 lbu_commit device
-                    rc-service transmission-daemon restart
+                rc-service transmission-daemon restart
             fi
         elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
             if [[ "$EUID" -ne 0 ]]; then 
