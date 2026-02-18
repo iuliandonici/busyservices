@@ -12,7 +12,7 @@ function f_config_transmission() {
                 doas mkdir /var/downloads/
                 doas chown -R transmission:transmission /var/downloads/
                 doas rc-update add transmission-daemon
-                doas lbu_commit device
+                doas lbu commit device
                 doas rc-service transmission-daemon restart
             else
                 rc-service transmission-daemon stop
@@ -22,7 +22,7 @@ function f_config_transmission() {
                 mkdir /var/downloads/
                 chown -R transmission:transmission /var/downloads/
                 rc-update add transmission-daemon
-                lbu_commit device
+                lbu commit device
                 rc-service transmission-daemon restart
             fi
         elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
