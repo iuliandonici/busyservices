@@ -6,7 +6,6 @@ function f_install_transmission_requirements() {
     source functions/f_update_software.sh
     source functions/f_config_transmission.sh
     f_update_software
-
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         echo "- List of base software that will be installed using $(f_get_distro_packager):"
         for i in "${!var_install_transmission_requirements_alpine[@]}"

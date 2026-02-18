@@ -2,7 +2,7 @@
 function f_config_transmission() {
     # Verify if Transmission has been installed
     if [[ -f /usr/bin/transmission-daemon ]]; then
-        echo "- Transmission is installed, now we'll config it."
+        echo "- Transmission is installed, now we'll config it:"
         if [[ "$EUID" -ne 0 ]]; then 
             sudo systemctl stop transmission-daemon.service
             # sudo sed -i -e 's/Type=notify/Type=simple/g' /etc/systemd/system/transmission-daemon.service
