@@ -6,6 +6,7 @@ function f_config_transmission() {
         if [[ $(f_get_distro_packager) == "apk" ]]; then
             if [[ "$EUID" -ne 0 ]]; then 
                 doas rc-service transmission-daemon stop
+                doas cp -r functions/f_config_transmission.json settings.json
                 doas mv settings.json /var/lib/transmission/config/settings.json
                 doas addgroup $USER transmission
                 doas addgroup root transmission
@@ -16,6 +17,7 @@ function f_config_transmission() {
                 doas rc-service transmission-daemon restart
             else
                 rc-service transmission-daemon stop
+                cp -r functions/f_config_transmission.json settings.json
                 mv settings.json /var/lib/transmission/config/settings.json
                 addgroup $USER transmission
                 addgroup root transmission
