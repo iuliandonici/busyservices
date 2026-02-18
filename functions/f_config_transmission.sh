@@ -8,10 +8,9 @@ function f_config_transmission() {
                 doas rc-service transmission-daemon stop
                 doas cp -r functions/f_config_transmission.json settings.json
                 doas mv settings.json /var/lib/transmission/config/settings.json
-                doas addgroup $USER transmission
                 doas addgroup root transmission
                 doas mkdir /var/downloads/
-                doas chown -R $USER:$USER /var/downloads/
+                doas chown -R transmission:transmission /var/downloads/
                 doas rc-update add transmission-daemon
                 doas lbu_commit device
                 doas rc-service transmission-daemon restart
@@ -19,10 +18,9 @@ function f_config_transmission() {
                 rc-service transmission-daemon stop
                 cp -r functions/f_config_transmission.json settings.json
                 mv settings.json /var/lib/transmission/config/settings.json
-                addgroup $USER transmission
                 addgroup root transmission
                 mkdir /var/downloads/
-                chown -R $USER:$USER /var/downloads/
+                chown -R transmission:transmission /var/downloads/
                 rc-update add transmission-daemon
                 lbu_commit device
                 rc-service transmission-daemon restart
