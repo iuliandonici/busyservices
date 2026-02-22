@@ -1,74 +1,53 @@
 #!/bin/bash
-var_install_transmission_requirements=("transmission-cli" "transmission-common" "transmission-daemon")
-var_install_transmission_requirements_alpine=("transmission-cli" "transmission-daemon")
-var_install_transmission_requirements_debian=("transmission-cli" "transmission-common" "transmission-daemon")
-function f_install_transmission_requirements() {
+var_install_enl_software_array=("enlightenment" "efl" "lightdm" "python3" "networkmanager" "networkmanager-tui" "networkmanager-cli" "network-manager-applet" "networkmanager-wifi" "virt-manager" "vlc")
+function f_install_enl_requirements() {
     source functions/f_update_software.sh
-    source functions/f_config_transmission.sh
-    f_update_software
-
+    source functions/f_get_distro_packager.sh
+    source functions/f_config_enl.sh
+    # source functions/f_config_kde_networking.sh
+    echo "- Installing Enlightenment desktop environment:"
+    echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
+    for i in "${!var_install_base_software_array[@]}"
+    do
+        echo " $i ${var_install_enl_software_array[$i]}"
+    done
     if [[ $(f_get_distro_packager) == "apk" ]]; then
-        echo "- List of base software that will be installed using $(f_get_distro_packager):"
-        for i in "${!var_install_transmission_requirements_alpine[@]}"
-        do
-            echo " $i ${var_install_transmission_requirements_alpine[$i]}"
-        done
-        for i in "${!var_install_transmission_requirements_alpine[@]}"
-        do
-            echo " - and currently installing: $i ${var_install_transmission_requirements_alpine[$i]}"
-            if [[ "$EUID" -ne 0 ]]; then 
-                doas $(f_get_distro_packager) add ${var_install_transmission_requirements_alpine[$i]}  
-            else
-                $(f_get_distro_packager) add ${var_install_transmission_requirements_alpine[$i]}  
-            fi
-        done     
-    elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
-        echo "- List of base software that will be installed using $(f_get_distro_packager):"
-        for i in "${!var_install_transmission_requirements_debian[@]}"
-        do
-            echo " $i ${var_install_transmission_requirements_debian[$i]}"
-        done
-        for i in "${!var_install_transmission_requirements_debian[@]}"
-        do
-            echo " - and currently installing: $i ${var_install_transmission_requirements_debian[$i]}"
-            if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_transmission_requirements_debian[$i]}  
-            else
-                $(f_get_distro_packager) install -y ${var_install_transmission_requirements_debian[$i]}  
-            fi
-        done         
+        if [[ $(f_check_networks) == "UP" ]]; then
+            f_update_software
+            for i in "${!var_install_enl_software_array[@]}"
+            do
+                echo "- and currently installing: $i ${var_install_enl_software_array[$i]}"
+                if [[ "$EUID" -ne 0 ]]; then 
+                    doas $(f_get_distro_packager) add ${var_install_enl_software_array[$i]}  
+                else
+                    $(f_get_distro_packager) add ${var_install_enl_software_array[$i]}  
+                fi
+            done
+        else
+            echo "- but can't install them because the networks are down;"
+        fi
+    f_config_enl
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
-        echo "- List of base software that will be installed using $(f_get_distro_packager):"
-        for i in "${!var_install_transmission_requirements[@]}"
+        for i in "${!var_install_enl_software_array[@]}"
         do
-            echo " $i ${var_install_transmission_requirements[$i]}"
-        done
-        for i in "${!var_install_transmission_requirements[@]}"
-        do
-            echo " - and currently installing: $i ${var_install_transmission_requirements[$i]}"
+            echo "- and currently installing: $i ${var_install_enl_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+                sudo $(f_get_distro_packager) install -y ${var_install_enl_software_array[$i]}  
             else
-                $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+                $(f_get_distro_packager) install -y ${var_install_enl_software_array[$i]}  
             fi
-        done         
+        done        
     else
-       echo "- List of base software that will be installed using $(f_get_distro_packager):"
-        for i in "${!var_install_transmission_requirements[@]}"
+        for i in "${!var_install_enl_software_array[@]}"
         do
-            echo " $i ${var_install_transmission_requirements[$i]}"
-        done
-        for i in "${!var_install_transmission_requirements[@]}"
-        do
-            echo " - and currently installing: $i ${var_install_transmission_requirements[$i]}"
+            echo "- and currently installing: $i ${var_install_enl_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+                sudo $(f_get_distro_packager) install -y ${var_install_enl_software_array[$i]}  
             else
-                $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+                $(f_get_distro_packager) install -y ${var_install_enl_software_array[$i]}  
             fi
-        done         
+        done
     fi
-    f_update_software
-    f_config_transmission
-}
-f_install_transmission_requirements
+    # f_config_kde_networking
+ }
+ f_install_enl_requirements
