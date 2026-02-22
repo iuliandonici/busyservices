@@ -1,37 +1,40 @@
 #!/bin/bash
 function f_config_kvm_images_ubuntu() {
     var_f_config_kvm_images_dir="/var/lib/libvirt/images"
+    var_f_config_kvm_ubuntu_version=("live-server" "desktop")
     echo "- then downloading latest Ubuntu server ISO:"
     wget -q -X "*.10" http://cdimage.ubuntu.com/releases/ -O - | sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | grep -E '^[[:space:][:space:]][1-9].*.04.*' | sed -e 's/\///g' -e 's/ //g' > ubuntu_last 
     grep -oE '^[12468]*.[0-10][02468]*.*' ubuntu_last | sort -nr | head -2 > laststableubuntuversion
     var_latest_ubuntu_version=$(cat laststableubuntuversion | head -1)
-    if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ]; then
-        start_wget=$(wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso)
-        if [[ "$start_wget" -eq 0 ]]; then
-            var_latest_ubuntu_version=$(tail -1 laststableubuntuversion)
-            if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ] && ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-desktop-amd64.iso ]; then
-                wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
-                wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-desktop-amd64.iso
-                if [[ "$EUID" -ne 0 ]]; then 
-                    if [[ $(f_get_distro_packager) == "apk" ]]; then
-                        doas rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
-                        doas rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-desktop-amd64.iso $var_f_config_kvm_images_dir
+    for i in "${!var_f_config_kvm_ubuntu_version[@]}"
+    do
+        echo " $i ${var_f_config_kvm_ubuntu_version[$i]}"
+    done
+    for i in "${!var_f_config_kvm_ubuntu_version[@]}"
+    do
+        if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso ]; then
+            start_wget=$(wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso)
+            if [[ "$start_wget" -eq 0 ]]; then
+                var_latest_ubuntu_version=$(tail -1 laststableubuntuversion)
+                if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso ]; then
+                    wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso
+                    if [[ "$EUID" -ne 0 ]]; then 
+                        if [[ $(f_get_distro_packager) == "apk" ]]; then
+                            doas rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
+                        else
+                            sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
+                        fi
                     else
-                        sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
-                        sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-desktop-amd64.iso $var_f_config_kvm_images_dir
+                        rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
                     fi
                 else
-                    rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
-                    rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-desktop.iso $var_f_config_kvm_images_dir
+                    echo "- but latest Ubuntu LTS version is already present at: "
+                    echo $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso
                 fi
-            else
-                echo "- but latest Ubuntu LTS version is already present at: "
-                echo $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
-                echo $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-desktop-amd64.iso
             fi
+        else
+            echo "- but latest Ubuntu server ($var_latest_ubuntu_version) ISO already exists in $var_f_config_kvm_images_dir/;"
         fi
-    else
-        echo "- but latest Ubuntu server ($var_latest_ubuntu_version) ISO already exists in $var_f_config_kvm_images_dir/;"
-    fi
-    rm -rf ubuntu_last laststableubuntuversion
+        rm -rf ubuntu_last laststableubuntuversion
+    done
 }
