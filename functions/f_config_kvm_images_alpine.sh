@@ -9,9 +9,9 @@ function f_config_kvm_images_alpine() {
     do
         echo " $i ${var_f_config_kvm_images_arch_alpine[$i]}"
     done
-    echo "- Currently downloading Alpine ISOs for:"
     for i in "${!var_f_config_kvm_images_arch_alpine[@]}"
     do
+    echo "- and currently downloading Alpine ISOs for:"
         echo " $i ${var_f_config_kvm_images_arch_alpine[$i]}"
         # Getting a list of ISOs, filtering them and putting them into a file
         wget --no-parent $var_f_config_kvm_images_repo_alpine/${var_f_config_kvm_images_arch_alpine[$i]} -O - | grep -E "alpine-standard" | grep -Ev '_rc|asc|sha256|sha512' | sed -e 's/<[^>]*>//g' | awk '{print $1}' | sort -nr | head -1 > alpineversions
