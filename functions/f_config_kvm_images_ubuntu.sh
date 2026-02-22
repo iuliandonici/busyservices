@@ -9,7 +9,7 @@ function f_config_kvm_images_ubuntu() {
         start_wget=$(wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso)
         if [[ "$start_wget" -eq 0 ]]; then
             var_latest_ubuntu_version=$(tail -1 laststableubuntuversion)
-            if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ]; then
+            if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso && $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-desktop-amd64.iso ]; then
                 wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
                 wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-desktop-amd64.iso
                 if [[ "$EUID" -ne 0 ]]; then 
