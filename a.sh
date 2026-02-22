@@ -1,54 +1,20 @@
 #!/bin/bash
-var_install_enl_software_array=("enlightenment" "efl" "lightdm" "python3" "networkmanager" "networkmanager-tui" "networkmanager-cli" "network-manager-applet" "networkmanager-wifi" "virt-manager" "vlc")
-function f_install_enl_requirements() {
-    source functions/f_update_software.sh
-    source functions/f_get_distro_packager.sh
-    source functions/f_config_enl.sh
-    # source functions/f_config_kde_networking.sh
-    f_update_software
-    echo "- Installing Enlightenment desktop environment:"
-    echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
-    for i in "${!var_install_base_software_array[@]}"
-    do
-        echo " $i ${var_install_enl_software_array[$i]}"
-    done
-    if [[ $(f_get_distro_packager) == "apk" ]]; then
-        if [[ $(f_check_networks) == "UP" ]]; then
-            f_update_software
-            for i in "${!var_install_enl_software_array[@]}"
-            do
-                echo "- and currently installing: $i ${var_install_enl_software_array[$i]}"
-                if [[ "$EUID" -ne 0 ]]; then 
-                    doas $(f_get_distro_packager) add ${var_install_enl_software_array[$i]}  
-                else
-                    $(f_get_distro_packager) add ${var_install_enl_software_array[$i]}  
-                fi
-            done
+function f_config_kvm_images_ubuntu() {
+    var_f_config_kvm_images_dir="/var/lib/libvirt/images"
+    echo "- then downloading latest Ubuntu server ISO:"
+    wget -q -X "*.10" http://cdimage.ubuntu.com/releases/ -O - | sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | grep -E '^[[:space:][:space:]][1-9].*.04.*' | sed -e 's/\///g' -e 's/ //g' > ubuntu_last 
+    grep -oE '^[12468]*.[0-10][02468]*.*' ubuntu_last | sort -nr | head -1 > laststableubuntuversion
+    var_latest_ubuntu_version=$(cat laststableubuntuversion)
+    if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ]; then
+        wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
+        if [[ "$EUID" -ne 0 ]]; then 
+            sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
         else
-            echo "- but can't install them because the networks are down;"
+            rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
         fi
-    f_config_enl
-    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
-        for i in "${!var_install_enl_software_array[@]}"
-        do
-            echo "- and currently installing: $i ${var_install_enl_software_array[$i]}"
-            if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_enl_software_array[$i]}  
-            else
-                $(f_get_distro_packager) install -y ${var_install_enl_software_array[$i]}  
-            fi
-        done        
     else
-        for i in "${!var_install_enl_software_array[@]}"
-        do
-            echo "- and currently installing: $i ${var_install_enl_software_array[$i]}"
-            if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_enl_software_array[$i]}  
-            else
-                $(f_get_distro_packager) install -y ${var_install_enl_software_array[$i]}  
-            fi
-        done
+        echo "- but latest Ubuntu server ($var_latest_ubuntu_version) ISO already exists in $var_f_config_kvm_images_dir/;"
     fi
-    # f_config_kde_networking
- }
- f_install_enl_requirements
+    rm -rf ubuntu_last laststableubuntuversion
+}
+f_config_kvm_images_ubuntu
