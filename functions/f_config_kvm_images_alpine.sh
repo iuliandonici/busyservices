@@ -24,7 +24,8 @@ function f_config_kvm_images_alpine() {
                 rsync -aP --remove-source-files $var_f_config_kvm_images_repo_alpine_dir/${var_f_config_kvm_images_arch_alpine[$i]}/*.iso $var_f_config_kvm_images_dir
             fi
         else
-            echo "- but latest Alpine standard ($(cat alpineversions)) ISO already exists in $var_f_config_kvm_images_dir/;"
+            echo "- but latest Alpine standard ($(cat alpineversions)) ISO already exists at:"
+            echo $var_f_config_kvm_images_dir/$(cat alpineversions)
         fi
     done
     rm -rf alpineversions dl-cdn.*/
