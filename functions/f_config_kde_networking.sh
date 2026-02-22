@@ -6,7 +6,7 @@ function f_config_kde_networking() {
             echo "- but the NetworkManager.conf file already exists, so we're not going to configure the networking;"
         else
             if [[ "$EUID" -ne 0 ]]; then
-                sudo adduser $USER plugdev
+                doas adduser $USER plugdev
                 echo "[main]
             dhcp=internal
             plugins=ifupdown,keyfile
@@ -18,17 +18,17 @@ function f_config_kde_networking() {
             wifi.scan-rand-mac-address=yes
             wifi.backend=wpa_supplicant
             wifi.wpa_supplicant.autoconnect=yes" >> NetworkManager.conf
-                sudo mv NetworkManager.conf /etc/NetworkManager/
-                sudo mkdir -p /etc/NetworkManager/conf.d/
+                doas mv NetworkManager.conf /etc/NetworkManager/
+                doas mkdir -p /etc/NetworkManager/conf.d/
                 echo "[main]
             auth-polkit=false" >> any-user.conf
-                sudo mv any-user.conf /etc/NetworkManager/conf.d/
-                sudo rc-service networking stop
-                sudo rc-service wpa_supplicant stop
-                sudo rc-service networkmanager restart
-                sudo rc-update add networkmanager default
-                sudo rc-update del networking boot
-                sudo rc-update del wpa_supplicant boot
+                doas mv any-user.conf /etc/NetworkManager/conf.d/
+                doas rc-service networking stop
+                doas rc-service wpa_supplicant stop
+                doas rc-service networkmanager restart
+                doas rc-update add networkmanager default
+                doas rc-update del networking boot
+                doas rc-update del wpa_supplicant boot
             else
                 adduser $USER plugdev
                 echo "[main] 
