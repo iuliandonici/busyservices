@@ -69,7 +69,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
-KbdInteractiveAuthentication no
+KbdInteractiveAuthentication yes
 
 # Kerberos options
 #KerberosAuthentication no
