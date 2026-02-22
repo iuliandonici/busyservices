@@ -6,7 +6,10 @@ function f_config_kvm_images_ubuntu() {
     grep -oE '^[12468]*.[0-10][02468]*.*' ubuntu_last | sort -nr | head -2 > laststableubuntuversion
     var_latest_ubuntu_version=$(cat laststableubuntuversion)
     if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ]; then
-        wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso
+        start_wget=$(wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso)
+        if [[ "$start_wget" =~ 404\ Not\ Found ]]; then
+            tail -1 laststableubuntuversion
+        fi
         if [[ "$EUID" -ne 0 ]]; then 
             sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso $var_f_config_kvm_images_dir
         else
