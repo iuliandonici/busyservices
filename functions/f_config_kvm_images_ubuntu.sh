@@ -28,12 +28,12 @@ function f_config_kvm_images_ubuntu() {
                         rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
                     fi
                 else
-                    echo "- but latest Ubuntu LTS version is already present at: "
+                    echo "- but latest ${var_f_config_kvm_ubuntu_version[$i]} Ubuntu LTS version is already present at: "
                     echo $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso
                 fi
             fi
         else
-            echo "- but latest Ubuntu server ($var_latest_ubuntu_version) ISO already exists in $var_f_config_kvm_images_dir/;"
+            echo "- but latest Ubuntu version of the ${var_f_config_kvm_ubuntu_version[$i]}) Ubuntu LTS version already exists in $var_f_config_kvm_images_dir/;"
         fi
     done
     rm -rf ubuntu_last laststableubuntuversion
