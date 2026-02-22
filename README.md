@@ -2,7 +2,10 @@
 ### Scripts that install various services.
 #### Goals:
 - [ ] Functions tested:
-            - [ ] f_install_jellyfin
+            - [x] f_install_jellyfin
+                        - [x] Ubuntu (24.04);
+                        - [x] Alpine Linux (3.23)
+            - [x] f_install_transmission
                         - [x] Ubuntu (24.04);
                         - [x] Alpine Linux (3.23)
                         
