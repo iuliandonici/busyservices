@@ -28,5 +28,5 @@ function f_config_kvm_images_alpine() {
             echo $var_f_config_kvm_images_dir/$(cat alpineversions)
         fi
     done
-    rm -rf alpineversions dl-cdn.*/
+    # rm -rf alpineversions dl-cdn.*/
 }
