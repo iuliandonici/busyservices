@@ -16,24 +16,20 @@ function f_config_kvm_images_ubuntu() {
             start_wget=$(wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso)
             if [[ "$start_wget" -eq 0 ]]; then
                 var_latest_ubuntu_version=$(tail -1 laststableubuntuversion)
-                if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso ]; then
-                    wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso
-                    if [[ "$EUID" -ne 0 ]]; then 
-                        if [[ $(f_get_distro_packager) == "apk" ]]; then
-                            doas rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
-                        else
-                            sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
-                        fi
+                wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso
+                if [[ "$EUID" -ne 0 ]]; then 
+                    if [[ $(f_get_distro_packager) == "apk" ]]; then
+                        doas rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
                     else
-                        rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
+                        sudo rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
                     fi
                 else
-                    echo "- but latest ${var_f_config_kvm_ubuntu_version[$i]} Ubuntu LTS version is already present at: "
-                    echo $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso
+                    rsync -aP --remove-source-files ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso $var_f_config_kvm_images_dir
                 fi
             fi
         else
-            echo "- but latest Ubuntu version of the ${var_f_config_kvm_ubuntu_version[$i]}) Ubuntu LTS version already exists in $var_f_config_kvm_images_dir/;"
+            echo "- but latest ${var_f_config_kvm_ubuntu_version[$i]} Ubuntu LTS version is already present at: "
+            echo $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-${var_f_config_kvm_ubuntu_version[$i]}-amd64.iso
         fi
     done
     rm -rf ubuntu_last laststableubuntuversion
