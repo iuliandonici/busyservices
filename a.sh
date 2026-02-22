@@ -1,5 +1,5 @@
 #!/bin/bash
-var_install_enl_software_array=("enlightenment" "efl" "python3" "networkmanager" "networkmanager-tui" "networkmanager-cli" "network-manager-applet" "networkmanager-wifi" "virt-manager" "vlc")
+var_install_enl_software_array=("enlightenment" "efl" "lightdm" "python3" "networkmanager" "networkmanager-tui" "networkmanager-cli" "network-manager-applet" "networkmanager-wifi" "virt-manager" "vlc")
 function f_install_enl_requirements() {
     source functions/f_update_software.sh
     source functions/f_get_distro_packager.sh
@@ -12,7 +12,6 @@ function f_install_enl_requirements() {
     do
         echo " $i ${var_install_enl_software_array[$i]}"
     done
-    f_config_enl
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
             f_update_software
@@ -28,6 +27,7 @@ function f_install_enl_requirements() {
         else
             echo "- but can't install them because the networks are down;"
         fi
+    f_config_enl
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
         for i in "${!var_install_enl_software_array[@]}"
         do
