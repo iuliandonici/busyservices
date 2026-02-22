@@ -5,6 +5,7 @@ function f_install_enl_requirements() {
     source functions/f_get_distro_packager.sh
     source functions/f_config_enl.sh
     # source functions/f_config_kde_networking.sh
+    f_update_software
     echo "- Installing Enlightenment desktop environment:"
     echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
     for i in "${!var_install_base_software_array[@]}"
