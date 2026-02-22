@@ -3,10 +3,10 @@ function f_config_kvm_libvirtd() {
     echo "- Configuring KVM for remote ssh;"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
-            sudo rc-service libvirtd stop
-            sudo rm -rf /etc/libvirt/libvirt.conf
-            sudo cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
-            sudo rc-service libvirtd start
+            doas rc-service libvirtd stop
+            doas rm -rf /etc/libvirt/libvirt.conf
+            doas cp -r functions/f_config_kvm_libvirtd /etc/libvirt/libvirt.conf
+            doas rc-service libvirtd start
         else
             rc-service libvirtd stop
             rm -rf /etc/libvirt/libvirt.conf

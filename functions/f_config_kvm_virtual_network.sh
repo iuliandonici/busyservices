@@ -37,15 +37,15 @@ function f_config_kvm_virtual_network() {
     net.ipv4.ip_forward=1
     # Ignore iptables on bridge interfaces.
     net.bridge.bridge-nf-call-iptables=0" > bridging.conf
-                sudo mv bridging.conf /etc/sysctl.d/
+                doas mv bridging.conf /etc/sysctl.d/
                 # sudo rc-service libvirtd
                 # sudo rc-update add virtnetworkd
                 # sudo rc-service virtnetworkd restart
                 # sudo rc-update add virtqemud
                 # sudo rc-service virtqemud restart
-                sudo virsh net-define functions/f_config_kvm_virtual_network.xml
-                sudo virsh net-start bridged-network
-                sudo virsh net-autostart bridged-network
+                doas virsh net-define functions/f_config_kvm_virtual_network.xml
+                doas virsh net-start bridged-network
+                doas virsh net-autostart bridged-network
             else
                 # Allow VMs to start and stop when the host does so
                 rc-update add libvirt-guests
