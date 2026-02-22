@@ -18,8 +18,12 @@ function f_config_kvm_images_alpine() {
         echo $var_f_config_kvm_images_repo_alpine/${var_f_config_kvm_images_arch_alpine[$i]}/
         if ! [ -f $var_f_config_kvm_images_dir/$(cat alpineversions) ]; then
             wget -r -N $var_f_config_kvm_images_repo_alpine/${var_f_config_kvm_images_arch_alpine[$i]}/$(cat alpineversions)
-            if [[ "$EUID" -ne 0 ]]; then 
-                sudo rsync -aP --remove-source-files $var_f_config_kvm_images_repo_alpine_dir/${var_f_config_kvm_images_arch_alpine[$i]}/*.iso $var_f_config_kvm_images_dir
+            if [[ "$EUID" -ne 0 ]]; then
+                if [[ $(f_get_distro_packager) == "apk" ]]; then
+                    doas rsync -aP --remove-source-files $var_f_config_kvm_images_repo_alpine_dir/${var_f_config_kvm_images_arch_alpine[$i]}/*.iso $var_f_config_kvm_images_dir
+                else
+                    sudo rsync -aP --remove-source-files $var_f_config_kvm_images_repo_alpine_dir/${var_f_config_kvm_images_arch_alpine[$i]}/*.iso $var_f_config_kvm_images_dir
+                fi
             else
                 rsync -aP --remove-source-files $var_f_config_kvm_images_repo_alpine_dir/${var_f_config_kvm_images_arch_alpine[$i]}/*.iso $var_f_config_kvm_images_dir
             fi
