@@ -25,7 +25,7 @@ function f_config_kvm_images_alpine() {
             fi
         else
             echo "- but latest Alpine standard ($(cat alpineversions)) ISO already exists at:"
-            echo $var_f_config_kvm_images_dir/$(cat alpineversions)
+            echo $var_f_config_kvm_images_dir/${var_f_config_kvm_images_arch_alpine[$i]}
         fi
     done
     # rm -rf alpineversions dl-cdn.*/
