@@ -7,7 +7,7 @@ function f_config_kvm_images_ubuntu() {
     var_latest_ubuntu_version=$(cat laststableubuntuversion | head -1)
     if ! [ -f $var_f_config_kvm_images_dir/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso ]; then
         start_wget=$(wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso)
-        if [[ "$start_wget" =~ " 404\ Not\ Found "]]; then
+        if [[ "$start_wget" -eq 0 ]]; then
             var_latest_ubuntu_version=$(tail -1 laststableubuntuversion)
             wget https://releases.ubuntu.com/${var_latest_ubuntu_version}/ubuntu-$var_latest_ubuntu_version-live-server-amd64.iso        
         fi
