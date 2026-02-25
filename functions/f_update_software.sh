@@ -5,6 +5,7 @@ var_update_commands_array_alma=("update -y" "upgrade -y")
 var_update_commands_array_opensuse=("refresh" "update -y" "clean")
 function f_update_software() {
     source functions/f_get_distro_packager.sh
+    source functions/f_get_security_utility.sh
     source functions/f_check_networks.sh
     source functions/f_update_flatpak.sh
     echo " - updating, upgrading and cleaning software;"
@@ -14,7 +15,7 @@ function f_update_software() {
             do
                 echo "- and currently running: $i ${var_update_commands_array_alpine[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    doas $(f_get_distro_packager) ${var_update_commands_array_alpine[$i]}  
+                    $(f_get_security_utility) $(f_get_distro_packager) ${var_update_commands_array_alpine[$i]}  
                 else
                     $(f_get_distro_packager) ${var_update_commands_array_alpine[$i]}  
                 fi
@@ -28,7 +29,7 @@ function f_update_software() {
         do
                 echo "- and currently running: $i ${var_update_commands_array_alma[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    sudo $(f_get_distro_packager) ${var_update_commands_array_alma[$i]}
+                    $(f_get_security_utility) $(f_get_distro_packager) ${var_update_commands_array_alma[$i]}
                 else
                     $(f_get_distro_packager) ${var_update_commands_array_alma[$i]}  
                 fi
@@ -38,7 +39,7 @@ function f_update_software() {
         do
                 echo "- and currently running: $i ${var_update_commands_array_opensuse[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    sudo $(f_get_distro_packager) ${var_update_commands_array_opensuse[$i]}
+                    $(f_get_security_utility) $(f_get_distro_packager) ${var_update_commands_array_opensuse[$i]}
                 else
                     $(f_get_distro_packager) ${var_update_commands_array_opensuse[$i]}  
                 fi
@@ -48,7 +49,7 @@ function f_update_software() {
         do
             echo "- and currently running: $i ${var_update_commands_array_debian[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) ${var_update_commands_array_debian[$i]}
+                $(f_get_security_utility) $(f_get_distro_packager) ${var_update_commands_array_debian[$i]}
             else
                 $(f_get_distro_packager) ${var_update_commands_array_debian[$i]}
             fi
