@@ -41,10 +41,10 @@ function f_get_security_utility() {
         echo "sudo" 
     elif [ -f /etc/redhat-release ]; then
         # Older Red Hat, CentOS, etc.
-    else
-        echo "sudo" 
-        # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-        OS=$(uname -s)
-        VER=$(uname -r)
+    # else
+    #     echo "sudo" 
+    #     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    #     OS=$(uname -s)
+    #     VER=$(uname -r)
     fi
 }
