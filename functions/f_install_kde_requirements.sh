@@ -6,7 +6,7 @@ function f_install_kde_requirements() {
     source functions/f_get_distro_packager.sh
     source functions/f_config_kde.sh
     source functions/f_config_kde_networking.sh
-    echo "- Installing KDE desktop environment:"
+    echo " - Installing KDE desktop environment:"
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ $(f_check_networks) == "UP" ]]; then
             echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"

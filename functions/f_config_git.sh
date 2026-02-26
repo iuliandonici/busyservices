@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_config_git() {
     if [[ -f /usr/bin/git ]]; then
-        echo "- and git is installed; now we'll configure it;"
+        echo " - and git is installed; now we'll configure it;"
         git config --global user.email "iuliandonici@gmail.com"
         git config --global user.name "Iulian Donici"
         # 6. Config that every pull is being rebased
