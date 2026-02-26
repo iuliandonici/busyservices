@@ -2,15 +2,16 @@
 var_add_netplan_network_manager_spacer="    "
 function f_add_netplan_network_manager() {
   source functions/f_get_distro_packager.sh
+  source functions/f_get_security_utility.sh
   echo "- Currently configuring netplan:"
   if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
     if [[ "$EUID" -ne 0 ]]; then 
-      if sudo grep -wq "renderer" "/etc/netplan/50-cloud-init.yaml"; then
         echo "- but NetworkManager as renderer is already being used;"
+      if $(f_get_security_utility) grep -wq "renderer" "/etc/netplan/50-cloud-init.yaml"; then
       else
-        sudo chmod 0600 /etc/netplan/*.yaml
+        $(f_get_security_utility) chmod 0600 /etc/netplan/*.yaml
         echo "${var_add_netplan_network_manager_spacer}renderer: NetworkManager" | sudo tee -a /etc/netplan/50-cloud-init.yaml
-        sudo netplan apply
+        $(f_get_security_utility) netplan apply
       fi
     else
       if grep -wq "renderer" "/etc/netplan/50-cloud-init.yaml"; then
