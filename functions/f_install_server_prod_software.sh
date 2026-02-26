@@ -7,7 +7,7 @@ function f_install_server_prod_software() {
     source functions/f_add_netplan_network_manager.sh
     source functions/f_install_docker.sh
     source functions/f_install_jellyfin.sh
-    source functions/f_install_transmission_requirements.sh
+    source functions/f_install_transmission.sh
     source functions/f_install_cockpit.sh
     f_update_software
     f_remove_packages
@@ -27,7 +27,7 @@ function f_install_server_prod_software() {
         do
             echo "- Currently installing: $i ${var_install_server_prod_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                doas $(f_get_distro_packager) add ${var_install_server_prod_software_array[$i]}  
+                $(f_get_security_utility) $(f_get_distro_packager) add ${var_install_server_prod_software_array[$i]}  
             else
                 $(f_get_distro_packager) add ${var_install_server_prod_software_array[$i]}  
             fi
@@ -37,7 +37,7 @@ function f_install_server_prod_software() {
         do
             echo "- Currently installing: $i ${var_install_server_prod_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_server_prod_software_array[$i]}  
+                $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_server_prod_software_array[$i]}  
             else
                 $(f_get_distro_packager) install -y ${var_install_server_prod_software_array[$i]}  
             fi
@@ -47,7 +47,7 @@ function f_install_server_prod_software() {
         do
             echo "- Currently installing: $i ${var_install_server_prod_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_server_prod_software_array[$i]}  
+                $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_server_prod_software_array[$i]}  
             else
                 $(f_get_distro_packager) install -y ${var_install_server_prod_software_array[$i]}  
             fi
@@ -56,7 +56,7 @@ function f_install_server_prod_software() {
     f_update_software
     f_install_docker
     f_update_software
-    f_install_transmission_requirements
+    f_install_transmission
     f_update_software
     f_install_cockpit
     f_update_software
