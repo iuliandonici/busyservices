@@ -1,18 +1,19 @@
 #!/bin/bash
 var_remove_packages_array=("cloud-init")
+var_remove_packages_array_debian=("cloud-init")
 function f_remove_packages() {
-  source functions/f_get_distro_packager.sh
-  source functions/f_get_security_utility.sh
+  source functions/f_update_software.sh
+  f_update_software
   echo "- Currently removing software;"
-  echo "- List of extra software that will be removed using $(f_get_distro_packager):"
-  for i in "${!var_remove_packages_array[@]}"
-  do
-      echo " $i ${var_remove_packages_array[$i]}"
-  done
   if [[ $(f_get_distro_packager) == "apt" || $(f_get_distro_packager) == "apt-get" ]]; then
-    for i in "${!var_remove_packages_array[@]}"
+    echo "- List of extra software that will be removed using $(f_get_distro_packager):"
+    for i in "${!var_remove_packages_array_debian[@]}"
     do
-        echo "- currently removing: $i ${var_remove_packages_array[$i]}"
+        echo " $i ${var_remove_packages_array_debian[$i]}"
+    done
+    for i in "${!var_remove_packages_array_debian[@]}"
+    do
+        echo "- currently removing: $i ${var_remove_packages_array_debian[$i]}"
         if [[ "$EUID" -ne 0 ]]; then 
             $(f_get_security_utility) $(f_get_distro_packager) remove -y ${var_remove_packages_array[$i]} 
         else
