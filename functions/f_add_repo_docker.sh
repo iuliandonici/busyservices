@@ -1,6 +1,7 @@
 #!/bin/bash
 function f_add_repo_docker() {
     source functions/f_check_networks.sh
+    source functions/f_get_security_utility.sh
     echo " - and currently adding the Docker repo using $(f_get_distro_packager):"
     if [[ "$(f_get_distro_packager)" == "apk" ]]; then
         echo "- but Docker on Alpine doesn't need repo adding;"
@@ -9,14 +10,14 @@ function f_add_repo_docker() {
 # Setting a variable for getting the machine's architecture
             architecture=$(uname -m)
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
-                sudo install -m 0755 -d /etc/apt/keyrings
-                sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-                sudo chmod a+r /etc/apt/keyrings/docker.asc
+                $(f_get_security_utility) install -m 0755 -d /etc/apt/keyrings
+                $(f_get_security_utility) curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+                $(f_get_security_utility) chmod a+r /etc/apt/keyrings/docker.asc
               # Add the repository to Apt sources:
                 echo \
                 "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
                 $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
-                sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+                $(f_get_security_utility) tee /etc/apt/sources.list.d/docker.list > /dev/null
             else
                 echo "- but there is no version of Docker for x86;"
             fi            
