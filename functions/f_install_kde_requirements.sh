@@ -18,7 +18,7 @@ function f_install_kde_requirements() {
             do
                 echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    doas $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
+                    $(f_get_security_utility) $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
                 else
                     $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
                 fi
@@ -28,11 +28,12 @@ function f_install_kde_requirements() {
         fi
     f_config_kde
     elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+        f_update_software
         for i in "${!var_install_kde_software_array[@]}"
         do
             echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
+                $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
             else
                 $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
             fi
@@ -42,7 +43,7 @@ function f_install_kde_requirements() {
         do
             echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
+                $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
             else
                 $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
             fi
