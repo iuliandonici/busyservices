@@ -16,12 +16,12 @@ case $(hostname) in
       source functions/f_install_busychrome_audio.sh
       source functions/f_install_lite_xl.sh
       source functions/f_install_bluetooth.sh
-      source functions/f_add_repo_brave_browser.sh
+      source functions/f_install_brave_browser.sh
       f_install_kde_requirements
       f_install_busychrome_audio
       f_install_bluetooth
       f_install_lite_xl
-      f_add_repo_brave_browser
+      f_install_brave_browser
   ;;
   busycontainer)
     echo "This is $(hostname)."
@@ -61,9 +61,9 @@ case $(hostname) in
     echo "This is $(hostname)."
     source functions/f_install_server_kvm_software.sh
     source functions/f_install_cockpit.sh
-    source functions/f_add_repo_brave_browser.sh
+    source functions/f_install_brave_browser.sh
     f_install_server_kvm_software
-    f_add_repo_brave_browser
+    f_install_brave_browser
   ;;
   busycenter | busyubuntus)
     echo "This is $(hostname)."

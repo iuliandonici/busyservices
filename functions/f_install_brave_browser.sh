@@ -1,5 +1,5 @@
 #!/bin/bash
-function f_add_repo_brave_browser() {
+function f_install_brave_browser() {
     source functions/f_update_software.sh
     source functions/f_add_repo_flathub.sh
     echo " - and currently adding the Brave browser repo using $(f_get_distro_packager):"
