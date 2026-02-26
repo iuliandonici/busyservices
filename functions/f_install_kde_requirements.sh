@@ -7,8 +7,8 @@ function f_install_kde_requirements() {
     source functions/f_config_kde.sh
     source functions/f_config_kde_networking.sh
     echo " - Installing KDE desktop environment:"
-    if [[ $(f_get_distro_packager) == "apk" ]]; then
-        if [[ $(f_check_networks) == "UP" ]]; then
+    if [[ $(f_check_networks) == "UP" ]]; then
+        if [[ $(f_get_distro_packager) == "apk" ]]; then
             echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
             for i in "${!var_install_kde_software_array_alpine[@]}"
             do
@@ -24,31 +24,42 @@ function f_install_kde_requirements() {
                     $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
                 fi
             done
+        f_config_kde
+        elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+            echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
+            for i in "${!var_install_kde_software_array[@]}"
+            do
+                echo " $i ${var_install_kde_software_array[$i]}"
+            done
+            f_update_software
+            for i in "${!var_install_kde_software_array[@]}"
+            do
+                echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
+                if [[ "$EUID" -ne 0 ]]; then 
+                    $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
+                else
+                    $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
+                fi
+            done        
         else
-            echo "- but can't install them because the networks are down;"
+            echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
+            for i in "${!var_install_kde_software_array[@]}"
+            do
+                echo " $i ${var_install_kde_software_array[$i]}"
+            done
+            f_update_software
+            for i in "${!var_install_kde_software_array[@]}"
+            do
+                echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
+                if [[ "$EUID" -ne 0 ]]; then 
+                    $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
+                else
+                    $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
+                fi
+            done
         fi
-    f_config_kde
-    elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
-        f_update_software
-        for i in "${!var_install_kde_software_array[@]}"
-        do
-            echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
-            if [[ "$EUID" -ne 0 ]]; then 
-                $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
-            else
-                $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
-            fi
-        done        
+        f_config_kde_networking
     else
-        for i in "${!var_install_kde_software_array[@]}"
-        do
-            echo "- and currently installing: $i ${var_install_kde_software_array[$i]}"
-            if [[ "$EUID" -ne 0 ]]; then 
-                $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
-            else
-                $(f_get_distro_packager) install -y ${var_install_kde_software_array[$i]}  
-            fi
-        done
+        echo "- but can't install them because the networks are down;"
     fi
-    f_config_kde_networking
  }
