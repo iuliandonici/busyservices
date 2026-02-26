@@ -23,7 +23,6 @@ function f_install_base_software() {
                     $(f_get_distro_packager) add ${var_install_base_software_array_alpine[$i]}  
                 fi
             done
-
         elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
             f_update_software
             for i in "${!var_install_base_software_array[@]}"
