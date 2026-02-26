@@ -1,19 +1,20 @@
 #!/bin/bash
 function f_config_transmission() {
+    source functions/f_get_security_utility.sh
     # Verify if Transmission has been installed
     if [[ -f /usr/bin/transmission-daemon ]]; then
         echo "- Transmission is installed, now we'll config it:"
         if [[ $(f_get_distro_packager) == "apk" ]]; then
             if [[ "$EUID" -ne 0 ]]; then 
-                doas rc-service transmission-daemon stop
-                doas cp -r functions/f_config_transmission.json settings.json
-                doas mv settings.json /var/lib/transmission/config/settings.json
-                doas addgroup root transmission
-                doas mkdir /var/downloads/
-                doas chown -R transmission:transmission /var/downloads/
-                doas rc-update add transmission-daemon
-                # doas lbu commit device
-                doas rc-service transmission-daemon restart
+                $(f_get_security_utility) rc-service transmission-daemon stop
+                $(f_get_security_utility) cp -r functions/f_config_transmission.json settings.json
+                $(f_get_security_utility) mv settings.json /var/lib/transmission/config/settings.json
+                $(f_get_security_utility) addgroup root transmission
+                $(f_get_security_utility) mkdir /var/downloads/
+                $(f_get_security_utility) chown -R transmission:transmission /var/downloads/
+                $(f_get_security_utility) rc-update add transmission-daemon
+                # $(f_get_security_utility) lbu commit device
+                $(f_get_security_utility) rc-service transmission-daemon restart
             else
                 rc-service transmission-daemon stop
                 cp -r functions/f_config_transmission.json settings.json
@@ -27,16 +28,16 @@ function f_config_transmission() {
             fi
         elif [[ "$(f_get_distro_packager)" == "apt" || "$(f_get_distro_packager)" == "apt-get" ]]; then
             if [[ "$EUID" -ne 0 ]]; then 
-                sudo systemctl stop transmission-daemon.service
-                # sudo sed -i -e 's/Type=notify/Type=simple/g' /etc/systemd/system/transmission-daemon.service
-                sudo sed -i -e 's/Type=notify/Type=simple/g' /lib/systemd/system/transmission-daemon.service
-                sudo cp -r functions/f_config_transmission.json settings.json
-                sudo mv settings.json /var/lib/transmission-daemon/info/
-                sudo usermod -a -G debian-transmission $USER
-                sudo chmod 777 ~/
-                sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
-                sudo systemctl restart transmission-daemon.service
-                sudo systemctl daemon-reload
+                $(f_get_security_utility) systemctl stop transmission-daemon.service
+                # $(f_get_security_utility) sed -i -e 's/Type=notify/Type=simple/g' /etc/systemd/system/transmission-daemon.service
+                $(f_get_security_utility) sed -i -e 's/Type=notify/Type=simple/g' /lib/systemd/system/transmission-daemon.service
+                $(f_get_security_utility) cp -r functions/f_config_transmission.json settings.json
+                $(f_get_security_utility) mv settings.json /var/lib/transmission-daemon/info/
+                $(f_get_security_utility) usermod -a -G debian-transmission $USER
+                $(f_get_security_utility) chmod 777 ~/
+                $(f_get_security_utility) chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
+                $(f_get_security_utility) systemctl restart transmission-daemon.service
+                $(f_get_security_utility) systemctl daemon-reload
             else
                 systemctl stop transmission-daemon.service
                 # sed -i -e 's/Type=notify/Type=simple/g' /etc/systemd/system/transmission-daemon.service

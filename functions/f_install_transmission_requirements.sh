@@ -32,7 +32,7 @@ function f_install_transmission_requirements() {
             do
                 echo " - and currently installing: $i ${var_install_transmission_requirements_debian[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    sudo $(f_get_distro_packager) install -y ${var_install_transmission_requirements_debian[$i]}  
+                    $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_transmission_requirements_debian[$i]}  
                 else
                     $(f_get_distro_packager) install -y ${var_install_transmission_requirements_debian[$i]}  
                 fi
@@ -47,7 +47,7 @@ function f_install_transmission_requirements() {
             do
                 echo " - and currently installing: $i ${var_install_transmission_requirements[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    sudo $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+                    $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
                 else
                     $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
                 fi
@@ -62,7 +62,7 @@ function f_install_transmission_requirements() {
             do
                 echo " - and currently installing: $i ${var_install_transmission_requirements[$i]}"
                 if [[ "$EUID" -ne 0 ]]; then 
-                    sudo $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
+                    $(f_get_security_utility) $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
                 else
                     $(f_get_distro_packager) install -y ${var_install_transmission_requirements[$i]}  
                 fi
