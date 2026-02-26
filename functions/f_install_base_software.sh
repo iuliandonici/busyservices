@@ -7,9 +7,9 @@ function f_install_base_software() {
     source functions/f_update_software.sh
     source functions/f_config_git.sh
     if [[ $(f_check_networks) == "UP" ]]; then
+        echo " - here's a list of base software that will be installed using $(f_get_distro_packager):"
         if [[ $(f_get_distro_packager) == "apk" ]]; then
             f_update_software
-            echo " - here's a list of base software that will be installed using $(f_get_distro_packager):"
             for i in "${!var_install_base_software_array_alpine[@]}"
             do
                 echo " $i ${var_install_base_software_array_alpine[$i]}"
@@ -25,6 +25,7 @@ function f_install_base_software() {
             done
 
         elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
+            f_update_software
             for i in "${!var_install_base_software_array[@]}"
             do
                 echo "- and currently installing: $i ${var_install_base_software_array[$i]}"
@@ -35,6 +36,7 @@ function f_install_base_software() {
                 fi
             done        
         else
+            f_update_software
             for i in "${!var_install_base_software_array[@]}"
             do
                 echo "- and currently installing: $i ${var_install_base_software_array[$i]}"
