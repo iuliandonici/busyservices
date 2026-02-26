@@ -1,7 +1,8 @@
 #!/bin/bash
-source functions/f_get_distro_packager.sh
-source functions/f_get_distro_id.sh
 function f_config_docker() {
+    source functions/f_get_distro_packager.sh
+    source functions/f_get_distro_id.sh
+    source functions/f_get_security_utility.sh
     echo "- and currently configuring Docker;"
     if [[ "$(f_get_distro_packager)" == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then 
@@ -10,13 +11,13 @@ function f_config_docker() {
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 if [[ -f /usr/bin/docker ]]; then
                     echo "- and Docker is installed; now, we'll restart it;"
-                    doas addgroup ${USER} docker
-                    doas rc-update add docker boot
-                    doas rc-update add docker default
-                    doas rc-service docker stop
-                    doas mkdir /etc/docker/
-                    doas cp -r functions/f_config_docker.json /etc/docker/daemon.json
-                    doas rc-service docker start
+                    $(f_get_security_utility) addgroup ${USER} docker
+                    $(f_get_security_utility) rc-update add docker boot
+                    $(f_get_security_utility) rc-update add docker default
+                    $(f_get_security_utility) rc-service docker stop
+                    $(f_get_security_utility) mkdir /etc/docker/
+                    $(f_get_security_utility) cp -r functions/f_config_docker.json /etc/docker/daemon.json
+                    $(f_get_security_utility) rc-service docker start
                     echo "- sleeping for 5s do we can give a chance the Docker daemon to reload;"
                     sleep 5
                 else 
@@ -56,17 +57,17 @@ function f_config_docker() {
             if [[ $architecture == "x64" || $architecture == "x86_64" ]]; then
                 if [[ -f /usr/bin/docker ]]; then
                     echo "- and Docker is installed; now, we'll restart it;"
-                    sudo groupadd docker
-                    sudo usermod -aG docker $USER
-                    sudo systemctl stop docker.socket
-                    sudo systemctl stop docker.service
+                    $(f_get_security_utility) groupadd docker
+                    $(f_get_security_utility) usermod -aG docker $USER
+                    $(f_get_security_utility) systemctl stop docker.socket
+                    $(f_get_security_utility) systemctl stop docker.service
                     # And because on systemd, Docker already starts with the -H flah, we have to override it (https://stackoverflow.com/questions/44052054/unable-to-start-docker-after-configuring-hosts-in-daemon-json)
-                    sudo cp -r /lib/systemd/system/docker.service /etc/systemd/system/
-                    sudo sed -i 's/\ -H\ fd:\/\///g' /etc/systemd/system/docker.service
-                    sudo cp -r functions/f_config_docker.json /etc/docker/daemon.json
-                    sudo systemctl start docker.socket
-                    sudo systemctl daemon-reload
-                    sudo systemctl start docker.service
+                    $(f_get_security_utility) cp -r /lib/systemd/system/docker.service /etc/systemd/system/
+                    $(f_get_security_utility) sed -i 's/\ -H\ fd:\/\///g' /etc/systemd/system/docker.service
+                    $(f_get_security_utility) cp -r functions/f_config_docker.json /etc/docker/daemon.json
+                    $(f_get_security_utility) systemctl start docker.socket
+                    $(f_get_security_utility) systemctl daemon-reload
+                    $(f_get_security_utility) systemctl start docker.service
                     echo "- sleeping for 5s do we can give a chance the Docker daemon to reload;"
                     sleep 5
                 else 
