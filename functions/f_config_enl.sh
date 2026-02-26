@@ -5,8 +5,8 @@ function f_config_enl() {
     f_update_software
     if [[ $(f_get_distro_packager) == "apk" ]]; then
         if [[ "$EUID" -ne 0 ]]; then
-            doas setup-xorg-base
-            doas rc-update add lightdm 
+            $(f_get_security_utility) setup-xorg-base
+            $(f_get_security_utility) rc-update add lightdm 
             # sudo f_install_busychrome_audio
         else
             setup-xorg-base
