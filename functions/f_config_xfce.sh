@@ -8,7 +8,7 @@ function f_config_xfce() {
             if [[ "$EUID" -ne 0 ]]; then
                 $(f_get_security_utility) setup-xorg-base
                 $(f_get_security_utility) apk add lightdm dbus
-                $(f_get_security_utility) rc-update add dbus lightdm local
+                $(f_get_security_utility) rc-update add dbus lightdm
                 $(f_get_security_utility) rc-service lightdm restart
 #                 $(f_get_security_utility) echo -e "#!/bin/bash
 # doas startx" > initx.start
