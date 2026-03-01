@@ -1,6 +1,6 @@
 #!/bin/bash
 var_update_commands_array_debian=("update" "upgrade -y" "autoremove -y --purge")
-var_update_commands_array_alpine=("update" "upgrade")
+var_update_commands_array_alpine=("update" "upgrade --no-cache")
 var_update_commands_array_alma=("update -y" "upgrade -y")
 var_update_commands_array_opensuse=("refresh" "update -y" "clean")
 function f_update_software() {
