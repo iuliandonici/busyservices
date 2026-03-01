@@ -1,11 +1,11 @@
 #!/bin/bash
 var_install_xfce_software_array=("")
-var_install_xfce_software_array_alpine=("font-dejavu" "lightdm-gtk-greeter" "python3" "networkmanager" "networkmanager-tui" "networkmanager-cli" "plasma-nm" "network-manager-applet" "networkmanager-wifi" "virt-manager" "vlc" "xfce4" "xfce4-terminal" "xfce4-screensaver")
-function f_install_kde_requirements() {
+var_install_xfce_software_array_alpine=("adwaita-xfce-icon-theme" "adw-gtk3" "font-dejavu" "lightdm-gtk-greeter" "python3"  "networkmanager" "networkmanager-tui" "networkmanager-cli" "network-manager-applet" "networkmanager-wifi" "virt-manager" "vlc" "xfce4" "xfce-polkit" "xfce4-terminal" "xfce4-screensaver")
+function f_install_xfce() {
     source functions/f_update_software.sh
     source functions/f_get_distro_packager.sh
     source functions/f_config_xfce.sh
-    # source functions/f_config_xfce_networking.sh
+    source functions/f_config_xfce_networking.sh
     echo " - Installing Xfce desktop environment:"
     if [[ $(f_check_networks) == "UP" ]]; then
         if [[ $(f_get_distro_packager) == "apk" ]]; then
