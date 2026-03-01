@@ -58,7 +58,7 @@ function f_install_xfce() {
             done
             f_config_xfce
         fi
-        f_config_xfce_networking
+        # f_config_xfce_networking
     else
         echo "- but can't install them because the networks are down;"
     fi
