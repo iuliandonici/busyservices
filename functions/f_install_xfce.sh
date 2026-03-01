@@ -10,6 +10,7 @@ function f_install_xfce() {
     f_update_software
     if [[ $(f_check_networks) == "UP" ]]; then
         if [[ $(f_get_distro_packager) == "apk" ]]; then
+            f_update_software
             echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
             for i in "${!var_install_xfce_software_array_alpine[@]}"
             do
