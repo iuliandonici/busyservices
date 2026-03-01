@@ -30,8 +30,10 @@ case $(hostname) in
   ;;
   busyalpines | busyubuntus)
     echo "This is $(hostname)."
-    source functions/f_install_jellyfin.sh
-    f_install_jellyfin
+    # source functions/f_install_jellyfin.sh
+    # f_install_jellyfin
+    source functions/f_install_xfce.sh
+    f_install_xfce
   ;;
 
   busydocker)
