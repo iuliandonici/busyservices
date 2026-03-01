@@ -18,7 +18,6 @@ function f_install_xfce() {
             for i in "${!var_install_xfce_software_array_alpine[@]}"
             do
                 echo "- and currently installing: $i ${var_install_xfce_software_array_alpine[$i]}"
-                f_update_software
                 if [[ "$EUID" -ne 0 ]]; then 
                     $(f_get_security_utility) $(f_get_distro_packager) add ${var_install_xfce_software_array[$i]}  
                 else
