@@ -1,6 +1,6 @@
 #!/bin/bash
 var_install_xfce_software_array=("")
-var_install_xfce_software_array_alpine=("adwaita-xfce-icon-theme" "adw-gtk3" "font-dejavu" "lightdm" "lightdm-gtk-greeter" "python3" "virt-manager" "vlc" "xfce4" "xfce-polkit" "xfce4-terminal" "xfce4-screensaver")
+var_install_xfce_software_array_alpine=("adwaita-xfce-icon-theme" "adw-gtk3" "font-dejavu" "lightdm" "lightdm-gtk-greeter" "networkmanager" "networkmanager-tui" "networkmanager-cli" "networkmanager-wifi" "polkit-elogind" "python3" "virt-manager" "vlc" "xfce4" "xfce-polkit" "xfce4-terminal" "xfce4-screensaver")
 function f_install_xfce() {
     source functions/f_update_software.sh
     source functions/f_get_distro_packager.sh
@@ -58,7 +58,7 @@ function f_install_xfce() {
             done
             f_config_xfce
         fi
-        # f_config_xfce_networking
+        f_config_xfce_networking
     else
         echo "- but can't install them because the networks are down;"
     fi
