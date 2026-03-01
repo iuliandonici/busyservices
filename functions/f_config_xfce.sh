@@ -11,6 +11,7 @@ function f_config_xfce() {
                 $(f_get_security_utility) rc-update add dbus
                 $(f_get_security_utility) rc-update add lightdm
                 $(f_get_security_utility) rc-service lightdm restart
+                $(f_get_security_utility) adduser $USER wheel
 #                 $(f_get_security_utility) echo -e "#!/bin/bash
 # doas startx" > initx.start
 #                 $(f_get_security_utility) mv initx.start /etc/local.d/
