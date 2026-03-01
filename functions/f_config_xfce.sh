@@ -1,7 +1,7 @@
 #!/bin/bash
 function f_config_xfce() {
     source functions/f_update_software.sh
-    echo " - and currently configuring KDE;"
+    echo " - and currently configuring Xfce;"
     f_update_software
     if [[ $(f_check_networks) == "UP" ]]; then
         if [[ $(f_get_distro_packager) == "apk" ]]; then
