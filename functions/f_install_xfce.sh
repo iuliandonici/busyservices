@@ -24,9 +24,9 @@ function f_install_xfce() {
                     $(f_get_distro_packager) add ${var_install_xfce_software_array[$i]}  
                 fi
             done
+            f_config_xfce
         elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
             echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
-        f_config_xfce
             for i in "${!var_install_xfce_software_array[@]}"
             do
                 echo " $i ${var_install_xfce_software_array[$i]}"
@@ -40,6 +40,7 @@ function f_install_xfce() {
                     $(f_get_distro_packager) install -y ${var_install_xfce_software_array[$i]}  
                 fi
             done        
+            f_config_xfce
         else
             echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
             for i in "${!var_install_xfce_software_array[@]}"
@@ -55,6 +56,7 @@ function f_install_xfce() {
                     $(f_get_distro_packager) install -y ${var_install_xfce_software_array[$i]}  
                 fi
             done
+            f_config_xfce
         fi
         f_config_xfce_networking
     else
