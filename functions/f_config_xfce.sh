@@ -7,15 +7,14 @@ function f_config_xfce() {
         if [[ $(f_get_distro_packager) == "apk" ]]; then
             if [[ "$EUID" -ne 0 ]]; then
                 $(f_get_security_utility) setup-xorg-base
-                $(f_get_security_utility) apk add lightdm
-                $(f_get_security_utility) rc-update add lightdm
-                $(f_get_security_utility) rc-update add local
-                $(f_get_security_utility) rc-service lightdm restart                
-                $(f_get_security_utility) echo -e "#!/bin/bash
-doas startx" > initx.start
-                $(f_get_security_utility) mv initx.start /etc/local.d/
-                # $(f_get_security_utility) chown -R $USER:$USER /etc/local.d/initx.start
-                $(f_get_security_utility) chmod +x /etc/local.d/initx.start
+                $(f_get_security_utility) apk add lightdm dbus
+                $(f_get_security_utility) rc-update add dbus lightdm local
+                $(f_get_security_utility) rc-service lightdm restart
+#                 $(f_get_security_utility) echo -e "#!/bin/bash
+# doas startx" > initx.start
+#                 $(f_get_security_utility) mv initx.start /etc/local.d/
+#                 # $(f_get_security_utility) chown -R $USER:$USER /etc/local.d/initx.start
+#                 $(f_get_security_utility) chmod +x /etc/local.d/initx.start
                 # sudo f_install_busychrome_audio
             else
                 setup-xorg-base
