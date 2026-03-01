@@ -19,13 +19,16 @@ startx" > initx.start
                 # sudo f_install_busychrome_audio
             else
                 setup-xorg-base
+                apk add lightdm
                 rc-update add lightdm
+                rc-update add local
                 rc-service lightdm restart                
-                echo -e '#!/sbin/openrc-run
-command="/usr/bin/startx"' >> /etc/local.d/initx.start 
-                chown -R $USER:$USER /etc/local.d/initx.start
+                echo -e "#!/bin/bash
+startx" > initx.start
+                mv initx.start /etc/local.d/
+                # chown -R $USER:$USER /etc/local.d/initx.start
                 chmod +x /etc/local.d/initx.start
-                # f_install_busychrome_audio
+                f_install_busychrome_audio
             fi
         elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
             echo "- No tests done for dns/zypper;"
