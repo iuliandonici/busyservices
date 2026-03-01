@@ -11,7 +11,7 @@ function f_config_xfce() {
                 $(f_get_security_utility) rc-service lightdm restart                
                 $(f_get_security_utility) echo -e "#!/sbin/openrc-run
 command=/usr/bin/startx" > initx.start
-                $(f_get_security_utility) initx.start /etc/local.d/
+                $(f_get_security_utility) mv initx.start /etc/local.d/
                 $(f_get_security_utility) chown -R $USER:$USER /etc/local.d/initx.start
                 $(f_get_security_utility) chmod +x /etc/local.d/initx.start
                 # sudo f_install_busychrome_audio
