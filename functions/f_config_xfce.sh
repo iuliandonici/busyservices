@@ -9,7 +9,7 @@ function f_config_xfce() {
                 $(f_get_security_utility) setup-xorg-base
                 $(f_get_security_utility) rc-update add lightdm
                 $(f_get_security_utility) rc-service lightdm restart                
-                $(f_get_security_utility) echo '#!/sbin/openrc-run \ command="/usr/bin/startx"' > /etc/local.d/initx.start 
+                $(f_get_security_utility) echo -e '#!/sbin/openrc-run \ command="/usr/bin/startx"' > /etc/local.d/initx.start 
                 $(f_get_security_utility) chown -R $USER:$USER /etc/local.d/initx.start
                 $(f_get_security_utility) chmod +x /etc/local.d/initx.start
                 # sudo f_install_busychrome_audio
@@ -17,7 +17,8 @@ function f_config_xfce() {
                 setup-xorg-base
                 rc-update add lightdm
                 rc-service lightdm restart                
-                echo '#!/sbin/openrc-run \ command="/usr/bin/startx"' > /etc/local.d/initx.start 
+                echo -e '#!/sbin/openrc-run
+                command="/usr/bin/startx"' >> /etc/local.d/initx.start 
                 chown -R $USER:$USER /etc/local.d/initx.start
                 chmod +x /etc/local.d/initx.start
                 # f_install_busychrome_audio
