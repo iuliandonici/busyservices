@@ -9,7 +9,7 @@ function f_config_xfce() {
                 $(f_get_security_utility) setup-xorg-base
                 $(f_get_security_utility) apk add lightdm dbus
                 $(f_get_security_utility) rc-update add dbus
-                $(f_get_security_utility) rc-update lightdm
+                $(f_get_security_utility) rc-update add lightdm
                 $(f_get_security_utility) rc-service lightdm restart
 #                 $(f_get_security_utility) echo -e "#!/bin/bash
 # doas startx" > initx.start
