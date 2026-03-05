@@ -1,16 +1,18 @@
 #!/bin/bash
 function f_install_cosmic() {
   echo " - Installing Cosmic desktop:"
+  doas setup-devd udev
   echo "- and currently installing xorg-base;"
   doas setup-xorg-base
   echo "- and currently adding the current user to the wheel group;"
   doas adduser $USER wheel
   echo "- and currently installing requirements for the environment;"
-  doas apk add elogind dbus polkit-elogind cosmic-session cosmic-term cosmic-edit cosmic-greeter cosmic-greeter-openrc cosmic-icons cosmic-idle cosmic-initial-setup cosmic-launcher cosmic-notifications cosmic-osd cosmic-panel cosmic-randr cosmic-player cosmic-screenshot cosmic-settings cosmic-settings-daemon cosmic-store cosmic-workspaces cosmic-files cosmic-bg cosmic-comp cosmic-applets cosmic-app-library
-  doas rc-update add elogind
+  doas apk add mate-desktop-environment lxdm adwaita-icon-theme faenza-icon-theme font-dejavu
+  gvfs_pkgs=$(apk search gvfs -q | grep -v '\-dev' | grep -v '\-lang' | grep -v '\-doc')
+  doas apk add $gvfs_pkgs
   doas rc-update add dbus
   doas rc-update add polkit
-  doas setup-devd udev
+  doas rc-update add lxdm
   doas reboot
 }
 f_install_cosmic
