@@ -1,5 +1,5 @@
 #!/bin/bash
-function f_install_cosmic() {
+function f_install_mate() {
   echo " - Installing Cosmic desktop:"
   echo "- and currently adding the current user to the wheel group;"
   doas adduser $USER wheel
