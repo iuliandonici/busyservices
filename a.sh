@@ -12,7 +12,7 @@ function f_install_mate() {
   gvfs_pkgs=$(apk search gvfs -q | grep -v '\-dev' | grep -v '\-lang' | grep -v '\-doc')
   doas apk add $gvfs_pkgs
   doas rc-update add dbus
-  doas rc-update add polkit
+  # doas rc-update add polkit
   doas rc-update add lxdm
   doas reboot
 }
