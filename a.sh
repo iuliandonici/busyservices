@@ -1,19 +1,16 @@
 #!/bin/bash
 function f_install_mate() {
-  echo " - Installing Cosmic desktop:"
-  echo "- and currently adding the current user to the wheel group;"
-  doas adduser $USER wheel
-  echo "- and currently setting up udev;" 
-  doas setup-devd udev
-  echo "- and currently installing xorg-base;"
-  doas setup-xorg-base
-  echo "- and currently installing requirements for the environment;"
-  doas apk add dbus mate-desktop-environment lxdm adwaita-icon-theme faenza-icon-theme font-dejavu
-  gvfs_pkgs=$(doas apk search gvfs -q | grep -v '\-dev' | grep -v '\-lang' | grep -v '\-doc')
-  doas apk add $gvfs_pkgs
-  doas rc-update add dbus
-  # doas rc-update add polkit
-  doas rc-update add lxdm
-  doas reboot
+      source functions/f_install_busychrome_audio.sh
+      source functions/f_install_lite_xl.sh
+      source functions/f_install_bluetooth.sh
+      source functions/f_install_brave_browser.sh
+      # f_install_kde_requirements
+
+  doas setup-desktop mate
+      f_install_busychrome_audio
+      f_install_bluetooth
+      f_install_lite_xl
+      f_install_brave_browser
+
 }
 f_install_mate
