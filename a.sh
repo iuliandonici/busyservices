@@ -8,5 +8,6 @@ function f_install_cosmic() {
   doas rc-update add dbus
   doas rc-update add polkit
   doas setup-devd udev
+  doas reboot
 }
 f_install_cosmic
