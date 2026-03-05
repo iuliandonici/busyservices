@@ -16,4 +16,4 @@ function f_install_mate() {
   doas rc-update add lxdm
   doas reboot
 }
-f_install_cosmic
+f_install_mate
