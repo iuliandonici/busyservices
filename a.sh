@@ -6,7 +6,7 @@ function f_install_cosmic() {
   echo "- and currently adding the current user to the wheel group;"
   doas adduser $USER wheel
   echo "- and currently installing requirements for the environment;"
-  doas apk add elogind dbus polkit-elogind
+  doas apk add elogind dbus polkit-elogind cosmic-session cosmic-term cosmic-edit
   doas rc-update add elogind
   doas rc-update add dbus
   doas rc-update add polkit
