@@ -8,7 +8,7 @@ function f_install_mate() {
   echo "- and currently installing xorg-base;"
   doas setup-xorg-base
   echo "- and currently installing requirements for the environment;"
-  doas apk add mate-desktop-environment lxdm adwaita-icon-theme faenza-icon-theme font-dejavu
+  doas apk add dbus mate-desktop-environment lxdm adwaita-icon-theme faenza-icon-theme font-dejavu
   gvfs_pkgs=$(apk search gvfs -q | grep -v '\-dev' | grep -v '\-lang' | grep -v '\-doc')
   doas apk add $gvfs_pkgs
   doas rc-update add dbus
