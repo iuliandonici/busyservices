@@ -1,6 +1,7 @@
 #!/bin/bash
 function f_install_cosmic() {
-  echo " - Installing Cosmic desktop;"
+  echo " - Installing Cosmic desktop:"
+  echo "- and currently installing xorg-base;"
   doas setup-xorg-base
   echo "- and currently adding the current user to the wheel group;"
   doas adduser $USER wheel
