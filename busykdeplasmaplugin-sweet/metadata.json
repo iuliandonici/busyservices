@@ -7,11 +7,11 @@
                 "Name": "Iulian Donici"
             }
         ],
-        "Description": "An experimental Chromebook theme on Alpine Linux",
-        "Id": "busysweetkdeplugin",
-        "License": "LGPL 2.1+",
-        "Name": "busysweetkdetheme",
-        "Website": "www.busy.network"
+        "Description": "Busy Sweet KDE Plasma experimental theme for Alpine Linux",
+        "Id": "busykdeplasmaplugin-sweet",
+        "License": "GPL 3+",
+        "Name": "busykdeplasmatheme-sweet",
+        "Website": "iuliandonici@gmail.com"
     },
     "Keywords": "Desktop;Workspace;Appearance;Look and Feel;",
     "X-Plasma-APIVersion": "2",

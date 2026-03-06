@@ -8,7 +8,7 @@ ColorScheme=Sweet-Ambar-Blue
 Theme=candy-icons
 
 [kdeglobals][KDE]
-widgetStyle=kvantum
+widgetStyle=Breeze
 
 [kwinrc][DesktopSwitcher]
 LayoutName=org.kde.breeze.desktop
