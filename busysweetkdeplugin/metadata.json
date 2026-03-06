@@ -1,0 +1,19 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "iuliandonici@gmail.com",
+                "Name": "Iulian Donici"
+            }
+        ],
+        "Description": "An experimental Chromebook theme on Alpine Linux",
+        "Id": "busysweetkdeplugin",
+        "License": "LGPL 2.1+",
+        "Name": "busysweetkdetheme",
+        "Website": "www.busy.network"
+    },
+    "Keywords": "Desktop;Workspace;Appearance;Look and Feel;",
+    "X-Plasma-APIVersion": "2",
+    "X-Plasma-MainScript": "default"
+}
