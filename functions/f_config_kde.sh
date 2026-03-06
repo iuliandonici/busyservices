@@ -3,7 +3,7 @@ function f_config_kde() {
     source functions/f_update_software.sh
     echo " - and currently configuring KDE;"
     f_update_software
-    if [[ $(f_check_networks) == "UP" ]]; then
+#    if [[ $(f_check_networks) == "UP" ]]; then
         if [[ $(f_get_distro_packager) == "apk" ]]; then
             if [[ "$EUID" -ne 0 ]]; then
                 $(f_get_security_utility) setup-xorg-base
@@ -19,7 +19,7 @@ function f_config_kde() {
         else
             echo "- No tests done for this distro;"
         fi
-    else
-        echo "- but can't configure KDE because the networks are down;"
-    fi
+ #   else
+ #       echo "- but can't configure KDE because the networks are down;"
+ #   fi
 }

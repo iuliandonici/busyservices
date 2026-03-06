@@ -7,7 +7,7 @@ function f_install_kde_requirements() {
     source functions/f_config_kde.sh
     source functions/f_config_kde_networking.sh
     echo " - Installing KDE desktop environment:"
-    if [[ $(f_check_networks) == "UP" ]]; then
+#    if [[ $(f_check_networks) == "UP" ]]; then
         if [[ $(f_get_distro_packager) == "apk" ]]; then
             echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
             for i in "${!var_install_kde_software_array_alpine[@]}"
@@ -59,7 +59,7 @@ function f_install_kde_requirements() {
             done
         fi
         f_config_kde_networking
-    else
-        echo "- but can't install them because the networks are down;"
-    fi
+ #   else
+ #       echo "- but can't install them because the networks are down;"
+ #   fi
  }
