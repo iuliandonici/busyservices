@@ -4,8 +4,8 @@ function f_install_kde_themes() {
   doas mkdir -p ~/.local/share/plasma/look-and-feel/
   doas mkdir -p ~/.local/share/color-schemes/
   cd busytheme/
-  doas cp -r Sweet-Ambar-Blue/ ~/.local/share/plasma/desktoptheme/
-  doas cp -r Sweet-Ambar-Blue/ ~/.local/share/plasma/look-and-feel/
+#  doas cp -r Sweet-Ambar-Blue/ ~/.local/share/plasma/desktoptheme/
+#  doas cp -r Sweet-Ambar-Blue/ ~/.local/share/plasma/look-and-feel/
   doas cp -r Sweet-Ambar-Blue/ /usr/share/plasma/desktoptheme/
   doas cp -r Sweet-Ambar-Blue/ /usr/share/plasma/look-and-feel/ 
   doas cp -r SweetAmbarBlue.colors ~/.local/share/color-schemes/SweetAmbarBlue.colors
