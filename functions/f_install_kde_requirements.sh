@@ -60,6 +60,7 @@ function f_install_kde_requirements() {
                 fi
             done
         fi
+	f_install_kde_themes
         f_config_kde_networking
  #   else
  #       echo "- but can't install them because the networks are down;"
