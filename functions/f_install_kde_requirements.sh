@@ -6,7 +6,7 @@ function f_install_kde_requirements() {
     source functions/f_get_distro_packager.sh
     source functions/f_config_kde.sh
     source functions/f_config_kde_networking.sh
-    source functions/f_install_kde_themes.sh
+#    source functions/f_install_kde_themes.sh
     echo " - Installing KDE desktop environment:"
 #    if [[ $(f_check_networks) == "UP" ]]; then
         if [[ $(f_get_distro_packager) == "apk" ]]; then
@@ -60,7 +60,7 @@ function f_install_kde_requirements() {
                 fi
             done
         fi
-	f_install_kde_themes
+#	f_install_kde_themes
         f_config_kde_networking
  #   else
  #       echo "- but can't install them because the networks are down;"
