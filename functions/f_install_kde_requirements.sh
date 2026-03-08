@@ -25,7 +25,7 @@ function f_install_kde_requirements() {
                     $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
                 fi
             done
-        # f_install_kde_themes
+        f_install_kde_themes
         f_config_kde
         elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
             echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
