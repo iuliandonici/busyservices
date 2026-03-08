@@ -13,7 +13,7 @@ case $(hostname) in
   busychromebook)
       echo "This is $(hostname)."
       source functions/f_install_kde_requirements.sh
-#      source functions/f_install_kde_themes.sh
+      source functions/f_install_kde_themes.sh
       source functions/f_install_busychrome_audio.sh
       source functions/f_install_lite_xl.sh
       source functions/f_install_bluetooth.sh
@@ -24,7 +24,7 @@ case $(hostname) in
       f_install_bluetooth
       f_install_lite_xl
       f_install_brave_browser
-#      f_install_kde_themes
+      f_install_kde_themes
   ;;
   busycontainer)
     echo "This is $(hostname)."

@@ -1,5 +1,8 @@
 #!/bin/bash
 function f_install_kde_themes() {
+  source functions/f_update_software.sh
+echo " - and currently installing KDE themes;"
+if [[ $(f_check_networks) == "UP" ]]; then
   doas mkdir -p ~/.local/share/plasma/desktoptheme/
   doas mkdir -p ~/.local/share/plasma/look-and-feel/
   doas mkdir -p ~/.local/share/color-schemes/
@@ -13,4 +16,7 @@ function f_install_kde_themes() {
   doas cp -r busykdethemes/busytheme/Sweet-cursors/ /usr/share/icons/
   doas cp -r busykdethemes/busytheme/Sweet-Wallpapers/ /usr/share/wallpapers/
   doas cp -r busykdethemes/busytheme/Sweet/ /usr/share/sddm/themes/
+else
+  echo "- but the networks are down so we can't install the KDE themes;"
+fi
 }
