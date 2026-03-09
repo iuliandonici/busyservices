@@ -6,7 +6,6 @@ function f_install_kde_requirements() {
     source functions/f_get_distro_packager.sh
     source functions/f_config_kde.sh
     source functions/f_config_kde_networking.sh
-#    source functions/f_install_kde_themes.sh
     echo " - Installing KDE desktop environment:"
 #    if [[ $(f_check_networks) == "UP" ]]; then
         if [[ $(f_get_distro_packager) == "apk" ]]; then
@@ -25,7 +24,6 @@ function f_install_kde_requirements() {
                     $(f_get_distro_packager) add ${var_install_kde_software_array[$i]}  
                 fi
             done
-#        f_install_kde_themes
         f_config_kde
         elif [[ $(f_get_distro_packager) == "dnf" || $(f_get_distro_packager) == "zypper" ]]; then
             echo "- and here's a list of base software that will be installed using $(f_get_distro_packager):"
@@ -60,7 +58,6 @@ function f_install_kde_requirements() {
                 fi
             done
         fi
-#	f_install_kde_themes
         f_config_kde_networking
  #   else
  #       echo "- but can't install them because the networks are down;"
