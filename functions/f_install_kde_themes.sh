@@ -14,6 +14,7 @@ if [[ $(f_check_networks) == "UP" ]]; then
     #  $(f_get_security_utility) cp -r Sweet-Ambar-Blue/ ~/.local/share/plasma/look-and-feel/
     cp -r busykdethemes/busytheme/Sweet-Ambar-Blue/ ~/.local/share/plasma/desktoptheme/
     cp -r busykdethemes/busytheme/Sweet-Ambar-Blue/ ~/.local/share/plasma/look-and-feel/ 
+    cp -r busykdethemes/busytheme/busykdeplugin-sweet/ ~/.local/share/plasma/look-and-feel/
     cp -r busykdethemes/busytheme/SweetAmbarBlue.colors ~/.local/share/color-schemes/SweetAmbarBlue.colors
     $(f_get_security_utility) cp -r busykdethemes/busytheme/candy-icons/ /usr/share/icons/
     $(f_get_security_utility) cp -r busykdethemes/busytheme/Sweet-cursors/ /usr/share/icons/
