@@ -10,7 +10,7 @@ case $(f_get_distro_id) in
   ;;
   esac
 case $(hostname) in
-  busychromebook)
+  busychromebook | busyalpines)
       echo "This is $(hostname)."
       source functions/f_install_kde_requirements.sh
       source functions/f_install_kde_themes.sh
