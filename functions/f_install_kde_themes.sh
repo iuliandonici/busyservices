@@ -4,11 +4,16 @@ function f_install_kde_themes() {
 echo " - and currently installing KDE themes:"
 if [[ $(f_check_networks) == "UP" ]]; then
   if [[ "$EUID" -ne 0 ]]; then
-    $(f_get_security_utility) rm -rf ~/.local/share/plasma/ ~/.local/share/color-schemes/ ~/.local/share/sddm/themes/
+    $(f_get_security_utility) rm -rf ~/.local/share/plasma/desktoptheme/busykdetheme-plasma/
+    $(f_get_security_utility) rm -rf ~/.local/share/color-schemes/busykdetheme.colors
+    $(f_get_security_utility) rm -rf ~/.local/share/sddm/themes/busykdetheme-sddm/
+    $(f_get_security_utility) rm -rf ~/.local/share/icons/busykdetheme-icons/
+    $(f_get_security_utility) rm -rf  ~/.local/share/icons/busykdetheme-cursors/
     mkdir -p ~/.local/share/plasma/desktoptheme/
     mkdir -p ~/.local/share/plasma/look-and-feel/
     mkdir -p ~/.local/share/sddm/themes/
     mkdir -p ~/.local/share/color-schemes/
+    mkdir -p ~/.local/share/icons/
     rm -rf busykdethemes/
     git clone git@github.com:iuliandonici/busykdethemes.git
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/desktoptheme/
