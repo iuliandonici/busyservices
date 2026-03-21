@@ -19,7 +19,7 @@ if [[ $(f_check_networks) == "UP" ]]; then
     git clone git@github.com:iuliandonici/busykdethemes.git
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/desktoptheme/
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/look-and-feel/ 
-    cp -r busykdethemes/busykdetheme/busykdeplugin-plasma/ ~/.local/share/plasma/look-and-feel/
+    cp -r busykdethemes/busykdetheme/busykdetheme-global/ ~/.local/share/plasma/look-and-feel/
     cp -r busykdethemes/busykdetheme/busykdetheme-splash/ ~/.local/share/plasma/look-and-feel/
     cp -r busykdethemes/busykdetheme/busykdetheme.colors ~/.local/share/color-schemes/busykdetheme.colors
     cp -r busykdethemes/busykdetheme/busykdetheme-icons/ ~/.local/share/icons/
@@ -43,7 +43,7 @@ if [[ $(f_check_networks) == "UP" ]]; then
     git clone git@github.com:iuliandonici/busykdethemes.git
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/desktoptheme/
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/look-and-feel/ 
-    cp -r busykdethemes/busykdetheme/busykdeplugin-plasma/ ~/.local/share/plasma/look-and-feel/
+    cp -r busykdethemes/busykdetheme/busykdetheme-global/ ~/.local/share/plasma/look-and-feel/
     cp -r busykdethemes/busykdetheme/busykdetheme-splash/ ~/.local/share/plasma/look-and-feel/
     cp -r busykdethemes/busykdetheme/busykdetheme.colors ~/.local/share/color-schemes/busykdetheme.colors
     cp -r busykdethemes/busykdetheme/busykdetheme-icons/ ~/.local/share/icons/
