@@ -8,8 +8,8 @@ if [[ $(f_check_networks) == "UP" ]]; then
     $(f_get_security_utility) rm -rf ~/.local/share/color-schemes/busykdetheme.colors
     $(f_get_security_utility) rm -rf ~/.local/share/sddm/themes/busykdetheme-sddm/
     $(f_get_security_utility) rm -rf ~/.local/share/icons/busykdetheme-icons/
-    $(f_get_security_utility) rm -rf  ~/.local/share/icons/busykdetheme-cursors/
-    $(f_get_security_utility) rm -rf  ~/.local/share/icons/busykdetheme-splash/
+    $(f_get_security_utility) rm -rf ~/.local/share/icons/busykdetheme-cursors/
+    $(f_get_security_utility) rm -rf ~/.local/share/plasma/look-and-feel/busykdetheme-splash/
     mkdir -p ~/.local/share/plasma/desktoptheme/
     mkdir -p ~/.local/share/plasma/look-and-feel/
     # mkdir -p ~/.local/share/sddm/themes/
@@ -32,8 +32,8 @@ if [[ $(f_check_networks) == "UP" ]]; then
     rm -rf ~/.local/share/color-schemes/busykdetheme.colors
     rm -rf ~/.local/share/sddm/themes/busykdetheme-sddm/
     rm -rf ~/.local/share/icons/busykdetheme-icons/
-    rm -rf  ~/.local/share/icons/busykdetheme-cursors/
-    rm -rf  ~/.local/share/icons/busykdetheme-splash/
+    rm -rf ~/.local/share/icons/busykdetheme-cursors/
+    rm -rf ~/.local/share/plasma/look-and-feel/busykdetheme-splash/
     mkdir -p ~/.local/share/plasma/desktoptheme/
     mkdir -p ~/.local/share/plasma/look-and-feel/
     # mkdir -p ~/.local/share/sddm/themes/
