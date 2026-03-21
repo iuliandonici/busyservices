@@ -34,7 +34,7 @@ if [[ $(f_check_networks) == "UP" ]]; then
     git clone git@github.com:iuliandonici/busykdethemes.git
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ /usr/share/plasma/desktoptheme/
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ /usr/share/plasma/look-and-feel/ 
-    cp -r busykdethemes/busykdetheme/busykdeplugin-sweet/ /usr/share/share/plasma/look-and-feel/
+    cp -r busykdethemes/busykdetheme/busykdeplugin-sweet/ /usr/share/plasma/look-and-feel/
     cp -r busykdethemes/busykdetheme/busykdetheme.colors /usr/share/share/color-schemes/busykdetheme.colors
     cp -r busykdethemes/busykdetheme/busykdetheme-icons/ /usr/share/icons/
     cp -r busykdethemes/busykdetheme/busykdetheme-cursors/ /usr/share/icons/
