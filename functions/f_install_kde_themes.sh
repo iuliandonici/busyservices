@@ -9,6 +9,7 @@ if [[ $(f_check_networks) == "UP" ]]; then
     $(f_get_security_utility) rm -rf ~/.local/share/sddm/themes/busykdetheme-sddm/
     $(f_get_security_utility) rm -rf ~/.local/share/icons/busykdetheme-icons/
     $(f_get_security_utility) rm -rf  ~/.local/share/icons/busykdetheme-cursors/
+    $(f_get_security_utility) rm -rf  ~/.local/share/icons/busykdetheme-splash/
     mkdir -p ~/.local/share/plasma/desktoptheme/
     mkdir -p ~/.local/share/plasma/look-and-feel/
     # mkdir -p ~/.local/share/sddm/themes/
@@ -19,6 +20,7 @@ if [[ $(f_check_networks) == "UP" ]]; then
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/desktoptheme/
     cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/look-and-feel/ 
     cp -r busykdethemes/busykdetheme/busykdeplugin-plasma/ ~/.local/share/plasma/look-and-feel/
+    cp -r busykdethemes/busykdetheme/busykdetheme-splash/ ~/.local/share/plasma/look-and-feel/
     cp -r busykdethemes/busykdetheme/busykdetheme.colors ~/.local/share/color-schemes/busykdetheme.colors
     cp -r busykdethemes/busykdetheme/busykdetheme-icons/ ~/.local/share/icons/
     cp -r busykdethemes/busykdetheme/busykdetheme-cursors/ ~/.local/share/icons/
@@ -26,19 +28,27 @@ if [[ $(f_check_networks) == "UP" ]]; then
     $(f_get_security_utility) cp -r busykdethemes/busykdetheme/busykdetheme-sddm/ /usr/share/sddm/themes/
     rm -rf busykdethemes/
   else
-    mkdir -p /usr/share/plasma/desktoptheme/
-    mkdir -p /usr/share/plasma/look-and-feel/
-    mkdir -p /usr/share/color-schemes/
-    mkdir -p /usr/share/sddm/themes/
+    rm -rf ~/.local/share/plasma/desktoptheme/busykdetheme-plasma/
+    rm -rf ~/.local/share/color-schemes/busykdetheme.colors
+    rm -rf ~/.local/share/sddm/themes/busykdetheme-sddm/
+    rm -rf ~/.local/share/icons/busykdetheme-icons/
+    rm -rf  ~/.local/share/icons/busykdetheme-cursors/
+    rm -rf  ~/.local/share/icons/busykdetheme-splash/
+    mkdir -p ~/.local/share/plasma/desktoptheme/
+    mkdir -p ~/.local/share/plasma/look-and-feel/
+    # mkdir -p ~/.local/share/sddm/themes/
+    mkdir -p ~/.local/share/color-schemes/
+    mkdir -p ~/.local/share/icons/
     rm -rf busykdethemes/
     git clone git@github.com:iuliandonici/busykdethemes.git
-    cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ /usr/share/plasma/desktoptheme/
-    cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ /usr/share/plasma/look-and-feel/ 
-    cp -r busykdethemes/busykdetheme/busykdeplugin-sweet/ /usr/share/plasma/look-and-feel/
-    cp -r busykdethemes/busykdetheme/busykdetheme.colors /usr/share/share/color-schemes/busykdetheme.colors
-    cp -r busykdethemes/busykdetheme/busykdetheme-icons/ /usr/share/icons/
-    cp -r busykdethemes/busykdetheme/busykdetheme-cursors/ /usr/share/icons/
-    cp -r busykdethemes/busykdetheme/busykdetheme-wallpapers/ /usr/share/wallpapers/
+    cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/desktoptheme/
+    cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/look-and-feel/ 
+    cp -r busykdethemes/busykdetheme/busykdeplugin-plasma/ ~/.local/share/plasma/look-and-feel/
+    cp -r busykdethemes/busykdetheme/busykdetheme-splash/ ~/.local/share/plasma/look-and-feel/
+    cp -r busykdethemes/busykdetheme/busykdetheme.colors ~/.local/share/color-schemes/busykdetheme.colors
+    cp -r busykdethemes/busykdetheme/busykdetheme-icons/ ~/.local/share/icons/
+    cp -r busykdethemes/busykdetheme/busykdetheme-cursors/ ~/.local/share/icons/
+    cp -r busykdethemes/busykdetheme/busykdetheme-wallpapers/ ~/.local/share/wallpapers/
     cp -r busykdethemes/busykdetheme/busykdetheme-sddm/ /usr/share/sddm/themes/
     rm -rf busykdethemes/
   fi
