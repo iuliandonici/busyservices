@@ -1,61 +1,53 @@
 #!/bin/bash
-function f_install_kde_themes() {
+function f_install_gitea() {
+  var_install_gitea_software_array=("gitea" "mariadb" "mariadb-client")
   source functions/f_update_software.sh
+  source functions/f_get_distro_packager.sh
   source functions/f_check_networks.sh
-  source functions/f_get_security_utility.sh
-  echo " - and currently installing KDE themes:"
-  if [[ $(f_check_networks) == "UP" ]]; then
-    if [[ "$EUID" -ne 0 ]]; then
-      $(f_get_security_utility) rm -rf ~/.local/share/plasma/desktoptheme/busykdetheme-plasma/
-      $(f_get_security_utility) rm -rf ~/.local/share/color-schemes/busykdetheme.colors
-      $(f_get_security_utility) rm -rf ~/.local/share/sddm/themes/busykdetheme-sddm/
-      $(f_get_security_utility) rm -rf ~/.local/share/icons/busykdetheme-icons/
-      $(f_get_security_utility) rm -rf ~/.local/share/icons/busykdetheme-cursors/
-      $(f_get_security_utility) rm -rf ~/.local/share/plasma/look-and-feel/busykdetheme-splash/
-      mkdir -p ~/.local/share/plasma/desktoptheme/
-      mkdir -p ~/.local/share/plasma/look-and-feel/
-      # mkdir -p ~/.local/share/sddm/themes/
-      mkdir -p ~/.local/share/color-schemes/
-      mkdir -p ~/.local/share/icons/
-      rm -rf busykdethemes/
-      git clone git@github.com:iuliandonici/busykdethemes.git
-      cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/desktoptheme/
-      cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/look-and-feel/ 
-      cp -r busykdethemes/busykdetheme/busykdetheme-global/ ~/.local/share/plasma/look-and-feel/
-      cp -r busykdethemes/busykdetheme/busykdetheme-splash/ ~/.local/share/plasma/look-and-feel/
-      cp -r busykdethemes/busykdetheme/busykdetheme.colors ~/.local/share/color-schemes/busykdetheme.colors
-      cp -r busykdethemes/busykdetheme/busykdetheme-icons/ ~/.local/share/icons/
-      cp -r busykdethemes/busykdetheme/busykdetheme-cursors/ ~/.local/share/icons/
-      cp -r busykdethemes/busykdetheme/busykdetheme-wallpapers/ ~/.local/share/wallpapers/
-      $(f_get_security_utility) cp -r busykdethemes/busykdetheme/busykdetheme-sddm/ /usr/share/sddm/themes/
-      rm -rf busykdethemes/
+  echo " - installing Gitea;"
+  if [[ $(f_get_distro_packager) == "apk" ]]; then
+    if [[ $(f_check_networks) == "UP" ]]; then
+      echo "- here's a list of base software that will be installed using $(f_get_distro_packager):"
+      for i in "${!var_install_gitea_software_array[@]}"
+      do
+          echo " $i ${var_install_gitea_software_array[$i]}"
+      done
+      f_update_software
+      for i in "${!var_install_gitea_software_array[@]}"
+      do
+        echo "- and currently installing: $i ${var_install_gitea_software_array[$i]}"
+        if [[ "$EUID" -ne 0 ]]; then 
+          doas $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}
+        else
+          $(f_get_distro_packager) add ${var_install_gitea_software_array[$i]}
+        fi
+      done
+      if [[ "$EUID" -ne 0 ]]; then
+        doas mariadb-install-db --user=mysql --datadir=/var/lib/mysql
+        doas service mariadb start
+        doas rc-update add mariadb
+        doas mariadb-secure-installation
+        mariadb -u root -p
+        doas rm -rf /etc/gitea/app.ini
+        doas cp -r functions/f_config_gitea /etc/gitea/app.ini
+        doas service gitea start
+        doas rc-update add gitea
+      else
+        mariadb-install-db --user=mysql --datadir=/var/lib/mysql
+        service mariadb start
+        rc-update add mariadb
+        mariadb-secure-installation
+        mariadb -u root -p
+        rm -rf /etc/gitea/app.ini
+        cp -r functions/f_config_gitea /etc/gitea/app.ini
+        service gitea start
+        rc-update add gitea
+      fi 
     else
-      rm -rf ~/.local/share/plasma/desktoptheme/busykdetheme-plasma/
-      rm -rf ~/.local/share/color-schemes/busykdetheme.colors
-      rm -rf ~/.local/share/sddm/themes/busykdetheme-sddm/
-      rm -rf ~/.local/share/icons/busykdetheme-icons/
-      rm -rf ~/.local/share/icons/busykdetheme-cursors/
-      rm -rf ~/.local/share/plasma/look-and-feel/busykdetheme-splash/
-      mkdir -p ~/.local/share/plasma/desktoptheme/
-      mkdir -p ~/.local/share/plasma/look-and-feel/
-      # mkdir -p ~/.local/share/sddm/themes/
-      mkdir -p ~/.local/share/color-schemes/
-      mkdir -p ~/.local/share/icons/
-      rm -rf busykdethemes/
-      git clone git@github.com:iuliandonici/busykdethemes.git
-      cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/desktoptheme/
-      cp -r busykdethemes/busykdetheme/busykdetheme-plasma/ ~/.local/share/plasma/look-and-feel/ 
-      cp -r busykdethemes/busykdetheme/busykdetheme-global/ ~/.local/share/plasma/look-and-feel/
-      cp -r busykdethemes/busykdetheme/busykdetheme-splash/ ~/.local/share/plasma/look-and-feel/
-      cp -r busykdethemes/busykdetheme/busykdetheme.colors ~/.local/share/color-schemes/busykdetheme.colors
-      cp -r busykdethemes/busykdetheme/busykdetheme-icons/ ~/.local/share/icons/
-      cp -r busykdethemes/busykdetheme/busykdetheme-cursors/ ~/.local/share/icons/
-      cp -r busykdethemes/busykdetheme/busykdetheme-wallpapers/ ~/.local/share/wallpapers/
-      cp -r busykdethemes/busykdetheme/busykdetheme-sddm/ /usr/share/sddm/themes/
-      rm -rf busykdethemes/
+          echo "- but can't install them because the networks are down;"
     fi
-  else
-    echo "- but the networks are down so we can't install the KDE themes;"
+  else 
+    echo "- but Gitea wasn't tested on this distro;"
   fi
 }
-f_install_kde_themes
+f_install_gitea
