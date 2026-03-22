@@ -14,7 +14,7 @@ LFS_START_SERVER = true
 DB_TYPE = mysql
 HOST = /var/run/mysqld/mysqld.sock
 NAME = gitea			; The database name set with 'CREATE DATABASE'
-USER = busyneo		; The database user
+USER = gitea		; The database user
 PASSWD = giteapassword		; The password for the database user
 
 [session]
