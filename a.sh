@@ -1,6 +1,6 @@
 #!/bin/bash
 function f_install_gitea() {
-  var_install_gitea_software_array=("gitea" "mariadb" "mariadb-client")
+  var_install_gitea_software_array=("bash" "coreutils" "grep" "lsof" "less" "curl" "binutils" "dialog" "attr" "git" "git-lfs" "gnupg" "sqlite" "sqlite" "openssl" "gitea")
   source functions/f_update_software.sh
   source functions/f_get_distro_packager.sh
   source functions/f_check_networks.sh
@@ -23,25 +23,11 @@ function f_install_gitea() {
         fi
       done
       if [[ "$EUID" -ne 0 ]]; then
-        doas mariadb-install-db --user=mysql --datadir=/var/lib/mysql
-        doas service mariadb start
-        doas rc-update add mariadb
-        doas mariadb-secure-installation
-        mariadb -u root -p
-        doas rm -rf /etc/gitea/app.ini
-        doas cp -r functions/f_config_gitea /etc/gitea/app.ini
-        doas service gitea start
-        doas rc-update add gitea
+        $(f_get_security_utility) service gitea start
+        $(f_get_security_utility) doas rc-update add gitea default
       else
-        mariadb-install-db --user=mysql --datadir=/var/lib/mysql
-        service mariadb start
-        rc-update add mariadb
-        mariadb-secure-installation
-        mariadb -u root -p
-        rm -rf /etc/gitea/app.ini
-        cp -r functions/f_config_gitea /etc/gitea/app.ini
         service gitea start
-        rc-update add gitea
+        doas rc-update add gitea default
       fi 
     else
           echo "- but can't install them because the networks are down;"
