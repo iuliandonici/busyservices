@@ -23,7 +23,7 @@ function f_install_gitea() {
         fi
       done
       if [[ "$EUID" -ne 0 ]]; then
-        doas mariadb-install-db --user=busyneo --datadir=/var/lib/mysql
+        doas mariadb-install-db --user=mysql --datadir=/var/lib/mysql
         doas service mariadb start
         doas rc-update add mariadb
         doas mariadb-secure-installation
