@@ -1,0 +1,1 @@
+case $(hostname) in  busyalpines)      echo "This is $(hostname)."  ;;
