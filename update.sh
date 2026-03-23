@@ -8,11 +8,12 @@ case $(f_get_distro_id) in
       source functions/f_install_base_software.sh
       f_install_base_software
   ;;
+  esac
 case $(hostname) in
   busyalpines)
       echo "This is $(hostname)."
       source functions/f_install_gitea.sh
-      f_install_gitea
+      f_install_gitea.sh
   ;;
 case $(hostname) in
   busychromebook)
