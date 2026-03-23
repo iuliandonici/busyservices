@@ -9,12 +9,10 @@ case $(f_get_distro_id) in
       f_install_base_software
   ;;
   esac
-case $(hostname) in
-  busyalpines)
-      echo "This is $(hostname)."
-      source functions/f_install_gitea.sh
-      f_install_gitea.sh
-  ;;
+# case $(hostname) in
+#   busyalpines)
+#       echo "This is $(hostname)."
+#   ;;
 case $(hostname) in
   busychromebook)
       echo "This is $(hostname)."
