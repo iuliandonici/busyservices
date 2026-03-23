@@ -9,11 +9,12 @@ case $(f_get_distro_id) in
       f_install_base_software
   ;;
   esac
-# case $(hostname) in
-#   busyalpines)
-#       echo "This is $(hostname)."
-#   ;;
 case $(hostname) in
+  busypi)
+    echo "This is $(hostname)."
+    source functions/f_install_gitea.sh
+    f_install_gitea
+  ;;
   busychromebook)
       echo "This is $(hostname)."
       source functions/f_install_kde_requirements.sh
@@ -35,14 +36,13 @@ case $(hostname) in
     source functions/f_install_desktop_dev_software.sh
     f_install_desktop_dev_software
   ;;
-busyubuntus)
+  busyubuntus)
     echo "This is $(hostname)."
     # source functions/f_install_jellyfin.sh
     # f_install_jellyfin
     source functions/f_install_xfce.sh
     f_install_xfce
   ;;
-
   busydocker)
     echo "This is $(hostname)."
     source functions/f_install_acf.sh
