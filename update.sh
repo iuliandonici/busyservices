@@ -8,7 +8,6 @@ case $(f_get_distro_id) in
       source functions/f_install_base_software.sh
       f_install_base_software
   ;;
-  esac
 case $(hostname) in
   busyalpines)
       echo "This is $(hostname)."
